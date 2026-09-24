@@ -4,131 +4,119 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>测测你前世是谁 · 前世身份测试 2026</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
+<style>*{margin:0;padding:0;box-sizing:border-box}
+:root{--acc:#9d7bff}
 body{font-family:'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;
-background:#f4efe4;
-background-image:
-  repeating-linear-gradient(0deg,transparent,transparent 30px,rgba(35,32,32,.018) 30px,rgba(35,32,32,.018) 31px),
-  radial-gradient(circle at 50% -12%,#fbf7ee 0%,#f4efe4 62%);
-min-height:100vh;color:#232020;overflow-x:hidden;line-height:1.7;-webkit-font-smoothing:antialiased}
-.page{display:none;min-height:100vh;padding:14px 18px 64px;max-width:680px;margin:0 auto}
+  background:#0b0c1a;
+  background-image:
+    radial-gradient(1200px 600px at 15% -10%, rgba(123,92,255,.32), transparent 60%),
+    radial-gradient(1000px 500px at 110% 8%, rgba(45,226,230,.20), transparent 55%),
+    radial-gradient(900px 700px at 50% 120%, rgba(255,110,199,.16), transparent 60%);
+  background-attachment:fixed;
+  min-height:100vh;color:#e9eaf6;overflow-x:hidden;line-height:1.6;-webkit-font-smoothing:antialiased;
+  animation:bgshift 18s ease-in-out infinite alternate}
+@keyframes bgshift{from{background-position:0 0,0 0,0 0}to{background-position:30px -20px,-25px 15px,10px 30px}}
+@keyframes pwShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-7px)}75%{transform:translateX(7px)}}
+@keyframes glow{0%,100%{box-shadow:0 0 22px rgba(123,92,255,.35)}50%{box-shadow:0 0 40px rgba(123,92,255,.6)}}
+.page{display:none;min-height:100vh;padding:22px 16px 64px}
 .page.active{display:flex;flex-direction:column;align-items:center;animation:fadeUp .4s ease}
-@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
-@keyframes pwShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
-
-.wrap{width:100%}
-.wide-wrap{width:100%;max-width:680px}
-
-.icon-box{font-size:46px;margin:46px auto 18px;text-align:center;line-height:1;position:relative;padding-bottom:16px}
-.icon-box::after{content:'';position:absolute;left:50%;transform:translateX(-50%);bottom:0;width:42px;height:2px;background:#9e2b25}
-
-.hero-title{font-family:'Noto Serif SC','Songti SC','SimSun',serif;font-size:30px;font-weight:700;color:#232020;text-align:center;margin-bottom:10px;line-height:1.35;letter-spacing:2px}
-.hero-sub{font-size:11px;color:#9a9183;letter-spacing:5px;font-weight:600;text-align:center;margin-bottom:30px;text-transform:uppercase}
-
-.card{background:#fbf8f1;border:1px solid #e3dccb;border-radius:4px;padding:22px 20px;margin-bottom:18px}
-.card-title{font-family:'Noto Serif SC','Songti SC',serif;font-size:16px;font-weight:700;color:#9e2b25;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid #e3dccb}
-
-.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px}
-.stat-card{background:#fbf8f1;border:1px solid #e3dccb;border-radius:4px;padding:18px 10px;display:flex;flex-direction:column;align-items:center;gap:5px}
-.stat-icon{font-size:22px}
-.stat-num{font-family:'Noto Serif SC','Songti SC',serif;font-size:22px;font-weight:700;color:#232020}
-.stat-desc{font-size:11px;color:#9a9183}
-
-.info-box{background:#fbf8f1;border-left:3px solid #9e2b25;border-radius:0 4px 4px 0;padding:14px 18px;margin-bottom:24px}
-.info-box-title{font-size:13px;font-weight:700;color:#9e2b25;margin-bottom:6px;font-family:'Noto Serif SC','Songti SC',serif}
-.info-box-text{font-size:13px;color:#5a5249;line-height:1.8}
-
-.dim-list{display:flex;flex-direction:column;gap:0}
-.dim-item{display:flex;align-items:flex-start;gap:10px;padding:11px 2px;border-bottom:1px solid #ece6d8}
-.dim-item:last-child{border-bottom:none}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.wrap,.wide-wrap{width:100%}
+.wrap{max-width:520px}
+.wide-wrap{max-width:680px}
+.icon-box{width:78px;height:78px;border-radius:24px;background:linear-gradient(135deg,var(--acc),#7b5cff);display:flex;align-items:center;justify-content:center;font-size:38px;margin:26px auto 16px;animation:glow 3.5s ease-in-out infinite}
+.hero-title{font-size:25px;font-weight:800;color:#fff;text-align:center;margin-bottom:6px;line-height:1.3;text-shadow:0 2px 20px rgba(123,92,255,.4)}
+.hero-sub{font-size:11px;color:#9aa0c4;letter-spacing:4px;font-weight:600;text-align:center;margin-bottom:22px;text-transform:uppercase}
+.card,.stat-card,.info-box,.dim-item,.category-card,.pw-card,.btn-secondary,.q-header,.q-body,.top-card,.dim-card,.others-card,.other-card{background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.10);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.card{border-radius:20px;padding:20px 18px;margin-bottom:16px;box-shadow:0 8px 30px rgba(0,0,0,.35)}
+.card-title{font-size:15px;font-weight:800;color:var(--acc);margin-bottom:10px}
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+.stat-card{border-radius:20px;padding:16px 12px;display:flex;flex-direction:column;align-items:center;gap:4px}
+.stat-icon{font-size:24px}
+.stat-num{font-size:19px;font-weight:800;color:#fff}
+.stat-desc{font-size:12px;color:#9aa0c4}
+.info-box{border-radius:16px;padding:14px 18px;margin-bottom:20px;border-left:3px solid var(--acc)}
+.info-box-title{font-size:13px;font-weight:700;color:var(--acc);margin-bottom:6px}
+.info-box-text{font-size:13px;color:#c4c7e0;line-height:1.6}
+.dim-list{display:flex;flex-direction:column;gap:8px}
+.dim-item{border-radius:12px;padding:8px 10px;display:flex;align-items:flex-start;gap:10px}
 .dim-item-icon{font-size:18px;flex-shrink:0;margin-top:1px}
-.dim-item-name{font-size:13px;font-weight:700;color:#232020}
-.dim-item-desc{font-size:12px;color:#9a9183}
-
-.category-section{margin-bottom:28px}
-.category-card{background:#fbf8f1;border:1px solid #e3dccb;border-radius:4px;padding:18px;margin-bottom:14px}
-.category-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.dim-item-name{font-size:13px;font-weight:700;color:var(--acc)}
+.dim-item-desc{font-size:12px;color:#9aa0c4}
+.category-section{margin-bottom:24px}
+.category-card{border-radius:16px;padding:16px 18px;margin-bottom:12px;box-shadow:0 4px 18px rgba(0,0,0,.3)}
+.category-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
 .category-left{display:flex;align-items:center;gap:10px}
-.category-icon{width:34px;height:34px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:18px;background:#232020;color:#f4efe4;flex-shrink:0}
-.category-icon.a,.category-icon.b,.category-icon.c,.category-icon.d{background:#232020;color:#f4efe4}
-.category-name{font-family:'Noto Serif SC','Songti SC',serif;font-size:16px;font-weight:700;color:#232020}
-.category-desc{font-size:11px;color:#9a9183;background:#ece6d8;padding:4px 10px;border-radius:2px}
+.category-icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;background:linear-gradient(135deg,var(--acc),#7b5cff)}
+.category-icon.a,.category-icon.b,.category-icon.c,.category-icon.d{background:linear-gradient(135deg,var(--acc),#7b5cff)}
+.category-name{font-size:15px;font-weight:700;color:#fff}
+.category-desc{font-size:11px;color:#9aa0c4;background:rgba(255,255,255,.08);padding:4px 10px;border-radius:20px}
 .city-tags{display:flex;flex-wrap:wrap;gap:8px}
-.city-tag{padding:5px 13px;background:#fff;border:1px solid #e3dccb;border-radius:2px;font-size:12px;color:#5a5249}
-
-.pw-card{background:#fbf8f1;border:1px solid #e3dccb;border-radius:4px;padding:28px 24px;margin-bottom:22px;text-align:center}
-.pw-label{font-family:'Noto Serif SC','Songti SC',serif;font-size:16px;font-weight:700;color:#232020;margin-bottom:18px}
-.pw-input{width:100%;text-align:center;font-size:28px;letter-spacing:16px;font-weight:700;padding:14px;border-radius:4px;outline:none;color:#232020;font-family:'Noto Serif SC','Songti SC',serif;border:1px solid #d8d0bf;background:#fff;transition:border .2s}
-.pw-input:focus{border-color:#9e2b25;box-shadow:0 0 0 3px rgba(35,32,32,.06)}
-.pw-err{color:#9e2b25;font-size:13px;margin-top:8px;display:none}
-.pw-hint{font-size:12px;color:#9a9183;margin-top:10px}
-
-.btn-primary{width:100%;padding:16px;border-radius:4px;border:none;background:#232020;color:#f4efe4;font-size:17px;font-weight:700;cursor:pointer;letter-spacing:5px;font-family:'Noto Serif SC','Songti SC',serif;transition:background .15s}
-.btn-primary:hover{background:#9e2b25}
-.btn-primary:active{transform:translateY(1px)}
-.btn-secondary{width:100%;padding:15px;border-radius:4px;border:1px solid #d8d0bf;background:transparent;cursor:pointer;font-size:15px;font-weight:700;color:#5a5249;font-family:'Noto Serif SC','Songti SC',serif;transition:background .15s;margin-bottom:10px}
-.btn-secondary:hover{background:#ece6d8}
-
+.city-tag{padding:6px 14px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:20px;font-size:13px;color:#e9eaf6}
+.pw-card{border-radius:20px;padding:24px;margin-bottom:20px;text-align:center;box-shadow:0 8px 30px rgba(0,0,0,.4)}
+.pw-label{font-size:15px;font-weight:700;color:var(--acc);margin-bottom:16px}
+.pw-input{width:100%;text-align:center;font-size:28px;letter-spacing:12px;font-weight:700;padding:14px;border-radius:14px;outline:none;color:var(--acc);font-family:inherit;border:2px solid rgba(255,255,255,.18);background:rgba(0,0,0,.3);transition:border .2s}
+.pw-input:focus{border-color:var(--acc);box-shadow:0 0 0 3px rgba(123,92,255,.2)}
+.pw-err{color:#ff8a8a;font-size:13px;margin-top:8px;display:none}
+.pw-hint{font-size:12px;color:#9aa0c4;margin-top:10px}
+.btn-primary{width:100%;padding:16px;border-radius:16px;border:none;background:linear-gradient(135deg,var(--acc),#7b5cff);color:#0b0c1a;font-size:18px;font-weight:800;cursor:pointer;box-shadow:0 8px 26px rgba(123,92,255,.45);letter-spacing:2px;font-family:inherit;transition:transform .15s,box-shadow .15s}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 34px rgba(123,92,255,.6)}
+.btn-primary:active{transform:translateY(0)}
+.btn-secondary{width:100%;padding:16px;border-radius:16px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.05);cursor:pointer;font-size:16px;font-weight:700;color:var(--acc);font-family:inherit;transition:background .15s;margin-bottom:10px}
+.btn-secondary:hover{background:rgba(123,92,255,.14)}
 .footer{text-align:center;padding:16px 0 8px;width:100%}
-.footer a{font-size:13px;color:#9a9183;text-decoration:none;border-bottom:1px solid #d8d0bf;padding-bottom:2px}
-
-.q-header{background:#fbf8f1;border:1px solid #e3dccb;border-radius:4px;padding:16px 20px;margin-bottom:18px;width:100%;max-width:600px}
+.footer a{font-size:13px;color:#9aa0c4;text-decoration:none;border-bottom:1px solid rgba(154,160,196,.4);padding-bottom:2px}
+.q-header{border-radius:20px;padding:16px 20px;margin-bottom:20px;width:100%;max-width:600px;box-shadow:0 4px 20px rgba(0,0,0,.35)}
 .q-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
-.q-cat{font-size:12px;font-weight:700;color:#9e2b25;letter-spacing:1px}
-.q-count{font-size:12px;color:#9a9183}
-.q-pct{font-size:12px;font-weight:700;color:#232020}
-.progress-track{height:4px;background:#e3dccb;border-radius:0;overflow:hidden}
-.progress-bar{height:100%;background:#9e2b25;transition:width .4s ease}
-
-.q-body{background:#fbf8f1;border:1px solid #e3dccb;border-radius:4px;padding:28px 24px;margin-bottom:18px;width:100%;max-width:600px}
-.q-text{font-family:'Noto Serif SC','Songti SC',serif;font-size:21px;font-weight:700;color:#232020;margin-bottom:24px;line-height:1.5}
+.q-cat{font-size:13px;font-weight:700;color:var(--acc)}
+.q-count{font-size:13px;color:#9aa0c4}
+.q-pct{font-size:13px;font-weight:700;color:#fff}
+.progress-track{height:8px;background:rgba(255,255,255,.12);border-radius:99px;overflow:hidden}
+.progress-bar{height:100%;background:linear-gradient(90deg,var(--acc),#7b5cff);border-radius:99px;transition:width .4s ease}
+.q-body{border-radius:24px;padding:28px 24px;margin-bottom:20px;width:100%;max-width:600px;box-shadow:0 8px 30px rgba(0,0,0,.4)}
+.q-text{font-size:20px;font-weight:800;color:#fff;margin-bottom:24px;line-height:1.4}
 .opts{display:flex;flex-direction:column;gap:12px}
-.opt{padding:15px 18px;border-radius:4px;border:1px solid #d8d0bf;background:#fff;cursor:pointer;text-align:left;font-size:15px;color:#232020;display:flex;align-items:center;gap:12px;transition:all .15s;width:100%;font-family:inherit}
-.opt:hover{border-color:#9e2b25;background:#fbf8f1}
-.opt.selected{border-color:#9e2b25;background:#f4efe4;color:#232020;font-weight:600}
-.opt-radio{font-size:16px;color:#9e2b25;flex-shrink:0;width:18px}
+.opt{padding:16px 20px;border-radius:16px;border:2px solid rgba(255,255,255,.14);background:rgba(255,255,255,.05);cursor:pointer;text-align:left;font-size:15px;color:#e9eaf6;display:flex;align-items:center;gap:12px;transition:all .15s;font-family:inherit;width:100%}
+.opt:hover{border-color:var(--acc);background:rgba(123,92,255,.14);transform:translateX(3px)}
+.opt.selected{border-color:var(--acc);background:rgba(123,92,255,.2);color:#fff;font-weight:600}
+.opt-radio{font-size:18px;color:var(--acc);flex-shrink:0;width:20px}
 .q-nav{display:flex;justify-content:space-between;align-items:center;gap:12px;width:100%;max-width:600px}
-.nav-btn{padding:13px 22px;border-radius:4px;border:1px solid #d8d0bf;background:transparent;cursor:pointer;font-size:14px;color:#9a9183;font-family:'Noto Serif SC','Songti SC',serif;transition:opacity .2s}
-.auto-hint{font-size:12px;color:#9a9183;flex:1;text-align:center;transition:opacity .3s}
-
-.top-card{background:#fbf8f1;border:1px solid #e3dccb;border-radius:4px;padding:36px 26px 30px;text-align:center;margin-bottom:20px;width:100%}
-.top-sub{font-size:12px;color:#9e2b25;font-weight:700;margin-bottom:16px;letter-spacing:3px;font-family:'Noto Serif SC','Songti SC',serif}
+.nav-btn{padding:13px 24px;border-radius:14px;border:2px solid rgba(255,255,255,.16);background:rgba(255,255,255,.05);cursor:pointer;font-size:15px;color:#9aa0c4;font-family:inherit;transition:opacity .2s}
+.auto-hint{font-size:13px;color:#9aa0c4;flex:1;text-align:center;transition:opacity .3s}
+.top-card{border-radius:28px;padding:32px 24px 28px;text-align:center;margin-bottom:20px;width:100%;box-shadow:0 10px 40px rgba(0,0,0,.5)}
+.top-sub{font-size:13px;color:var(--acc);font-weight:600;margin-bottom:16px;letter-spacing:1px}
 .top-icon-emoji{font-size:48px;margin-bottom:8px}
-.match-pct{font-family:'Noto Serif SC','Songti SC',serif;font-size:74px;font-weight:700;color:#232020;line-height:1}
-.top-city{font-family:'Noto Serif SC','Songti SC',serif;font-size:28px;font-weight:700;color:#232020;margin:14px 0 4px}
-.top-prov{font-size:12px;color:#9a9183;margin-bottom:16px}
+.match-pct{font-size:64px;font-weight:900;background:linear-gradient(135deg,var(--acc),#7b5cff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
+.top-city{font-size:26px;font-weight:900;color:#fff;margin:12px 0 4px}
+.top-prov{font-size:13px;color:#9aa0c4;margin-bottom:16px}
 .tag-row{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:10px}
-.tag-chip{background:#232020;color:#f4efe4;border-radius:2px;padding:4px 14px;font-size:12px;font-weight:600}
-.kw-chip{background:#ece6d8;color:#5a5249;border-radius:2px;padding:4px 14px;font-size:11px}
-.match-reason{background:#fff;border:1px solid #e3dccb;border-radius:4px;padding:16px 18px;text-align:left;margin-top:16px}
-.reason-title{font-family:'Noto Serif SC','Songti SC',serif;font-size:14px;font-weight:700;color:#9e2b25;display:block;margin-bottom:8px}
-.reason-text{font-size:14px;color:#5a5249;line-height:1.95;margin:0}
-
-.dim-card{background:#fbf8f1;border:1px solid #e3dccb;border-radius:4px;padding:24px;margin-bottom:20px;width:100%}
-.dim-card-title{font-family:'Noto Serif SC','Songti SC',serif;font-size:17px;font-weight:700;color:#232020;margin-bottom:20px}
+.tag-chip{background:rgba(123,92,255,.18);color:var(--acc);border-radius:20px;padding:4px 14px;font-size:13px;font-weight:600;border:1px solid rgba(123,92,255,.35)}
+.kw-chip{background:rgba(255,255,255,.08);color:#9aa0c4;border-radius:20px;padding:4px 14px;font-size:12px;border:1px solid rgba(255,255,255,.14)}
+.match-reason{background:rgba(0,0,0,.3);border-radius:16px;padding:16px 20px;text-align:left;margin-top:16px;border:1px solid rgba(255,255,255,.1)}
+.reason-title{font-size:14px;font-weight:700;color:var(--acc);display:block;margin-bottom:8px}
+.reason-text{font-size:14px;color:#c4c7e0;line-height:1.8;margin:0}
+.dim-card{border-radius:24px;padding:24px;margin-bottom:20px;width:100%;box-shadow:0 8px 30px rgba(0,0,0,.4)}
+.dim-card-title{font-size:16px;font-weight:800;color:#fff;margin-bottom:20px}
 .dim-grid{display:flex;flex-direction:column;gap:12px}
 .dim-row{display:flex;align-items:center;gap:12px}
-.dim-label{font-size:12px;color:#9a9183;width:72px;flex-shrink:0}
-.dim-track{flex:1;height:6px;background:#e3dccb;border-radius:0;overflow:hidden}
-.dim-bar{height:100%;background:#9e2b25;transition:width .6s ease}
-.dim-val{font-size:12px;font-weight:700;color:#232020;width:28px;text-align:right;flex-shrink:0}
-
-.others-card{background:#fbf8f1;border:1px solid #e3dccb;border-radius:4px;padding:24px;margin-bottom:24px;width:100%}
-.others-title{font-family:'Noto Serif SC','Songti SC',serif;font-size:17px;font-weight:700;color:#232020;margin-bottom:20px}
+.dim-label{font-size:12px;color:#9aa0c4;width:70px;flex-shrink:0}
+.dim-track{flex:1;height:8px;background:rgba(255,255,255,.12);border-radius:99px;overflow:hidden}
+.dim-bar{height:100%;background:linear-gradient(90deg,var(--acc),#7b5cff);border-radius:99px;transition:width .6s ease}
+.dim-val{font-size:12px;font-weight:700;color:var(--acc);width:28px;text-align:right;flex-shrink:0}
+.others-card{border-radius:24px;padding:24px;margin-bottom:24px;width:100%;box-shadow:0 8px 30px rgba(0,0,0,.4)}
+.others-title{font-size:16px;font-weight:800;color:#fff;margin-bottom:20px}
 .others-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 @media(max-width:480px){.others-grid{grid-template-columns:1fr}}
-.other-card{border:1px solid #e3dccb;border-radius:4px;padding:16px 14px;background:#fff}
+.other-card{border-radius:18px;padding:16px 14px;background:rgba(255,255,255,.06)}
 .other-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
-.other-name{font-family:'Noto Serif SC','Songti SC',serif;font-size:16px;font-weight:700;color:#232020}
-.other-prov{font-size:12px;color:#9a9183}
-.other-score{font-size:18px;font-weight:700;color:#9e2b25}
-.other-desc{font-size:12px;color:#9a9183;line-height:1.85;margin-top:10px}
-.tag-chip-sm{background:#232020;color:#f4efe4;border-radius:2px;padding:3px 10px;font-size:11px}
-.kw-chip-sm{background:#ece6d8;color:#5a5249;border-radius:2px;padding:3px 10px;font-size:11px}
-
-.decl-text{font-size:13px;color:#5a5249;line-height:1.9;margin-bottom:16px}
-.decl-text strong{color:#9e2b25}
+.other-name{font-size:16px;font-weight:800;color:#fff}
+.other-prov{font-size:12px;color:#9aa0c4}
+.other-score{font-size:18px;font-weight:900;color:var(--acc)}
+.other-desc{font-size:12px;color:#9aa0c4;line-height:1.7;margin-top:10px}
+.tag-chip-sm{background:rgba(123,92,255,.16);color:var(--acc);border-radius:20px;padding:3px 10px;font-size:11px;font-weight:600}
+.kw-chip-sm{background:rgba(255,255,255,.07);color:#9aa0c4;border-radius:20px;padding:3px 10px;font-size:11px}
+.decl-text{font-size:13px;color:#c4c7e0;line-height:1.8;margin-bottom:16px}
+.decl-text strong{color:var(--acc)}
 </style>
 </head>
 <body>
@@ -321,68 +309,7 @@ const CITIES=[
 {name:"田园隐者",province:"躬耕南山 · 知足常乐",tags:["平和型","隐者命","暖厚型"],kw:["躬耕南山","知足常乐","安稳真情"],p:{power:10,wealth:30,love:60,freedom:60,wisdom:40,chivalry:35,art:45,reclusion:80,adventure:30,faith:50},desc:"你前世是躬耕南山的田园隐者，种豆采菊、与邻共饮，知足常乐。你不羡荣华，只求一方安稳与真情。这一世你依旧暖厚，最懂平凡日子里的踏实幸福。"}
 ];
 
-const QUESTIONS=[
-// ── 权力欲望 ──
-{id:1,cat:"👑 权力欲望",q:"若有朝一日给你至高权柄，你的第一反应是？",opts:[{t:"欣然接受，本就该站在顶端",w:{power:30}},{t:"谨慎接下，权柄即责任",w:{power:10,wisdom:10}},{t:"婉拒，高处不胜寒",w:{power:-20,reclusion:10}},{t:"无所谓，权势非我所求",w:{power:-30}}]},
-{id:2,cat:"👑 权力欲望",q:"你更渴望被怎样记住？",opts:[{t:"一代雄主，开疆拓土",w:{power:30}},{t:"富甲天下，名动四方",w:{power:15,wealth:15}},{t:"才情传世，青史留名",w:{power:10,art:20}},{t:"无人记得，自在逍遥",w:{power:-20,reclusion:20}}]},
-{id:3,cat:"👑 权力欲望",q:"面对一场必赢的棋局，你更享受？",opts:[{t:"掌控全局、运筹帷幄的快感",w:{power:25,wisdom:10}},{t:"与人对弈的过程",w:{wisdom:5}},{t:"赢之后的赏赐与地位",w:{power:20,wealth:10}},{t:"其实更想掀翻棋盘",w:{power:-25,freedom:15}}]},
-{id:4,cat:"👑 权力欲望",q:"你认为理想的地位是？",opts:[{t:"万人之上，一言九鼎",w:{power:30}},{t:"一方诸侯，手握实权",w:{power:15}},{t:"幕僚之首，幕后操盘",w:{power:10,wisdom:15}},{t:"布衣平民，逍遥自在",w:{power:-25,freedom:20}}]},
-{id:5,cat:"👑 权力欲望",q:"若有叛徒背叛你，你会？",opts:[{t:"雷霆手段，以儆效尤",w:{power:25}},{t:"查明缘由，恩威并施",w:{power:10,wisdom:10}},{t:"痛心但宽容以待",w:{power:-10,love:15}},{t:"早有预料，淡然处之",w:{power:-10,wisdom:10}}]},
-// ── 财富执念 ──
-{id:6,cat:"💰 财富执念",q:"你对金钱的态度更接近？",opts:[{t:"越多越好，财富即安全感",w:{wealth:30}},{t:"够用就好，不刻意追逐",w:{wealth:-5}},{t:"够花就行，看淡钱财",w:{wealth:-20}},{t:"钱财是身外之物，可舍",w:{wealth:-30,reclusion:10}}]},
-{id:7,cat:"💰 财富执念",q:"如果一夜暴富，你第一件事是？",opts:[{t:"投资扩张，让钱生钱",w:{wealth:25}},{t:"改善生活，惠及家人",w:{wealth:10,love:10}},{t:"攒起来，求个安稳",w:{wealth:5}},{t:"散尽部分，做想做的事",w:{wealth:-15,freedom:10}}]},
-{id:8,cat:"💰 财富执念",q:"你更欣赏哪种致富方式？",opts:[{t:"胆大布局，敢赌风口",w:{wealth:25,adventure:10}},{t:"踏实经营，细水长流",w:{wealth:10}},{t:"靠一门手艺吃饭",w:{wealth:-5,art:10}},{t:"无所谓，清贫亦可",w:{wealth:-25,reclusion:10}}]},
-{id:9,cat:"💰 财富执念",q:"奢华享受对你而言？",opts:[{t:"值得，辛苦就该享受最好的",w:{wealth:25}},{t:"偶尔享受，犒劳自己",w:{wealth:5}},{t:"可有可无，简朴也行",w:{wealth:-10}},{t:"反感，浮华让人迷失",w:{wealth:-25,reclusion:10}}]},
-{id:10,cat:"💰 财富执念",q:"你愿意为更高的收入付出什么？",opts:[{t:"倾尽全力，赌上一切",w:{wealth:30,adventure:10}},{t:"努力拼搏，但留有余地",w:{wealth:10}},{t:"适度努力，生活平衡",w:{wealth:-5}},{t:"不愿为钱牺牲生活质量",w:{wealth:-25,freedom:10}}]},
-// ── 自由灵魂 ──
-{id:11,cat:"🕊️ 自由灵魂",q:"你最怕的生活状态是？",opts:[{t:"被条条框框死死束缚",w:{freedom:30}},{t:"一眼望到头的安稳",w:{freedom:15}},{t:"孤独无依的漂泊",w:{freedom:-15,love:10}},{t:"其实享受规律与归属",w:{freedom:-25}}]},
-{id:12,cat:"🕊️ 自由灵魂",q:"长假你最想？",opts:[{t:"一个人背上包说走就走",w:{freedom:30,adventure:10}},{t:"约上挚友来场自在游",w:{freedom:15,love:10}},{t:"回老家陪陪亲人",w:{freedom:-10,love:15}},{t:"宅着，哪儿都不去",w:{freedom:-20,reclusion:10}}]},
-{id:13,cat:"🕊️ 自由灵魂",q:"面对规矩，你的本能是？",opts:[{t:"先想怎么绕过去",w:{freedom:25}},{t:"遵守，但心里嘀咕",w:{freedom:-5}},{t:"规矩自有道理",w:{freedom:-15}},{t:"主动维护秩序",w:{freedom:-25,power:10}}]},
-{id:14,cat:"🕊️ 自由灵魂",q:"你理想的人际关系距离是？",opts:[{t:"各自精彩，不必黏腻",w:{freedom:25}},{t:"亲密但有空间",w:{freedom:5}},{t:"喜欢热闹有人陪",w:{freedom:-10,love:10}},{t:"恨不得天天黏在一起",w:{freedom:-20,love:15}}]},
-{id:15,cat:"🕊️ 自由灵魂",q:"若有仙缘许你一个愿望，你要？",opts:[{t:"一生逍遥，无拘无束",w:{freedom:30}},{t:"与所爱之人长相守",w:{freedom:-10,love:20}},{t:"功成名就，万人敬仰",w:{freedom:-15,power:15}},{t:"清心寡欲，了无牵挂",w:{freedom:10,reclusion:15}}]},
-// ── 情爱羁绊 ──
-{id:16,cat:"💞 情爱羁绊",q:"你更相信哪一种？",opts:[{t:"至死不渝的深情",w:{love:30}},{t:"细水长流的陪伴",w:{love:15}},{t:"合则来不合则去",w:{love:-10,freedom:10}},{t:"情爱是牵绊，独身更自在",w:{love:-25,reclusion:10}}]},
-{id:17,cat:"💞 情爱羁绊",q:"为爱你可以放弃什么？",opts:[{t:"放弃前途与远方",w:{love:30,freedom:-10}},{t:"放弃部分原则",w:{love:10}},{t:"看情况，不会全舍去",w:{love:-5}},{t:"什么都不愿放弃",w:{love:-20,freedom:10}}]},
-{id:18,cat:"💞 情爱羁绊",q:"你眼里的浪漫是？",opts:[{t:"轰轰烈烈，惊天动地",w:{love:25,art:10}},{t:"柴米油盐里的小确幸",w:{love:10}},{t:"灵魂同频的默契",w:{love:15,wisdom:10}},{t:"不需要浪漫，务实就好",w:{love:-20}}]},
-{id:19,cat:"💞 情爱羁绊",q:"若所爱之人要远走他乡，你？",opts:[{t:"放下一切随TA而去",w:{love:30,freedom:10}},{t:"奋力挽留",w:{love:10}},{t:"尊重选择，含泪祝福",w:{love:5,wisdom:10}},{t:"早有预感，平静接受",w:{love:-15,reclusion:10}}]},
-{id:20,cat:"💞 情爱羁绊",q:"你更怕哪种孤独？",opts:[{t:"无人懂我的灵魂",w:{love:20,wisdom:10}},{t:"无人陪在身边的冷清",w:{love:15}},{t:"都不怕，享受独处",w:{love:-25,reclusion:10}},{t:"怕被束缚多过孤独",w:{love:-10,freedom:15}}]},
-// ── 智慧追求 ──
-{id:21,cat:"📜 智慧追求",q:"遇到难题，你第一反应是？",opts:[{t:"先谋后动，想透再出手",w:{wisdom:30}},{t:"边做边学，实践出真知",w:{wisdom:10,adventure:10}},{t:"请教高明之人",w:{wisdom:15}},{t:"凭直觉，不想太多",w:{wisdom:-20,freedom:10}}]},
-{id:22,cat:"📜 智慧追求",q:"你更享受哪种成就感？",opts:[{t:"看穿了别人看不穿的局",w:{wisdom:30}},{t:"靠双手拼出的成果",w:{wisdom:10,chivalry:10}},{t:"被众人拥戴",w:{wisdom:-5,power:10}},{t:"内心的平静与通透",w:{wisdom:10,reclusion:15}}]},
-{id:23,cat:"📜 智慧追求",q:"茶余饭后你更爱聊？",opts:[{t:"天下大势与人心博弈",w:{wisdom:25}},{t:"江湖趣事与人间烟火",w:{wisdom:5,freedom:10}},{t:"风花雪月与艺术",w:{wisdom:10,art:10}},{t:"家长里短，图个乐",w:{wisdom:-10}}]},
-{id:24,cat:"📜 智慧追求",q:"你对「聪明」的定义是？",opts:[{t:"算无遗策，洞若观火",w:{wisdom:30}},{t:"大智若愚，难得糊涂",w:{wisdom:15,reclusion:10}},{t:"学以致用，解决问题",w:{wisdom:10}},{t:"赤诚坦荡，不耍心机",w:{wisdom:-15,freedom:10}}]},
-{id:25,cat:"📜 智慧追求",q:"你更愿意被称做？",opts:[{t:"谋士 / 智者",w:{wisdom:30}},{t:"实干家 / 行动派",w:{wisdom:5,chivalry:10}},{t:"性情中人",w:{wisdom:-10,freedom:10}},{t:"隐者 / 通透人",w:{wisdom:10,reclusion:15}}]},
-// ── 侠义之心 ──
-{id:26,cat:"⚔️ 侠义之心",q:"路边有人被欺负，你会？",opts:[{t:"冲上去打抱不平",w:{chivalry:30}},{t:"先判断，再出手相助",w:{chivalry:15,wisdom:5}},{t:"悄悄报警或找人帮忙",w:{chivalry:5}},{t:"多一事不如少一事",w:{chivalry:-25}}]},
-{id:27,cat:"⚔️ 侠义之心",q:"你最看重的朋友品质是？",opts:[{t:"讲义气，两肋插刀",w:{chivalry:30}},{t:"真诚靠谱",w:{chivalry:10}},{t:"有趣投缘",w:{chivalry:-5,freedom:10}},{t:"各自安好，互不麻烦",w:{chivalry:-20,reclusion:10}}]},
-{id:28,cat:"⚔️ 侠义之心",q:"你愿意为「公道」付出多大代价？",opts:[{t:"倾尽所有，在所不惜",w:{chivalry:30}},{t:"力所能及，但不冒大险",w:{chivalry:10}},{t:"量力而行",w:{chivalry:-5}},{t:"公道不如自保",w:{chivalry:-25}}]},
-{id:29,cat:"⚔️ 侠义之心",q:"你更向往哪种江湖地位？",opts:[{t:"快意恩仇的侠客",w:{chivalry:30,freedom:10}},{t:"威震一方的名将",w:{chivalry:15,power:15}},{t:"德高望重的长者",w:{chivalry:15,wisdom:10}},{t:"不涉纷争的闲人",w:{chivalry:-20,reclusion:10}}]},
-{id:30,cat:"⚔️ 侠义之心",q:"你眼中的「英雄」是？",opts:[{t:"为苍生赴汤蹈火之人",w:{chivalry:30}},{t:"护佑一方平安之人",w:{chivalry:15}},{t:"活出真我之人",w:{chivalry:-5,freedom:15}},{t:"不屑枭雄，只做自己",w:{chivalry:-15,reclusion:10}}]},
-// ── 艺术灵性 ──
-{id:31,cat:"🎨 艺术灵性",q:"你更被什么打动？",opts:[{t:"一首诗、一幅画的意境",w:{art:30}},{t:"一段故事的悲欢",w:{art:10,love:10}},{t:"一件事办成的爽感",w:{art:-10,power:10}},{t:"实用的东西最打动我",w:{art:-25}}]},
-{id:32,cat:"🎨 艺术灵性",q:"闲暇时你更可能？",opts:[{t:"写写画画、听曲赏月",w:{art:30}},{t:"运动出游、折腾点事",w:{art:-10,adventure:10}},{t:"研究点有用的本事",w:{art:-10,wisdom:10}},{t:"发呆放空",w:{art:5,reclusion:10}}]},
-{id:33,cat:"🎨 艺术灵性",q:"你如何看待「美」？",opts:[{t:"生活处处皆诗意，必须讲究",w:{art:30}},{t:"悦己就好，不必苛求",w:{art:10}},{t:"实用优先，美不美无所谓",w:{art:-15}},{t:"美是浮华，质朴最好",w:{art:-25,reclusion:10}}]},
-{id:34,cat:"🎨 艺术灵性",q:"你会主动记录生活吗？",opts:[{t:"会，用文字/影像留驻美好",w:{art:25}},{t:"偶尔记一两笔",w:{art:10}},{t:"很少，记性挺好",w:{art:-5}},{t:"从不，活在当下",w:{art:-20,freedom:10}}]},
-{id:35,cat:"🎨 艺术灵性",q:"你更想拥有的才华是？",opts:[{t:"诗书琴画的才情",w:{art:30}},{t:"妙手回春的技艺",w:{art:10,wisdom:10}},{t:"纵横捭阖的谋略",w:{art:-10,wisdom:15}},{t:"力拔山兮的勇武",w:{art:-15,chivalry:10}}]},
-// ── 隐逸之志 ──
-{id:36,cat:"🏔️ 隐逸之志",q:"你心目中最好的归宿是？",opts:[{t:"深山古刹，与世无争",w:{reclusion:30}},{t:"小院清幽，三五知己",w:{reclusion:15,love:10}},{t:"繁华都市，热气腾腾",w:{reclusion:-20,freedom:10}},{t:"建功立业，名垂青史",w:{reclusion:-25,power:15}}]},
-{id:37,cat:"🏔️ 隐逸之志",q:"人群密集的场合让你？",opts:[{t:"疲惫，只想快点脱身",w:{reclusion:30}},{t:"有点累，但能应付",w:{reclusion:10}},{t:"还行，挺热闹",w:{reclusion:-10}},{t:"如鱼得水，越热闹越精神",w:{reclusion:-25,freedom:10}}]},
-{id:38,cat:"🏔️ 隐逸之志",q:"功成名就之后，你最想？",opts:[{t:"功成身退，归隐山林",w:{reclusion:30}},{t:"半隐半仕，留三分自由",w:{reclusion:15,freedom:10}},{t:"继续攀登，更高处见",w:{reclusion:-15,power:15}},{t:"享尽荣华，不谈退隐",w:{reclusion:-25,wealth:10}}]},
-{id:39,cat:"🏔️ 隐逸之志",q:"你更向往哪种清晨？",opts:[{t:"山间鸟鸣，雾气未散",w:{reclusion:30}},{t:"庭院煮茶，慢悠悠",w:{reclusion:15,art:10}},{t:"都市早餐，匆忙充实",w:{reclusion:-15}},{t:"战场号角，即刻出发",w:{reclusion:-25,adventure:10}}]},
-{id:40,cat:"🏔️ 隐逸之志",q:"「大隐隐于市」你认同吗？",opts:[{t:"极度认同，心静即隐居",w:{reclusion:30}},{t:"有点道理，能守住内心就好",w:{reclusion:10}},{t:"不如真去山里",w:{reclusion:10,freedom:10}},{t:"不认同，入世才痛快",w:{reclusion:-25,power:10}}]},
-// ── 冒险精神 ──
-{id:41,cat:"🔥 冒险精神",q:"面对未知的新路，你？",opts:[{t:"兴奋，必须去探一探",w:{adventure:30}},{t:"心动但会先评估",w:{adventure:10,wisdom:5}},{t:"犹豫，偏好稳妥",w:{adventure:-15}},{t:"拒绝，未知让我不安",w:{adventure:-30,reclusion:10}}]},
-{id:42,cat:"🔥 冒险精神",q:"你更爱的旅行是？",opts:[{t:"无人区探险、极限挑战",w:{adventure:30}},{t:"小众秘境、说走就走",w:{adventure:15,freedom:10}},{t:"成熟景区，省心就好",w:{adventure:-15}},{t:"宅家最舒服",w:{adventure:-25,reclusion:10}}]},
-{id:43,cat:"🔥 冒险精神",q:"赌一把大的机会摆在面前，你？",opts:[{t:"all in，富贵险中求",w:{adventure:30,wealth:10}},{t:"押一部分，可控风险",w:{adventure:10}},{t:"再看，宁愿错过",w:{adventure:-15}},{t:"绝不，落袋为安",w:{adventure:-30}}]},
-{id:44,cat:"🔥 冒险精神",q:"你眼中的英雄旅程是？",opts:[{t:"闯禁地、斩恶龙、逆天改命",w:{adventure:30,chivalry:10}},{t:"历尽千帆，归来仍是少年",w:{adventure:15}},{t:"守一方安宁，平凡是真",w:{adventure:-15,reclusion:10}},{t:"不必远行，心安处即英雄",w:{adventure:-25,reclusion:10}}]},
-{id:45,cat:"🔥 冒险精神",q:"如果生命只剩一年，你？",opts:[{t:"去最危险的地方看世界",w:{adventure:30}},{t:"陪最爱的人走完",w:{adventure:-10,love:20}},{t:"安静放下，了无遗憾",w:{adventure:-10,reclusion:15}},{t:"拼命再搏一把事业",w:{adventure:10,power:15}}]},
-// ── 信仰虔心 ──
-{id:46,cat:"🕯️ 信仰虔心",q:"你更相信什么力量？",opts:[{t:"冥冥之中的因果与天命",w:{faith:30}},{t:"善恶有报，心要向善",w:{faith:15}},{t:"人定胜天，事在人为",w:{faith:-15,power:10}},{t:"只信看得见摸得着的",w:{faith:-25}}]},
-{id:47,cat:"🕯️ 信仰虔心",q:"遇到无解的苦难，你？",opts:[{t:"相信是修行，坦然承受",w:{faith:30,reclusion:10}},{t:"寻个寄托，求得心安",w:{faith:15}},{t:"硬扛过去，不靠运气",w:{faith:-15,chivalry:10}},{t:"质疑一切，包括命运",w:{faith:-25,wisdom:10}}]},
-{id:48,cat:"🕯️ 信仰虔心",q:"你对「修行」的理解是？",opts:[{t:"修心炼性，超脱轮回",w:{faith:30,reclusion:10}},{t:"心存善念，日日自省",w:{faith:15}},{t:"把日子过好就是修行",w:{faith:-10}},{t:"玄之又玄，与我无关",w:{faith:-25}}]},
-{id:49,cat:"🕯️ 信仰虔心",q:"你更被哪种场所吸引？",opts:[{t:"古寺钟声、香火氤氲",w:{faith:30}},{t:"山川湖海、天地辽阔",w:{faith:10,nature:0,reclusion:10}},{t:"人间烟火、市井喧闹",w:{faith:-10,freedom:10}},{t:"金殿朝堂、权力中心",w:{faith:-15,power:15}}]},
-{id:50,cat:"🕯️ 信仰虔心",q:"你希望留给后世的一句是？",opts:[{t:"善念不灭，轮回自有因果",w:{faith:30}},{t:"不负此生，爱过拼过",w:{faith:-10,love:10}},{t:"功业千秋，名垂青史",w:{faith:-10,power:15}},{t:"清风明月，自在而已",w:{faith:10,reclusion:15}}]}
-];
+const QUESTIONS=[{"id":1,"cat":"👑 权力欲望","q":"若有朝一日给你至高权柄，你的第一反应是？","opts":[{"t":"欣然接受，本就该站在顶端","w":{"power":30}},{"t":"谨慎接下，权柄即责任","w":{"power":10,"wisdom":10}},{"t":"婉拒，高处不胜寒","w":{"power":-20,"reclusion":10}},{"t":"无所谓，权势非我所求","w":{"power":-30}}]},{"id":2,"cat":"👑 权力欲望","q":"你更渴望被怎样记住？","opts":[{"t":"一代雄主，开疆拓土","w":{"power":30}},{"t":"富甲天下，名动四方","w":{"power":15,"wealth":15}},{"t":"才情传世，青史留名","w":{"power":10,"art":20}},{"t":"无人记得，自在逍遥","w":{"power":-20,"reclusion":20}}]},{"id":4,"cat":"👑 权力欲望","q":"你认为理想的地位是？","opts":[{"t":"万人之上，一言九鼎","w":{"power":30}},{"t":"一方诸侯，手握实权","w":{"power":15}},{"t":"幕僚之首，幕后操盘","w":{"power":10,"wisdom":15}},{"t":"布衣平民，逍遥自在","w":{"power":-25,"freedom":20}}]},{"id":5,"cat":"👑 权力欲望","q":"若有叛徒背叛你，你会？","opts":[{"t":"雷霆手段，以儆效尤","w":{"power":25}},{"t":"查明缘由，恩威并施","w":{"power":10,"wisdom":10}},{"t":"痛心但宽容以待","w":{"power":-10,"love":15}},{"t":"早有预料，淡然处之","w":{"power":-10,"wisdom":10}}]},{"id":6,"cat":"💰 财富执念","q":"你对金钱的态度更接近？","opts":[{"t":"越多越好，财富即安全感","w":{"wealth":30}},{"t":"够用就好，不刻意追逐","w":{"wealth":-5}},{"t":"够花就行，看淡钱财","w":{"wealth":-20}},{"t":"钱财是身外之物，可舍","w":{"wealth":-30,"reclusion":10}}]},{"id":8,"cat":"💰 财富执念","q":"你更欣赏哪种致富方式？","opts":[{"t":"胆大布局，敢赌风口","w":{"wealth":25,"adventure":10}},{"t":"踏实经营，细水长流","w":{"wealth":10}},{"t":"靠一门手艺吃饭","w":{"wealth":-5,"art":10}},{"t":"无所谓，清贫亦可","w":{"wealth":-25,"reclusion":10}}]},{"id":9,"cat":"💰 财富执念","q":"奢华享受对你而言？","opts":[{"t":"值得，辛苦就该享受最好的","w":{"wealth":25}},{"t":"偶尔享受，犒劳自己","w":{"wealth":5}},{"t":"可有可无，简朴也行","w":{"wealth":-10}},{"t":"反感，浮华让人迷失","w":{"wealth":-25,"reclusion":10}}]},{"id":10,"cat":"💰 财富执念","q":"你愿意为更高的收入付出什么？","opts":[{"t":"倾尽全力，赌上一切","w":{"wealth":30,"adventure":10}},{"t":"努力拼搏，但留有余地","w":{"wealth":10}},{"t":"适度努力，生活平衡","w":{"wealth":-5}},{"t":"不愿为钱牺牲生活质量","w":{"wealth":-25,"freedom":10}}]},{"id":12,"cat":"🕊️ 自由灵魂","q":"长假你最想？","opts":[{"t":"一个人背上包说走就走","w":{"freedom":30,"adventure":10}},{"t":"约上挚友来场自在游","w":{"freedom":15,"love":10}},{"t":"回老家陪陪亲人","w":{"freedom":-10,"love":15}},{"t":"宅着，哪儿都不去","w":{"freedom":-20,"reclusion":10}}]},{"id":13,"cat":"🕊️ 自由灵魂","q":"面对规矩，你的本能是？","opts":[{"t":"先想怎么绕过去","w":{"freedom":25}},{"t":"遵守，但心里嘀咕","w":{"freedom":-5}},{"t":"规矩自有道理","w":{"freedom":-15}},{"t":"主动维护秩序","w":{"freedom":-25,"power":10}}]},{"id":14,"cat":"🕊️ 自由灵魂","q":"你理想的人际关系距离是？","opts":[{"t":"各自精彩，不必黏腻","w":{"freedom":25}},{"t":"亲密但有空间","w":{"freedom":5}},{"t":"喜欢热闹有人陪","w":{"freedom":-10,"love":10}},{"t":"恨不得天天黏在一起","w":{"freedom":-20,"love":15}}]},{"id":16,"cat":"💞 情爱羁绊","q":"你更相信哪一种？","opts":[{"t":"至死不渝的深情","w":{"love":30}},{"t":"细水长流的陪伴","w":{"love":15}},{"t":"合则来不合则去","w":{"love":-10,"freedom":10}},{"t":"情爱是牵绊，独身更自在","w":{"love":-25,"reclusion":10}}]},{"id":17,"cat":"💞 情爱羁绊","q":"为爱你可以放弃什么？","opts":[{"t":"放弃前途与远方","w":{"love":30,"freedom":-10}},{"t":"放弃部分原则","w":{"love":10}},{"t":"看情况，不会全舍去","w":{"love":-5}},{"t":"什么都不愿放弃","w":{"love":-20,"freedom":10}}]},{"id":18,"cat":"💞 情爱羁绊","q":"你眼里的浪漫是？","opts":[{"t":"轰轰烈烈，惊天动地","w":{"love":25,"art":10}},{"t":"柴米油盐里的小确幸","w":{"love":10}},{"t":"灵魂同频的默契","w":{"love":15,"wisdom":10}},{"t":"不需要浪漫，务实就好","w":{"love":-20}}]},{"id":20,"cat":"💞 情爱羁绊","q":"你更怕哪种孤独？","opts":[{"t":"无人懂我的灵魂","w":{"love":20,"wisdom":10}},{"t":"无人陪在身边的冷清","w":{"love":15}},{"t":"都不怕，享受独处","w":{"love":-25,"reclusion":10}},{"t":"怕被束缚多过孤独","w":{"love":-10,"freedom":15}}]},{"id":21,"cat":"📜 智慧追求","q":"遇到难题，你第一反应是？","opts":[{"t":"先谋后动，想透再出手","w":{"wisdom":30}},{"t":"边做边学，实践出真知","w":{"wisdom":10,"adventure":10}},{"t":"请教高明之人","w":{"wisdom":15}},{"t":"凭直觉，不想太多","w":{"wisdom":-20,"freedom":10}}]},{"id":22,"cat":"📜 智慧追求","q":"你更享受哪种成就感？","opts":[{"t":"看穿了别人看不穿的局","w":{"wisdom":30}},{"t":"靠双手拼出的成果","w":{"wisdom":10,"chivalry":10}},{"t":"被众人拥戴","w":{"wisdom":-5,"power":10}},{"t":"内心的平静与通透","w":{"wisdom":10,"reclusion":15}}]},{"id":24,"cat":"📜 智慧追求","q":"你对「聪明」的定义是？","opts":[{"t":"算无遗策，洞若观火","w":{"wisdom":30}},{"t":"大智若愚，难得糊涂","w":{"wisdom":15,"reclusion":10}},{"t":"学以致用，解决问题","w":{"wisdom":10}},{"t":"赤诚坦荡，不耍心机","w":{"wisdom":-15,"freedom":10}}]},{"id":25,"cat":"📜 智慧追求","q":"你更愿意被称做？","opts":[{"t":"谋士 / 智者","w":{"wisdom":30}},{"t":"实干家 / 行动派","w":{"wisdom":5,"chivalry":10}},{"t":"性情中人","w":{"wisdom":-10,"freedom":10}},{"t":"隐者 / 通透人","w":{"wisdom":10,"reclusion":15}}]},{"id":26,"cat":"⚔️ 侠义之心","q":"路边有人被欺负，你会？","opts":[{"t":"冲上去打抱不平","w":{"chivalry":30}},{"t":"先判断，再出手相助","w":{"chivalry":15,"wisdom":5}},{"t":"悄悄报警或找人帮忙","w":{"chivalry":5}},{"t":"多一事不如少一事","w":{"chivalry":-25}}]},{"id":27,"cat":"⚔️ 侠义之心","q":"你最看重的朋友品质是？","opts":[{"t":"讲义气，两肋插刀","w":{"chivalry":30}},{"t":"真诚靠谱","w":{"chivalry":10}},{"t":"有趣投缘","w":{"chivalry":-5,"freedom":10}},{"t":"各自安好，互不麻烦","w":{"chivalry":-20,"reclusion":10}}]},{"id":29,"cat":"⚔️ 侠义之心","q":"你更向往哪种江湖地位？","opts":[{"t":"快意恩仇的侠客","w":{"chivalry":30,"freedom":10}},{"t":"威震一方的名将","w":{"chivalry":15,"power":15}},{"t":"德高望重的长者","w":{"chivalry":15,"wisdom":10}},{"t":"不涉纷争的闲人","w":{"chivalry":-20,"reclusion":10}}]},{"id":30,"cat":"⚔️ 侠义之心","q":"你眼中的「英雄」是？","opts":[{"t":"为苍生赴汤蹈火之人","w":{"chivalry":30}},{"t":"护佑一方平安之人","w":{"chivalry":15}},{"t":"活出真我之人","w":{"chivalry":-5,"freedom":15}},{"t":"不屑枭雄，只做自己","w":{"chivalry":-15,"reclusion":10}}]},{"id":31,"cat":"🎨 艺术灵性","q":"你更被什么打动？","opts":[{"t":"一首诗、一幅画的意境","w":{"art":30}},{"t":"一段故事的悲欢","w":{"art":10,"love":10}},{"t":"一件事办成的爽感","w":{"art":-10,"power":10}},{"t":"实用的东西最打动我","w":{"art":-25}}]},{"id":33,"cat":"🎨 艺术灵性","q":"你如何看待「美」？","opts":[{"t":"生活处处皆诗意，必须讲究","w":{"art":30}},{"t":"悦己就好，不必苛求","w":{"art":10}},{"t":"实用优先，美不美无所谓","w":{"art":-15}},{"t":"美是浮华，质朴最好","w":{"art":-25,"reclusion":10}}]},{"id":34,"cat":"🎨 艺术灵性","q":"你会主动记录生活吗？","opts":[{"t":"会，用文字/影像留驻美好","w":{"art":25}},{"t":"偶尔记一两笔","w":{"art":10}},{"t":"很少，记性挺好","w":{"art":-5}},{"t":"从不，活在当下","w":{"art":-20,"freedom":10}}]},{"id":35,"cat":"🎨 艺术灵性","q":"你更想拥有的才华是？","opts":[{"t":"诗书琴画的才情","w":{"art":30}},{"t":"妙手回春的技艺","w":{"art":10,"wisdom":10}},{"t":"纵横捭阖的谋略","w":{"art":-10,"wisdom":15}},{"t":"力拔山兮的勇武","w":{"art":-15,"chivalry":10}}]},{"id":37,"cat":"🏔️ 隐逸之志","q":"人群密集的场合让你？","opts":[{"t":"疲惫，只想快点脱身","w":{"reclusion":30}},{"t":"有点累，但能应付","w":{"reclusion":10}},{"t":"还行，挺热闹","w":{"reclusion":-10}},{"t":"如鱼得水，越热闹越精神","w":{"reclusion":-25,"freedom":10}}]},{"id":38,"cat":"🏔️ 隐逸之志","q":"功成名就之后，你最想？","opts":[{"t":"功成身退，归隐山林","w":{"reclusion":30}},{"t":"半隐半仕，留三分自由","w":{"reclusion":15,"freedom":10}},{"t":"继续攀登，更高处见","w":{"reclusion":-15,"power":15}},{"t":"享尽荣华，不谈退隐","w":{"reclusion":-25,"wealth":10}}]},{"id":39,"cat":"🏔️ 隐逸之志","q":"你更向往哪种清晨？","opts":[{"t":"山间鸟鸣，雾气未散","w":{"reclusion":30}},{"t":"庭院煮茶，慢悠悠","w":{"reclusion":15,"art":10}},{"t":"都市早餐，匆忙充实","w":{"reclusion":-15}},{"t":"战场号角，即刻出发","w":{"reclusion":-25,"adventure":10}}]},{"id":41,"cat":"🔥 冒险精神","q":"面对未知的新路，你？","opts":[{"t":"兴奋，必须去探一探","w":{"adventure":30}},{"t":"心动但会先评估","w":{"adventure":10,"wisdom":5}},{"t":"犹豫，偏好稳妥","w":{"adventure":-15}},{"t":"拒绝，未知让我不安","w":{"adventure":-30,"reclusion":10}}]},{"id":42,"cat":"🔥 冒险精神","q":"你更爱的旅行是？","opts":[{"t":"无人区探险、极限挑战","w":{"adventure":30}},{"t":"小众秘境、说走就走","w":{"adventure":15,"freedom":10}},{"t":"成熟景区，省心就好","w":{"adventure":-15}},{"t":"宅家最舒服","w":{"adventure":-25,"reclusion":10}}]},{"id":43,"cat":"🔥 冒险精神","q":"赌一把大的机会摆在面前，你？","opts":[{"t":"all in，富贵险中求","w":{"adventure":30,"wealth":10}},{"t":"押一部分，可控风险","w":{"adventure":10}},{"t":"再看，宁愿错过","w":{"adventure":-15}},{"t":"绝不，落袋为安","w":{"adventure":-30}}]},{"id":45,"cat":"🔥 冒险精神","q":"如果生命只剩一年，你？","opts":[{"t":"去最危险的地方看世界","w":{"adventure":30}},{"t":"陪最爱的人走完","w":{"adventure":-10,"love":20}},{"t":"安静放下，了无遗憾","w":{"adventure":-10,"reclusion":15}},{"t":"拼命再搏一把事业","w":{"adventure":10,"power":15}}]},{"id":46,"cat":"🕯️ 信仰虔心","q":"你更相信什么力量？","opts":[{"t":"冥冥之中的因果与天命","w":{"faith":30}},{"t":"善恶有报，心要向善","w":{"faith":15}},{"t":"人定胜天，事在人为","w":{"faith":-15,"power":10}},{"t":"只信看得见摸得着的","w":{"faith":-25}}]},{"id":47,"cat":"🕯️ 信仰虔心","q":"遇到无解的苦难，你？","opts":[{"t":"相信是修行，坦然承受","w":{"faith":30,"reclusion":10}},{"t":"寻个寄托，求得心安","w":{"faith":15}},{"t":"硬扛过去，不靠运气","w":{"faith":-15,"chivalry":10}},{"t":"质疑一切，包括命运","w":{"faith":-25,"wisdom":10}}]},{"id":49,"cat":"🕯️ 信仰虔心","q":"你更被哪种场所吸引？","opts":[{"t":"古寺钟声、香火氤氲","w":{"faith":30}},{"t":"山川湖海、天地辽阔","w":{"faith":10,"nature":0,"reclusion":10}},{"t":"人间烟火、市井喧闹","w":{"faith":-10,"freedom":10}},{"t":"金殿朝堂、权力中心","w":{"faith":-15,"power":15}}]},{"id":50,"cat":"🕯️ 信仰虔心","q":"你希望留给后世的一句是？","opts":[{"t":"善念不灭，轮回自有因果","w":{"faith":30}},{"t":"不负此生，爱过拼过","w":{"faith":-10,"love":10}},{"t":"功业千秋，名垂青史","w":{"faith":-10,"power":15}},{"t":"清风明月，自在而已","w":{"faith":10,"reclusion":15}}]}];
 
 // ══════════ STATE ══════════
 let current=0, answers={}, autoTimer=null;
