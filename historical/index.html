@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>测测你是哪位历史人物 · 历史人物性格测试</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}
+:root{--acc:#2C4A6E;--acc2:#B8893B;--paper:#F3ECDD;--ink:#2E2A26}
+body{font-family:'Songti SC','STSong','SimSun','Noto Serif SC',serif;
+  background-color:var(--paper);
+  background-image:
+    radial-gradient(820px 520px at 12% -8%, rgba(46,42,38,.10), transparent 60%),
+    radial-gradient(720px 480px at 106% 6%, rgba(46,42,38,.07), transparent 60%),
+    radial-gradient(640px 620px at 48% 116%, rgba(46,42,38,.06), transparent 60%);
+  background-attachment:fixed;
+  min-height:100vh;color:var(--ink);overflow-x:hidden;line-height:1.7;
+  -webkit-font-smoothing:antialiased}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.5;
+  background:repeating-linear-gradient(0deg, rgba(46,42,38,.018) 0 1px, transparent 1px 3px)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@keyframes sealIn{from{opacity:0;transform:rotate(-12deg) scale(.7)}to{opacity:1;transform:rotate(-3deg) scale(1)}}
+.page{display:none;min-height:100vh;padding:22px 16px 64px}
+.page.active{display:flex;flex-direction:column;align-items:center;animation:fadeUp .45s ease}
+.wrap,.wide-wrap{width:100%}
+.wrap{max-width:520px}
+.wide-wrap{max-width:680px}
+.icon-box{width:74px;height:74px;border-radius:10px;background:var(--acc);color:var(--paper);display:flex;align-items:center;justify-content:center;font-size:36px;margin:26px auto 14px;
+  border:2px solid var(--acc);box-shadow:4px 4px 0 rgba(46,42,38,.22);transform:rotate(-3deg);animation:sealIn .5s ease}
+.hero-title{font-family:'STKaiti','KaiTi','Kaiti SC','SimSun',serif;font-size:27px;font-weight:700;color:var(--ink);text-align:center;margin-bottom:6px;line-height:1.35;letter-spacing:2px}
+.hero-sub{font-size:12px;color:var(--acc2);letter-spacing:6px;font-weight:600;text-align:center;margin-bottom:22px}
+.card,.stat-card,.info-box,.dim-item,.category-card,.pw-card,.btn-secondary,.q-header,.q-body,.top-card,.dim-card,.others-card,.other-card{
+  background:#FBF6EA;border:1px solid rgba(46,42,38,.22);box-shadow:3px 3px 0 rgba(46,42,38,.06)}
+.card{border-radius:8px;padding:20px 18px;margin-bottom:16px}
+.card-title{font-size:15px;font-weight:700;color:var(--acc);margin-bottom:10px;letter-spacing:1px}
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+.stat-card{border-radius:8px;padding:16px 12px;display:flex;flex-direction:column;align-items:center;gap:4px}
+.stat-icon{font-size:24px}
+.stat-num{font-size:19px;font-weight:700;color:var(--ink)}
+.stat-desc{font-size:12px;color:var(--acc2)}
+.info-box{border-radius:8px;padding:14px 18px;margin-bottom:20px;border-left:4px solid var(--acc)}
+.info-box-title{font-size:13px;font-weight:700;color:var(--acc);margin-bottom:6px;letter-spacing:1px}
+.info-box-text{font-size:13px;color:#5b554c;line-height:1.7}
+.dim-list{display:flex;flex-direction:column;gap:8px}
+.dim-item{border-radius:6px;padding:8px 10px;display:flex;align-items:flex-start;gap:10px}
+.dim-item-icon{font-size:18px;flex-shrink:0;margin-top:1px}
+.dim-item-name{font-size:13px;font-weight:700;color:var(--acc)}
+.dim-item-desc{font-size:12px;color:#6b655b}
+.category-section{margin-bottom:24px}
+.category-card{border-radius:8px;padding:16px 18px;margin-bottom:12px}
+.category-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.category-left{display:flex;align-items:center;gap:10px}
+.category-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;background:var(--acc);color:var(--paper);font-weight:700;border:1px solid var(--acc)}
+.category-icon.a,.category-icon.b,.category-icon.c,.category-icon.d{background:var(--acc);color:var(--paper)}
+.category-name{font-size:15px;font-weight:700;color:var(--ink)}
+.category-desc{font-size:11px;color:var(--acc2);background:rgba(46,42,38,.06);padding:4px 10px;border-radius:20px;border:1px solid rgba(46,42,38,.15)}
+.city-tags{display:flex;flex-wrap:wrap;gap:8px}
+.city-tag{padding:6px 14px;background:var(--paper);border:1px solid rgba(46,42,38,.28);border-radius:20px;font-size:13px;color:var(--ink)}
+.pw-card{border-radius:10px;padding:24px;margin-bottom:20px;text-align:center}
+.pw-label{font-size:15px;font-weight:700;color:var(--acc);margin-bottom:16px;letter-spacing:1px}
+.pw-input{width:100%;text-align:center;font-size:28px;letter-spacing:12px;font-weight:700;padding:14px;border-radius:6px;outline:none;color:var(--acc);font-family:serif;border:2px solid var(--acc);background:var(--paper);transition:box-shadow .2s}
+.pw-input:focus{box-shadow:0 0 0 3px rgba(46,42,38,.12),3px 3px 0 rgba(46,42,38,.18)}
+.pw-err{color:#A11D1D;font-size:13px;margin-top:8px;display:none;font-weight:700}
+.pw-hint{font-size:12px;color:var(--acc2);margin-top:10px}
+.btn-primary{width:100%;padding:16px;border-radius:6px;border:1px solid var(--acc);background:var(--acc);color:var(--paper);font-size:18px;font-weight:700;cursor:pointer;letter-spacing:3px;font-family:'STKaiti','KaiTi','SimSun',serif;box-shadow:3px 3px 0 rgba(46,42,38,.22);transition:transform .12s,box-shadow .12s}
+.btn-primary:hover{transform:translate(2px,2px);box-shadow:1px 1px 0 rgba(46,42,38,.22)}
+.btn-primary:active{transform:translate(3px,3px);box-shadow:0 0 0 rgba(46,42,38,.22)}
+.btn-secondary{width:100%;padding:16px;border-radius:6px;border:1px solid rgba(46,42,38,.3);background:#FBF6EA;cursor:pointer;font-size:16px;font-weight:700;color:var(--acc);font-family:serif;transition:background .15s;margin-bottom:10px}
+.btn-secondary:hover{background:var(--acc);color:var(--paper)}
+.footer{text-align:center;padding:16px 0 8px;width:100%}
+.footer a{font-size:13px;color:var(--acc2);text-decoration:none;border-bottom:1px solid var(--acc);padding-bottom:2px}
+.q-header{border-radius:8px;padding:16px 20px;margin-bottom:20px;width:100%;max-width:600px}
+.q-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.q-cat{font-size:13px;font-weight:700;color:var(--acc);letter-spacing:1px}
+.q-count{font-size:13px;color:var(--acc2)}
+.q-pct{font-size:13px;font-weight:700;color:var(--ink)}
+.progress-track{height:10px;background:var(--paper);border:1px solid rgba(46,42,38,.25);border-radius:99px;overflow:hidden}
+.progress-bar{height:100%;background:linear-gradient(90deg,var(--acc),var(--acc2));border-radius:99px;transition:width .4s ease}
+.q-body{border-radius:10px;padding:28px 24px;margin-bottom:20px;width:100%;max-width:600px}
+.q-text{font-size:20px;font-weight:700;color:var(--ink);margin-bottom:24px;line-height:1.5;font-family:'STKaiti','KaiTi','SimSun',serif}
+.opts{display:flex;flex-direction:column;gap:12px}
+.opt{padding:16px 20px;border-radius:8px;border:1px solid rgba(46,42,38,.25);background:#FBF6EA;cursor:pointer;text-align:left;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:12px;transition:all .15s;font-family:serif;width:100%}
+.opt:hover{border-color:var(--acc);background:#fff;transform:translateX(3px)}
+.opt.selected{border-color:var(--acc);background:var(--acc);color:var(--paper);font-weight:600}
+.opt-radio{font-size:18px;color:var(--acc);flex-shrink:0;width:20px;font-weight:700}
+.opt.selected .opt-radio{color:var(--paper)}
+.q-nav{display:flex;justify-content:space-between;align-items:center;gap:12px;width:100%;max-width:600px}
+.nav-btn{padding:13px 24px;border-radius:6px;border:1px solid rgba(46,42,38,.3);background:#FBF6EA;cursor:pointer;font-size:15px;color:var(--acc2);font-family:serif;transition:background .15s}
+.nav-btn:hover{background:var(--acc);color:var(--paper)}
+.auto-hint{font-size:13px;color:var(--acc2);flex:1;text-align:center;transition:opacity .3s}
+.top-card{border-radius:12px;padding:32px 24px 28px;text-align:center;margin-bottom:20px;width:100%;border:2px solid var(--acc);box-shadow:5px 5px 0 rgba(46,42,38,.12)}
+.top-sub{font-size:13px;color:var(--acc2);font-weight:600;margin-bottom:16px;letter-spacing:3px}
+.top-icon-emoji{font-size:48px;margin-bottom:8px}
+.match-pct{font-size:64px;font-weight:900;color:var(--acc);line-height:1;font-family:'STKaiti','KaiTi','SimSun',serif}
+.top-city{font-size:26px;font-weight:900;color:var(--ink);margin:12px 0 4px;font-family:'STKaiti','KaiTi','SimSun',serif}
+.top-prov{font-size:13px;color:var(--acc2);margin-bottom:16px}
+.tag-row{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:10px}
+.tag-chip{background:var(--acc);color:var(--paper);border-radius:20px;padding:4px 14px;font-size:13px;font-weight:600}
+.kw-chip{background:var(--paper);color:var(--acc2);border-radius:20px;padding:4px 14px;font-size:12px;border:1px solid rgba(46,42,38,.2)}
+.match-reason{background:var(--paper);border-radius:8px;padding:16px 20px;text-align:left;margin-top:16px;border:1px solid rgba(46,42,38,.22)}
+.reason-title{font-size:14px;font-weight:700;color:var(--acc);display:block;margin-bottom:8px;letter-spacing:1px}
+.reason-text{font-size:14px;color:#5b554c;line-height:1.9;margin:0}
+.dim-card{border-radius:10px;padding:24px;margin-bottom:20px;width:100%;border:1px solid rgba(46,42,38,.22)}
+.dim-card-title{font-size:16px;font-weight:700;color:var(--ink);margin-bottom:20px;letter-spacing:1px}
+.dim-grid{display:flex;flex-direction:column;gap:12px}
+.dim-row{display:flex;align-items:center;gap:12px}
+.dim-label{font-size:12px;color:var(--acc2);width:70px;flex-shrink:0}
+.dim-track{flex:1;height:10px;background:var(--paper);border:1px solid rgba(46,42,38,.25);border-radius:99px;overflow:hidden}
+.dim-bar{height:100%;background:linear-gradient(90deg,var(--acc),var(--acc2));border-radius:99px;transition:width .6s ease}
+.dim-val{font-size:12px;font-weight:700;color:var(--acc);width:28px;text-align:right;flex-shrink:0}
+.others-card{border-radius:10px;padding:24px;margin-bottom:24px;width:100%;border:1px solid rgba(46,42,38,.22)}
+.others-title{font-size:16px;font-weight:700;color:var(--ink);margin-bottom:20px;letter-spacing:1px}
+.others-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:480px){.others-grid{grid-template-columns:1fr}}
+.other-card{border-radius:8px;padding:16px 14px;background:#FBF6EA;border:1px solid rgba(46,42,38,.22)}
+.other-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.other-name{font-size:16px;font-weight:700;color:var(--ink)}
+.other-prov{font-size:12px;color:var(--acc2)}
+.other-score{font-size:18px;font-weight:900;color:var(--acc)}
+.other-desc{font-size:12px;color:var(--acc2);line-height:1.7;margin-top:10px}
+.tag-chip-sm{background:var(--acc);color:var(--paper);border-radius:20px;padding:3px 10px;font-size:11px;font-weight:600}
+.kw-chip-sm{background:var(--paper);color:var(--acc2);border-radius:20px;padding:3px 10px;font-size:11px;border:1px solid rgba(46,42,38,.2)}
+.decl-text{font-size:13px;color:#5b554c;line-height:1.9;margin-bottom:16px}
+.decl-text strong{color:var(--acc)}</style>
+</head>
+<body>
+
+<!-- ══════════ PAGE: PASSWORD ══════════ -->
+<div class="page active" id="page-password">
+  <div class="wrap">
+    <div class="icon-box">📜</div>
+    <h1 class="hero-title">测测你是哪位历史人物</h1>
+    <p class="hero-sub">HISTORICAL FIGURE</p>
+    <div class="pw-card">
+      <p class="pw-label">🔑 请输入通关密语</p>
+      <input type="password" id="pw-input" class="pw-input" maxlength="4" placeholder="••••" />
+      <p class="pw-err" id="pw-err">校验码错误，请重试</p>
+    </div>
+    <div class="info-box">
+      <p class="info-box-title">ℹ️ 说明</p>
+      <p class="info-box-text">本测验以华夏千年历史人物为底，匹配你最像的那一位先贤豪杰。仅供娱乐，但准得有点吓人。</p>
+    </div>
+    <button class="btn-primary" onclick="checkPwd()">→ 开启测试</button>
+  </div>
+</div>
+
+<!-- ══════════ PAGE: INTRO ══════════ -->
+<div class="page" id="page-intro">
+  <div class="wrap">
+    <div class="icon-box">🏛️</div>
+    <h1 class="hero-title">你的性情，早写进了那卷青史</h1>
+    <p class="hero-sub">HISTORICAL FIGURE</p>
+
+    <div class="stats-grid"><div class="stat-card"><span class="stat-icon">❓</span><span class="stat-num">30道</span><span class="stat-desc">性情试炼</span></div><div class="stat-card"><span class="stat-icon">⏱️</span><span class="stat-num">约1分钟</span><span class="stat-desc">测出真身</span></div><div class="stat-card"><span class="stat-icon">🏯</span><span class="stat-num">14位</span><span class="stat-desc">经典人物</span></div><div class="stat-card"><span class="stat-icon">🧬</span><span class="stat-num">10维度</span><span class="stat-desc">性情画像</span></div></div>
+
+    <div class="card">
+      <p class="card-title">📜 测试说明</p>
+      <p class="decl-text">本测试共 <strong>30道题</strong>，穿越以下 <strong>10个性情维度</strong>，每道题选择后<strong>自动跳转</strong>下一题。完成后系统将从<strong>14位历史人物</strong>中，为你点出最契合的那一个。</p>
+      <div class="dim-list">
+<div class="dim-item"><span class="dim-item-icon">👑</span><div><span class="dim-item-name">权谋野心</span><span class="dim-item-desc"> — 你图不图那万里江山？</span></div></div>
+<div class="dim-item"><span class="dim-item-icon">💰</span><div><span class="dim-item-name">富贵执念</span><span class="dim-item-desc"> — 贪不贪那泼天富贵？</span></div></div>
+<div class="dim-item"><span class="dim-item-icon">🕊️</span><div><span class="dim-item-name">自由叛逆</span><span class="dim-item-desc"> — 受不受得住礼法束缚？</span></div></div>
+<div class="dim-item"><span class="dim-item-icon">💞</span><div><span class="dim-item-name">情爱羁绊</span><span class="dim-item-desc"> — 放不放得下那一段情？</span></div></div>
+<div class="dim-item"><span class="dim-item-icon">📜</span><div><span class="dim-item-name">才智心计</span><span class="dim-item-desc"> — 谋不谋那一步先手？</span></div></div>
+<div class="dim-item"><span class="dim-item-icon">⚔️</span><div><span class="dim-item-name">傲骨风骨</span><span class="dim-item-desc"> — 肯不肯弯下那脊梁？</span></div></div>
+<div class="dim-item"><span class="dim-item-icon">🎨</span><div><span class="dim-item-name">才情雅趣</span><span class="dim-item-desc"> — 风雅不风雅？</span></div></div>
+<div class="dim-item"><span class="dim-item-icon">🏔️</span><div><span class="dim-item-name">淡泊退隐</span><span class="dim-item-desc"> — 归不归那座青山？</span></div></div>
+<div class="dim-item"><span class="dim-item-icon">🔥</span><div><span class="dim-item-name">冒险进取</span><span class="dim-item-desc"> — 敢不敢闯那方险地？</span></div></div>
+<div class="dim-item"><span class="dim-item-icon">🕯️</span><div><span class="dim-item-name">宿命信仰</span><span class="dim-item-desc"> — 信不信那冥冥因果？</span></div></div>
+</div>
+    </div>
+
+    <div class="category-section"><div class="category-card"><div class="category-header"><div class="category-left"><div class="category-icon a">📜</div><div class="category-name">文采风流</div></div><div class="category-desc">才情 · 风雅 · 放达</div></div><div class="city-tags"><span class="city-tag">李白</span><span class="city-tag">苏轼</span><span class="city-tag">唐伯虎</span><span class="city-tag">杜甫</span></div></div><div class="category-card"><div class="category-header"><div class="category-left"><div class="category-icon b">👑</div><div class="category-name">王侯将相</div></div><div class="category-desc">权位 · 霸业 · 雄才</div></div><div class="city-tags"><span class="city-tag">李世民</span><span class="city-tag">武则天</span><span class="city-tag">秦始皇</span><span class="city-tag">曹操</span></div></div><div class="category-card"><div class="category-header"><div class="category-left"><div class="category-icon c">⚔️</div><div class="category-name">忠义肝胆</div></div><div class="category-desc">忠勇 · 傲骨 · 烈性</div></div><div class="city-tags"><span class="city-tag">关羽</span><span class="city-tag">岳飞</span><span class="city-tag">项羽</span><span class="city-tag">屈原</span></div></div><div class="category-card"><div class="category-header"><div class="category-left"><div class="category-icon d">🏞️</div><div class="category-name">智谋隐逸</div></div><div class="category-desc">智计 · 淡泊 · 逍遥</div></div><div class="city-tags"><span class="city-tag">诸葛亮</span><span class="city-tag">庄子</span></div></div></div>
+
+    <button class="btn-primary" onclick="startQuiz()">▶ 开启测试 →</button>
+  </div>
+</div>
+
+<!-- ══════════ PAGE: QUIZ ══════════ -->
+<div class="page" id="page-quiz">
+  <div class="q-header">
+    <div class="q-meta">
+      <span class="q-cat" id="q-cat">维度</span>
+      <span class="q-count" id="q-count">问题 1 / 50</span>
+      <span class="q-pct" id="q-pct">2%</span>
+    </div>
+    <div class="progress-track"><div class="progress-bar" id="progress-bar" style="width:2%"></div></div>
+  </div>
+  <div class="q-body" id="q-body">
+    <h2 class="q-text" id="q-text"></h2>
+    <div class="opts" id="opts"></div>
+  </div>
+  <div class="q-nav">
+    <button class="nav-btn" id="prev-btn" onclick="prevQ()">‹ 上一题</button>
+    <div class="auto-hint" id="auto-hint">← 点击选项自动跳转</div>
+  </div>
+</div>
+
+<!-- ══════════ PAGE: RESULT ══════════ -->
+<div class="page" id="page-result">
+  <div class="wide-wrap">
+    <div class="top-card">
+      <p class="top-sub">你灵魂深处，是——</p>
+      <div class="top-icon-emoji">🏛️</div>
+      <div class="match-pct" id="r-pct">94%</div>
+      <h2 class="top-city" id="r-city">—</h2>
+      <p class="top-prov" id="r-prov">—</p>
+      <div class="tag-row" id="r-tags"></div>
+      <div class="tag-row" id="r-kws"></div>
+      <div class="match-reason">
+        <span class="reason-title">💫 你的前世今生</span>
+        <p class="reason-text" id="r-desc"></p>
+      </div>
+    </div>
+
+    <div class="dim-card">
+      <p class="dim-card-title">你的性情画像</p>
+      <div class="dim-grid" id="dim-grid"></div>
+    </div>
+
+    <div class="others-card">
+      <p class="others-title">你还可能是……</p>
+      <div class="others-grid" id="others-grid"></div>
+    </div>
+
+    <button class="btn-secondary" onclick="resetQuiz()">↺ 再测一次</button>
+  </div>
+</div>
+
+<script>
+// ══════════ DATA ══════════
+const CITIES=[{"name":"李白","province":"盛唐的诗与酒","tags":["豪放型","酒中仙","谪仙人"],"kw":["斗酒诗百篇","仗剑去国","不羁傲世"],"p":{"power":25,"wealth":30,"freedom":92,"love":70,"wisdom":70,"chivalry":65,"art":96,"reclusion":50,"adventure":80,"faith":35},"desc":"你前世是李白，绣口一吐便是半个盛唐。你骨子里是那口不喝不快的酒、那匹不肯回头的马。这一世你依旧爱自由胜过爱功名，宁可散发弄扁舟，也不肯摧眉折腰。"},{"name":"杜甫","province":"草堂的风雨","tags":["忧国型","沉郁","诗史"],"kw":["安得广厦","民间疾苦","沉郁顿挫"],"p":{"power":30,"wealth":25,"freedom":40,"love":60,"wisdom":80,"chivalry":60,"art":92,"reclusion":55,"adventure":35,"faith":65},"desc":"你前世是杜甫，眉头锁着天下寒士的冷暖。你看得透世道艰难，却始终放不下那点入世的痴。这一世你仍是那个愿意为旁人撑伞的人。"},{"name":"苏轼","province":"黄州惠州儋州","tags":["豁达型","乐天","全才"],"kw":["一蓑烟雨","大江东去","此心安处"],"p":{"power":35,"wealth":45,"freedom":65,"love":65,"wisdom":88,"chivalry":60,"art":90,"reclusion":75,"adventure":55,"faith":55},"desc":"你前世是苏轼，被贬到天涯也能写出日啖荔枝三百颗。你通透、幽默、自愈力极强。这一世再大的风浪，你也能笑着咽下一口，转身煮茶。"},{"name":"诸葛亮","province":"隆中到五丈原","tags":["智谋型","鞠躬尽瘁","卧龙"],"kw":["运筹帷幄","宁静致远","死而后已"],"p":{"power":55,"wealth":30,"freedom":25,"love":50,"wisdom":98,"chivalry":85,"art":60,"reclusion":45,"adventure":50,"faith":70},"desc":"你前世是诸葛亮，未出茅庐已知三分天下。你沉静、周密、责任感爆棚。这一世你凡事谋定后动，宁可累自己也不愿误旁人。"},{"name":"关羽","province":"过五关斩六将","tags":["忠义型","傲骨","武圣"],"kw":["千里走单骑","身在曹营心在汉","义薄云天"],"p":{"power":50,"wealth":35,"freedom":20,"love":55,"wisdom":55,"chivalry":98,"art":30,"reclusion":20,"adventure":45,"faith":60},"desc":"你前世是关羽，傲骨比青龙偃月还亮。你重情重义、眼里揉不得沙子。这一世你宁可站着输，也不肯弯一回腰。"},{"name":"曹操","province":"挟天子以令诸侯","tags":["枭雄型","唯才是举","多疑"],"kw":["宁我负人","观沧海","老骥伏枥"],"p":{"power":90,"wealth":70,"freedom":30,"love":50,"wisdom":90,"chivalry":30,"art":65,"reclusion":20,"adventure":80,"faith":35},"desc":"你前世是曹操，肯负天下人也不肯被天下负。你雄才大略又多疑，爱才更爱权。这一世你目标感极强，路是人走出来的。"},{"name":"李世民","province":"贞观之治","tags":["明君型","雄主","纳谏"],"kw":["玄武门","兼听则明","天可汗"],"p":{"power":95,"wealth":65,"freedom":35,"love":60,"wisdom":90,"chivalry":70,"art":60,"reclusion":25,"adventure":85,"faith":50},"desc":"你前世是李世民，从血与火里开出贞观盛世。你果决、自信、善于用人。这一世你天然是掌局的人，敢于在乱局中落子。"},{"name":"武则天","province":"从才人到女帝","tags":["霸主型","无字碑","铁腕"],"kw":["日月当空","不信天命","巾帼称帝"],"p":{"power":96,"wealth":70,"freedom":30,"love":45,"wisdom":92,"chivalry":55,"art":60,"reclusion":20,"adventure":75,"faith":45},"desc":"你前世是武则天，敢在男权天下立一块无字碑。你野心与才干同等惊人。这一世你从不认命，想要的东西，自己伸手去拿。"},{"name":"秦始皇","province":"书同文车同轨","tags":["帝王型","横扫六合","集权"],"kw":["千古一帝","焚书坑儒","万里长城"],"p":{"power":98,"wealth":80,"freedom":8,"love":30,"wisdom":75,"chivalry":40,"art":35,"reclusion":10,"adventure":90,"faith":30},"desc":"你前世是秦始皇，用一把剑把分裂的天下焊成一个字。你极端、高效、不信鬼神只信自己。这一世你做什么都要做到极致、统一、不留余地。"},{"name":"庄子","province":"逍遥游","tags":["隐逸型","齐物","逍遥"],"kw":["扶摇九万里","曳尾于涂","无用之用"],"p":{"power":20,"wealth":30,"freedom":98,"love":45,"wisdom":85,"chivalry":50,"art":70,"reclusion":95,"adventure":40,"faith":55},"desc":"你前世是庄子，宁可当泥里打滚的龟，也不肯被供在庙堂。你通透到近乎顽童。这一世你最懂放下，功名利禄于你不过蝴蝶一梦。"},{"name":"项羽","province":"力拔山兮气盖世","tags":["悲剧型","霸王","重情"],"kw":["破釜沉舟","不肯过江东","英雄末路"],"p":{"power":60,"wealth":40,"freedom":55,"love":90,"wisdom":45,"chivalry":90,"art":40,"reclusion":15,"adventure":88,"faith":40},"desc":"你前世是项羽，力能扛鼎、情能倾城，却败给了一时的不肯回头。你重情重义、宁折不弯。这一世你活得浓烈，宁可轰轰烈烈错，也不愿平平淡淡对。"},{"name":"岳飞","province":"三十功名尘与土","tags":["忠勇型","精忠报国","悲壮"],"kw":["满江红","收拾旧山河","壮志未酬"],"p":{"power":55,"wealth":30,"freedom":20,"love":50,"wisdom":70,"chivalry":95,"art":55,"reclusion":25,"adventure":70,"faith":90},"desc":"你前世是岳飞，背上刺着精忠报国四个字。你忠勇、自律、近乎苦行。这一世你认准的道理，刀架脖子也不改。"},{"name":"唐伯虎","province":"桃花庵里桃花仙","tags":["才子型","放浪","风流"],"kw":["桃花庵歌","闲来写就","不事权贵"],"p":{"power":30,"wealth":35,"freedom":80,"love":60,"wisdom":70,"chivalry":55,"art":95,"reclusion":60,"adventure":50,"faith":30},"desc":"你前世是唐伯虎，别人争功名你笑他们傻。你才高、性野、不爱束缚。这一世你宁可卖画换酒，也不肯低头求人半句。"},{"name":"屈原","province":"路漫漫其修远兮","tags":["殉道型","香草美人","孤忠"],"kw":["上下求索","举世皆浊","九死未悔"],"p":{"power":35,"wealth":25,"freedom":30,"love":55,"wisdom":78,"chivalry":88,"art":85,"reclusion":40,"adventure":35,"faith":95},"desc":"你前世是屈原，宁葬鱼腹也不肯蒙尘。你高洁、孤直、理想主义到近乎固执。这一世你眼里容不得半点污浊，宁可独行也不合流。"}];
+
+
+const QUESTIONS=[{"cat":"👑 权谋野心","q":"若有率领一队人做成大事的机会，你？","opts":[{"t":"当仁不让，这位置本该是我的","w":{"power":30}},{"t":"愿意担责，但更想做二把手","w":{"power":10}},{"t":"看情况，不主动争","w":{"power":-10}},{"t":"躲远点，不想被架在火上","w":{"power":-30}}]},{"cat":"👑 权谋野心","q":"你更想被后世如何评价？","opts":[{"t":"一代雄主，开疆拓土","w":{"power":30}},{"t":"权倾朝野，一言九鼎","w":{"power":15}},{"t":"才名传世，青史留一笔","w":{"power":-5,"art":10}},{"t":"无人记得，自在清净","w":{"power":-25,"reclusion":20}}]},{"cat":"👑 权谋野心","q":"人群里你天然的角色是？","opts":[{"t":"定方向、拍板的人","w":{"power":30}},{"t":"出谋划策的军师","w":{"power":10,"wisdom":10}},{"t":"配合执行的干将","w":{"power":-5}},{"t":"安静边缘的旁观者","w":{"power":-25}}]},{"cat":"💰 富贵执念","q":"你对金银荣华的态度？","opts":[{"t":"越多越好，是底气","w":{"wealth":30}},{"t":"够花就知足","w":{"wealth":-5}},{"t":"温饱足矣","w":{"wealth":-20}},{"t":"富贵如浮云","w":{"wealth":-30,"reclusion":10}}]},{"cat":"💰 富贵执念","q":"若一夜暴富，第一件事？","opts":[{"t":"置业经营，钱生钱","w":{"wealth":25}},{"t":"惠及家人朋友","w":{"wealth":10}},{"t":"存着求安稳","w":{"wealth":5}},{"t":"散些给落难的人","w":{"wealth":-15}}]},{"cat":"💰 富贵执念","q":"你愿为更高地位付出多少？","opts":[{"t":"倾尽所有去争","w":{"wealth":25,"power":10}},{"t":"奋力一搏","w":{"wealth":10}},{"t":"适度努力","w":{"wealth":-5}},{"t":"不愿牺牲自在","w":{"wealth":-25,"freedom":15}}]},{"cat":"🕊️ 自由叛逆","q":"你最怕的生活状态？","opts":[{"t":"被规矩礼教死死绑住","w":{"freedom":30}},{"t":"一眼望到头的安稳","w":{"freedom":15}},{"t":"孤独无依","w":{"freedom":-15}},{"t":"其实享受被人安排","w":{"freedom":-25}}]},{"cat":"🕊️ 自由叛逆","q":"若有长假你最想？","opts":[{"t":"一个人说走就走","w":{"freedom":30}},{"t":"约知己自在游","w":{"freedom":15}},{"t":"回老家陪亲人","w":{"freedom":-10}},{"t":"宅着哪都不去","w":{"freedom":-20}}]},{"cat":"🕊️ 自由叛逆","q":"你理想的人际距离？","opts":[{"t":"各自精彩，不必黏腻","w":{"freedom":25}},{"t":"亲密但有空间","w":{"freedom":5}},{"t":"喜欢热闹有人陪","w":{"freedom":-10}},{"t":"恨不得天天黏一起","w":{"freedom":-20}}]},{"cat":"💞 情爱羁绊","q":"你更信哪一种感情？","opts":[{"t":"至死不渝的深情","w":{"love":30}},{"t":"细水长流","w":{"love":15}},{"t":"合则来不合则去","w":{"love":-10}},{"t":"情爱是牵绊，独身更自在","w":{"love":-25}}]},{"cat":"💞 情爱羁绊","q":"为在意的人你能做到？","opts":[{"t":"放弃前途与远方","w":{"love":30}},{"t":"放弃部分原则","w":{"love":10}},{"t":"看情况，不舍全部","w":{"love":-5}},{"t":"先护好自己","w":{"love":-25}}]},{"cat":"💞 情爱羁绊","q":"一段感情结束时你？","opts":[{"t":"撕心裂肺，很久走不出","w":{"love":30}},{"t":"难过一阵，慢慢释怀","w":{"love":10}},{"t":"理性抽身","w":{"love":-10}},{"t":"松一口气，重获自由","w":{"love":-25,"freedom":10}}]},{"cat":"📜 才智心计","q":"遇到难题你习惯？","opts":[{"t":"先想三层再动手","w":{"wisdom":30}},{"t":"列个计划再干","w":{"wisdom":15}},{"t":"边做边想","w":{"wisdom":-5}},{"t":"凭直觉冲","w":{"wisdom":-20}}]},{"cat":"📜 才智心计","q":"你对人心世故的看法？","opts":[{"t":"看人看事要深三尺","w":{"wisdom":30}},{"t":"多留个心眼","w":{"wisdom":15}},{"t":"将心比心就好","w":{"wisdom":-5}},{"t":"懒得猜，直来直去","w":{"wisdom":-20}}]},{"cat":"📜 才智心计","q":"你更欣赏哪种聪明？","opts":[{"t":"运筹帷幄的谋略","w":{"wisdom":30}},{"t":"举一反三的机敏","w":{"wisdom":15}},{"t":"脚踏实地的经验","w":{"wisdom":-5}},{"t":"赤子之心的坦荡","w":{"wisdom":-20,"chivalry":5}}]},{"cat":"⚔️ 傲骨风骨","q":"有人让你做违心的事，你？","opts":[{"t":"当场拒绝，宁折不弯","w":{"chivalry":30}},{"t":"婉拒，但不撕破脸","w":{"chivalry":10}},{"t":"勉强配合","w":{"chivalry":-10}},{"t":"为了大局忍了","w":{"chivalry":-30}}]},{"cat":"⚔️ 傲骨风骨","q":"你最看重的品格是？","opts":[{"t":"骨气与尊严","w":{"chivalry":30}},{"t":"信义与担当","w":{"chivalry":15}},{"t":"圆融与周全","w":{"chivalry":-5}},{"t":"实惠与安稳","w":{"chivalry":-25}}]},{"cat":"⚔️ 傲骨风骨","q":"面对不公，你通常？","opts":[{"t":"拍案而起","w":{"chivalry":30,"freedom":5}},{"t":"据理力争","w":{"chivalry":15}},{"t":"私下吐槽","w":{"chivalry":-10}},{"t":"多一事不如少一事","w":{"chivalry":-25}}]},{"cat":"🎨 才情雅趣","q":"闲暇时你更可能？","opts":[{"t":"写写画画、弹琴读诗","w":{"art":30}},{"t":"看展听曲、琢磨雅事","w":{"art":15}},{"t":"刷剧打游戏","w":{"art":-10}},{"t":"睡觉躺平","w":{"art":-25}}]},{"cat":"🎨 才情雅趣","q":"你对自己才艺的态度？","opts":[{"t":"很在意，以才情为荣","w":{"art":30}},{"t":"有点小得意","w":{"art":15}},{"t":"可有可无","w":{"art":-10}},{"t":"觉得花架子没用","w":{"art":-25}}]},{"cat":"🎨 才情雅趣","q":"你眼中的美更偏向？","opts":[{"t":"诗酒风流、意境悠远","w":{"art":30,"reclusion":5}},{"t":"匠心巧思、细节动人","w":{"art":15}},{"t":"实用耐看就好","w":{"art":-10}},{"t":"美不美无所谓","w":{"art":-25}}]},{"cat":"🏔️ 淡泊退隐","q":"功成名就之后你最想？","opts":[{"t":"归隐山林，闲云野鹤","w":{"reclusion":30}},{"t":"半退半隐，留份清闲","w":{"reclusion":15}},{"t":"继续在台前发光","w":{"reclusion":-15}},{"t":"趁势更上一层楼","w":{"reclusion":-30,"power":10}}]},{"cat":"🏔️ 淡泊退隐","q":"你羡慕的生活是？","opts":[{"t":"采菊东篱下","w":{"reclusion":30}},{"t":"小院子里的烟火气","w":{"reclusion":15}},{"t":"热闹都市的精彩","w":{"reclusion":-15}},{"t":"万人之上的风光","w":{"reclusion":-30,"power":15}}]},{"cat":"🏔️ 淡泊退隐","q":"对出名这件事你？","opts":[{"t":"避之唯恐不及","w":{"reclusion":30}},{"t":"无所谓","w":{"reclusion":10}},{"t":"不排斥","w":{"reclusion":-10}},{"t":"很想要","w":{"reclusion":-25,"power":10}}]},{"cat":"🔥 冒险进取","q":"面对高风险高回报的机会，你？","opts":[{"t":"立刻上，怕错过","w":{"adventure":30}},{"t":"评估后搏一把","w":{"adventure":15}},{"t":"小试一下","w":{"adventure":-5}},{"t":"太险，宁可稳","w":{"adventure":-30}}]},{"cat":"🔥 冒险进取","q":"你更喜欢的旅行是？","opts":[{"t":"荒野探险、未知路线","w":{"adventure":30}},{"t":"有挑战的户外","w":{"adventure":15}},{"t":"经典打卡休闲游","w":{"adventure":-10}},{"t":"酒店躺平度假","w":{"adventure":-25}}]},{"cat":"🔥 冒险进取","q":"人生你更信？","opts":[{"t":"爱拼才会赢","w":{"adventure":30,"power":5}},{"t":"胆大心细","w":{"adventure":15}},{"t":"稳扎稳打","w":{"adventure":-10}},{"t":"平安是福","w":{"adventure":-25,"reclusion":10}}]},{"cat":"🕯️ 宿命信仰","q":"对命中注定你？","opts":[{"t":"深信不疑，敬畏天道","w":{"faith":30}},{"t":"半信，顺其自然","w":{"faith":15}},{"t":"不太信","w":{"faith":-10}},{"t":"只信自己","w":{"faith":-25}}]},{"cat":"🕯️ 宿命信仰","q":"当你认定一件对的事，会？","opts":[{"t":"九死其犹未悔","w":{"faith":30,"chivalry":10}},{"t":"坚持到底","w":{"faith":15}},{"t":"尽力而为","w":{"faith":-5}},{"t":"不行就调整","w":{"faith":-25}}]},{"cat":"🕯️ 宿命信仰","q":"你心里的信念更像？","opts":[{"t":"家国天下、千秋道义","w":{"faith":30,"power":5}},{"t":"心中一方净土","w":{"faith":15,"reclusion":10}},{"t":"对身边人的责任","w":{"faith":5}},{"t":"没想过这么远","w":{"faith":-25}}]}];
+
+
+// ══════════ STATE ══════════
+let current=0, answers={}, autoTimer=null;
+
+// ══════════ UTILS ══════════
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0,0);
+}
+
+function calcMatch(prefs,city){
+  const dims=["power","wealth","freedom","love","wisdom","chivalry","art","reclusion","adventure","faith"];
+  const s=dims.map(d=>100-Math.abs((prefs[d]||50)-(city.p[d]||50)));
+  return Math.round(s.reduce((a,b)=>a+b,0)/dims.length);
+}
+
+function buildPrefs(ans){
+  const base={power:50,wealth:50,freedom:50,love:50,wisdom:50,chivalry:50,art:50,reclusion:50,adventure:50,faith:50};
+  Object.values(ans).forEach(w=>{Object.entries(w).forEach(([k,v])=>{base[k]=Math.max(0,Math.min(100,base[k]+v));})});
+  return base;
+}
+
+// ══════════ PASSWORD ══════════
+function checkPwd(){
+  const v=document.getElementById('pw-input').value;
+  const err=document.getElementById('pw-err');
+  const inp=document.getElementById('pw-input');
+  if(v==='4680'){showPage('page-intro');}
+  else{
+    err.style.display='block';
+    inp.style.border='2px solid #FF8A8A';
+    inp.style.animation='pwShake 0.4s ease';
+    setTimeout(()=>{inp.style.animation='';},400);
+  }
+}
+document.getElementById('pw-input').addEventListener('keydown',e=>{if(e.key==='Enter')checkPwd();});
+
+// ══════════ QUIZ ══════════
+function startQuiz(){current=0;answers={};renderQ();showPage('page-quiz');}
+
+function renderQ(){
+  const q=QUESTIONS[current];
+  const total=QUESTIONS.length;
+  const pct=Math.round(((current+1)/total)*100);
+  document.getElementById('q-cat').textContent=q.cat;
+  document.getElementById('q-count').textContent=`问题 ${current+1} / ${total}`;
+  document.getElementById('q-pct').textContent=pct+'%';
+  document.getElementById('progress-bar').style.width=pct+'%';
+  document.getElementById('q-text').textContent=q.q;
+  document.getElementById('prev-btn').style.opacity=current===0?'0.3':'1';
+  document.getElementById('auto-hint').style.opacity='1';
+  const body=document.getElementById('q-body');
+  body.style.opacity='1';
+  const opts=document.getElementById('opts');
+  opts.innerHTML='';
+  q.opts.forEach((opt,i)=>{
+    const btn=document.createElement('button');
+    btn.className='opt';
+    const prevW=answers[current];
+    const isSelected=prevW&&JSON.stringify(prevW)===JSON.stringify(opt.w)&&Object.keys(opt.w).every(k=>prevW[k]===opt.w[k]);
+    if(isSelected)btn.classList.add('selected');
+    btn.innerHTML=`<span class="opt-radio">${isSelected?'●':'○'}</span>${opt.t}`;
+    btn.onclick=()=>selectOpt(opt,btn,q);
+    opts.appendChild(btn);
+  });
+}
+
+function selectOpt(opt,btn,q){
+  if(autoTimer)clearTimeout(autoTimer);
+  document.querySelectorAll('.opt').forEach(b=>{b.classList.remove('selected');b.querySelector('.opt-radio').textContent='○';});
+  btn.classList.add('selected');
+  btn.querySelector('.opt-radio').textContent='●';
+  document.getElementById('auto-hint').style.opacity='0';
+  answers[current]=opt.w;
+  autoTimer=setTimeout(()=>{
+    if(current===QUESTIONS.length-1){showResults();}
+    else{current++;renderQ();}
+  },80);
+}
+
+function prevQ(){
+  if(current===0)return;
+  if(autoTimer)clearTimeout(autoTimer);
+  const body=document.getElementById('q-body');
+  body.style.opacity='0';
+  setTimeout(()=>{current--;renderQ();},200);
+}
+
+// ══════════ GENERATE REASON ══════════
+function generateReason(prefs, city){
+  const dimInfo = {
+power:{name:"权谋野心",high:"问鼎天下的野心",low:"不慕权位的淡泊",cityHigh:c=>`你骨子里有${c.name}那般一统江山、不甘人下的野心，人群之中你天生要做那个执掌大局的人`,cityLow:c=>`你与${c.name}一样不慕虚名，宁可逍遥自在，也不愿被权位锁住筋骨`},
+wealth:{name:"富贵执念",high:"泼天富贵的执念",low:"安贫乐道的淡泊",cityHigh:c=>`你承袭${c.name}对荣华的敏锐，物质的底气对你不可或缺`,cityLow:c=>`一如${c.name}，你对富贵看得很淡，粗茶淡饭亦甘之如饴`},
+freedom:{name:"自由叛逆",high:"不羁叛逆的野气",low:"安于礼法的安稳",cityHigh:c=>`你有着${c.name}那般向往无拘无束的魂，规矩礼法困不住你`,cityLow:c=>`比起${c.name}式的飘泊，你更眷恋安稳的秩序与归属`},
+love:{name:"情爱羁绊",high:"至情至性的深情",low:"超然物外的寡欲",cityHigh:c=>`你拥有${c.name}般炽烈的情肠，情之一字是前世今生软肋亦是铠甲`,cityLow:c=>`你如${c.name}般看破情执，七情六欲皆可放下`},
+wisdom:{name:"才智心计",high:"运筹帷幄的智计",low:"率性赤诚的坦荡",cityHigh:c=>`你继承了${c.name}的通透，凡事谋而后动，看人看事深三尺`,cityLow:c=>`你与${c.name}一样率真，不屑算计，赤子之心胜过千般心机`},
+chivalry:{name:"傲骨风骨",high:"铁骨铮铮的傲气",low:"随波逐流的清醒",cityHigh:c=>`你骨血里流淌${c.name}的傲骨，不肯轻易弯腰，护人所不能护是本能`,cityLow:c=>`比起${c.name}的锋芒，你更懂明哲保身，安静走自己的路`},
+art:{name:"才情雅趣",high:"诗酒风流的才情",low:"务实质朴的本色",cityHigh:c=>`你带着${c.name}般的艺术灵性，一草一木皆成诗意`,cityLow:c=>`你不如${c.name}那般风雅，更偏爱脚踏实地的实在`},
+reclusion:{name:"淡泊退隐",high:"归隐山林的淡泊",low:"入世进取的抱负",cityHigh:c=>`你与${c.name}一般心向清净，功名利禄如浮云`,cityLow:c=>`你不似${c.name}避世，反而热衷入世，在红尘搏一份天地`},
+adventure:{name:"冒险进取",high:"赴险如夷的悍勇",low:"稳守现状的谨慎",cityHigh:c=>`你承袭${c.name}的悍勇，越险峰越要登临`,cityLow:c=>`你不如${c.name}好勇，更愿稳扎稳打守好眼前`},
+faith:{name:"宿命信仰",high:"心怀家国的信仰",low:"务实入世的尘念",cityHigh:c=>`你心怀${c.name}般的信仰，信命也信善，纷扰中守一方清净`,cityLow:c=>`你少有${c.name}式执念，更信人事与当下`}
+};
+  const dims=Object.keys(dimInfo);
+  const userTop=dims.map(d=>({dim:d,val:prefs[d]||50,diff:Math.abs((prefs[d]||50)-50)})).sort((a,b)=>b.diff-a.diff).slice(0,3);
+  const matchTop=dims.map(d=>({dim:d,match:100-Math.abs((prefs[d]||50)-(city.p[d]||50))})).sort((a,b)=>b.match-a.match).slice(0,3);
+  const seen=new Set();
+  const usedDims=[];
+  userTop.forEach(u=>{if(!seen.has(u.dim)){seen.add(u.dim);usedDims.push(u.dim);}});
+  matchTop.forEach(m=>{if(!seen.has(m.dim)&&usedDims.length<4){seen.add(m.dim);usedDims.push(m.dim);}});
+
+  let reason=`根据你的灵魂偏好，${city.name}是你最契合的那一个。`;
+  usedDims.slice(0,3).forEach(d=>{
+    const info=dimInfo[d];
+    const userVal=prefs[d]||50;
+    const cityVal=city.p[d]||50;
+    if(userVal>=55&&cityVal>=55){
+      reason+=info.cityHigh(city)+'。';
+    }else if(userVal<45&&cityVal<45){
+      reason+=info.cityLow(city)+'。';
+    }else if(Math.abs(userVal-cityVal)<=20){
+      reason+=`在${info.name}上，${city.name}与你的灵魂频率十分接近，能默契呼应你心底的声音。`;
+    }
+  });
+  reason+=`综合来看，你此生的许多执念，都藏着那一世的回响。`;
+  return reason;
+}
+
+function generateOtherReason(prefs, city){
+  const dimLabelsShort = {power:"权谋野心",wealth:"富贵执念",freedom:"自由叛逆",love:"情爱羁绊",wisdom:"才智心计",chivalry:"傲骨风骨",art:"才情雅趣",reclusion:"淡泊退隐",adventure:"冒险进取",faith:"宿命信仰"};
+  const dims=Object.keys(dimLabelsShort);
+  const matchDims=dims.map(d=>({dim:d,label:dimLabelsShort[d],match:100-Math.abs((prefs[d]||50)-(city.p[d]||50))})).sort((a,b)=>b.match-a.match);
+  const topDims=matchDims.slice(0,3).map(m=>m.label);
+  return `你在${topDims.join('、')}等方面与${city.name}高度吻合，匹配度${city.score}%。${city.desc}`;
+}
+
+// ══════════ RESULTS ══════════
+function showResults(){
+  const prefs=buildPrefs(answers);
+  const ranked=CITIES.map(c=>({...c,score:calcMatch(prefs,c)})).sort((a,b)=>b.score-a.score);
+  const top=ranked[0];
+  const others=ranked.slice(1,7);
+
+  document.getElementById('r-pct').textContent=top.score+'%';
+  document.getElementById('r-city').textContent=top.name;
+  document.getElementById('r-prov').textContent=top.province;
+  document.getElementById('r-tags').innerHTML=top.tags.map(t=>`<span class="tag-chip">${t}</span>`).join('');
+  document.getElementById('r-kws').innerHTML=top.kw.map(k=>`<span class="kw-chip">${k}</span>`).join('');
+  document.getElementById('r-desc').textContent=generateReason(prefs,top);
+
+  const dimLabels = {power:"权谋野心",wealth:"富贵执念",freedom:"自由叛逆",love:"情爱羁绊",wisdom:"才智心计",chivalry:"傲骨风骨",art:"才情雅趣",reclusion:"淡泊退隐",adventure:"冒险进取",faith:"宿命信仰"};
+  const dg=document.getElementById('dim-grid');
+  dg.innerHTML='';
+  Object.entries(dimLabels).forEach(([k,label])=>{
+    const val=prefs[k];
+    dg.innerHTML+=`<div class="dim-row"><span class="dim-label">${label}</span><div class="dim-track"><div class="dim-bar" style="width:${val}%"></div></div><span class="dim-val">${val}</span></div>`;
+  });
+
+  const og=document.getElementById('others-grid');
+  og.innerHTML='';
+  others.forEach(c=>{
+    og.innerHTML+=`<div class="other-card"><div class="other-top"><div><span>🏯</span><span class="other-name">${c.name}</span><span class="other-prov"> · ${c.province}</span></div><span class="other-score">${c.score}%</span></div><div class="tag-row">${c.tags.map(t=>`<span class="tag-chip-sm">${t}</span>`).join('')}</div><div class="tag-row">${c.kw.map(k=>`<span class="kw-chip-sm">${k}</span>`).join('')}</div><p class="other-desc">${generateOtherReason(prefs,c)}</p></div>`;
+  });
+
+  showPage('page-result');
+}
+
+function resetQuiz(){showPage('page-intro');}
+</script>
+</body>
+</html>
