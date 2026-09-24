@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>测测你在武侠世界是谁 · 武侠身份测试 2026</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;
+background:#f4efe4;
+background-image:
+  repeating-linear-gradient(0deg,transparent,transparent 30px,rgba(35,32,32,.018) 30px,rgba(35,32,32,.018) 31px),
+  radial-gradient(circle at 50% -12%,#fbf7ee 0%,#f4efe4 62%);
+min-height:100vh;color:#232020;overflow-x:hidden;line-height:1.7;-webkit-font-smoothing:antialiased}
+.page{display:none;min-height:100vh;padding:14px 18px 64px;max-width:680px;margin:0 auto}
+.page.active{display:flex;flex-direction:column;align-items:center;animation:fadeUp .4s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pwShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+
+.wrap{width:100%}
+.wide-wrap{width:100%;max-width:680px}
+
+.icon-box{font-size:46px;margin:46px auto 18px;text-align:center;line-height:1;position:relative;padding-bottom:16px}
+.icon-box::after{content:'';position:absolute;left:50%;transform:translateX(-50%);bottom:0;width:42px;height:2px;background:#2f5d50}
+
+.hero-title{font-family:'Noto Serif SC','Songti SC','SimSun',serif;font-size:30px;font-weight:700;color:#232020;text-align:center;margin-bottom:10px;line-height:1.35;letter-spacing:2px}
+.hero-sub{font-size:11px;color:#9a9183;letter-spacing:5px;font-weight:600;text-align:center;margin-bottom:30px;text-transform:uppercase}
+
+.card{background:#fbf8f1;border:1px solid #e3dccb;border-radius:4px;padding:22px 20px;margin-bottom:18px}
+.card-title{font-family:'Noto Serif SC','Songti SC',serif;font-size:16px;font-weight:700;color:#2f5d50;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid #e3dccb}
+
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px}
+.stat-card{background:#fbf8f1;border:1px solid #e3dccb;border-radius:4px;padding:18px 10px;display:flex;flex-direction:column;align-items:center;gap:5px}
+.stat-icon{font-size:22px}
+.stat-num{font-family:'Noto Serif SC','Songti SC',serif;font-size:22px;font-weight:700;color:#232020}
+.stat-desc{font-size:11px;color:#9a9183}
+
+.info-box{background:#fbf8f1;border-left:3px solid #2f5d50;border-radius:0 4px 4px 0;padding:14px 18px;margin-bottom:24px}
+.info-box-title{font-size:13px;font-weight:700;color:#2f5d50;margin-bottom:6px;font-family:'Noto Serif SC','Songti SC',serif}
+.info-box-text{font-size:13px;color:#5a5249;line-height:1.8}
+
+.dim-list{display:flex;flex-direction:column;gap:0}
+.dim-item{display:flex;align-items:flex-start;gap:10px;padding:11px 2px;border-bottom:1px solid #ece6d8}
+.dim-item:last-child{border-bottom:none}
+.dim-item-icon{font-size:18px;flex-shrink:0;margin-top:1px}
+.dim-item-name{font-size:13px;font-weight:700;color:#232020}
+.dim-item-desc{font-size:12px;color:#9a9183}
+
+.category-section{margin-bottom:28px}
+.category-card{background:#fbf8f1;border:1px solid #e3dccb;border-radius:4px;padding:18px;margin-bottom:14px}
+.category-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.category-left{display:flex;align-items:center;gap:10px}
+.category-icon{width:34px;height:34px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:18px;background:#232020;color:#f4efe4;flex-shrink:0}
+.category-icon.a,.category-icon.b,.category-icon.c,.category-icon.d{background:#232020;color:#f4efe4}
+.category-name{font-family:'Noto Serif SC','Songti SC',serif;font-size:16px;font-weight:700;color:#232020}
+.category-desc{font-size:11px;color:#9a9183;background:#ece6d8;padding:4px 10px;border-radius:2px}
+.city-tags{display:flex;flex-wrap:wrap;gap:8px}
+.city-tag{padding:5px 13px;background:#fff;border:1px solid #e3dccb;border-radius:2px;font-size:12px;color:#5a5249}
+
+.pw-card{background:#fbf8f1;border:1px solid #e3dccb;border-radius:4px;padding:28px 24px;margin-bottom:22px;text-align:center}
+.pw-label{font-family:'Noto Serif SC','Songti SC',serif;font-size:16px;font-weight:700;color:#232020;margin-bottom:18px}
+.pw-input{width:100%;text-align:center;font-size:28px;letter-spacing:16px;font-weight:700;padding:14px;border-radius:4px;outline:none;color:#232020;font-family:'Noto Serif SC','Songti SC',serif;border:1px solid #d8d0bf;background:#fff;transition:border .2s}
+.pw-input:focus{border-color:#2f5d50;box-shadow:0 0 0 3px rgba(35,32,32,.06)}
+.pw-err{color:#9e2b25;font-size:13px;margin-top:8px;display:none}
+.pw-hint{font-size:12px;color:#9a9183;margin-top:10px}
+
+.btn-primary{width:100%;padding:16px;border-radius:4px;border:none;background:#232020;color:#f4efe4;font-size:17px;font-weight:700;cursor:pointer;letter-spacing:5px;font-family:'Noto Serif SC','Songti SC',serif;transition:background .15s}
+.btn-primary:hover{background:#2f5d50}
+.btn-primary:active{transform:translateY(1px)}
+.btn-secondary{width:100%;padding:15px;border-radius:4px;border:1px solid #d8d0bf;background:transparent;cursor:pointer;font-size:15px;font-weight:700;color:#5a5249;font-family:'Noto Serif SC','Songti SC',serif;transition:background .15s;margin-bottom:10px}
+.btn-secondary:hover{background:#ece6d8}
+
+.footer{text-align:center;padding:16px 0 8px;width:100%}
+.footer a{font-size:13px;color:#9a9183;text-decoration:none;border-bottom:1px solid #d8d0bf;padding-bottom:2px}
+
+.q-header{background:#fbf8f1;border:1px solid #e3dccb;border-radius:4px;padding:16px 20px;margin-bottom:18px;width:100%;max-width:600px}
+.q-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.q-cat{font-size:12px;font-weight:700;color:#2f5d50;letter-spacing:1px}
+.q-count{font-size:12px;color:#9a9183}
+.q-pct{font-size:12px;font-weight:700;color:#232020}
+.progress-track{height:4px;background:#e3dccb;border-radius:0;overflow:hidden}
+.progress-bar{height:100%;background:#2f5d50;transition:width .4s ease}
+
+.q-body{background:#fbf8f1;border:1px solid #e3dccb;border-radius:4px;padding:28px 24px;margin-bottom:18px;width:100%;max-width:600px}
+.q-text{font-family:'Noto Serif SC','Songti SC',serif;font-size:21px;font-weight:700;color:#232020;margin-bottom:24px;line-height:1.5}
+.opts{display:flex;flex-direction:column;gap:12px}
+.opt{padding:15px 18px;border-radius:4px;border:1px solid #d8d0bf;background:#fff;cursor:pointer;text-align:left;font-size:15px;color:#232020;display:flex;align-items:center;gap:12px;transition:all .15s;width:100%;font-family:inherit}
+.opt:hover{border-color:#2f5d50;background:#fbf8f1}
+.opt.selected{border-color:#2f5d50;background:#f4efe4;color:#232020;font-weight:600}
+.opt-radio{font-size:16px;color:#2f5d50;flex-shrink:0;width:18px}
+.q-nav{display:flex;justify-content:space-between;align-items:center;gap:12px;width:100%;max-width:600px}
+.nav-btn{padding:13px 22px;border-radius:4px;border:1px solid #d8d0bf;background:transparent;cursor:pointer;font-size:14px;color:#9a9183;font-family:'Noto Serif SC','Songti SC',serif;transition:opacity .2s}
+.auto-hint{font-size:12px;color:#9a9183;flex:1;text-align:center;transition:opacity .3s}
+
+.top-card{background:#fbf8f1;border:1px solid #e3dccb;border-radius:4px;padding:36px 26px 30px;text-align:center;margin-bottom:20px;width:100%}
+.top-sub{font-size:12px;color:#2f5d50;font-weight:700;margin-bottom:16px;letter-spacing:3px;font-family:'Noto Serif SC','Songti SC',serif}
+.top-icon-emoji{font-size:48px;margin-bottom:8px}
+.match-pct{font-family:'Noto Serif SC','Songti SC',serif;font-size:74px;font-weight:700;color:#232020;line-height:1}
+.top-city{font-family:'Noto Serif SC','Songti SC',serif;font-size:28px;font-weight:700;color:#232020;margin:14px 0 4px}
+.top-prov{font-size:12px;color:#9a9183;margin-bottom:16px}
+.tag-row{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:10px}
+.tag-chip{background:#232020;color:#f4efe4;border-radius:2px;padding:4px 14px;font-size:12px;font-weight:600}
+.kw-chip{background:#ece6d8;color:#5a5249;border-radius:2px;padding:4px 14px;font-size:11px}
+.match-reason{background:#fff;border:1px solid #e3dccb;border-radius:4px;padding:16px 18px;text-align:left;margin-top:16px}
+.reason-title{font-family:'Noto Serif SC','Songti SC',serif;font-size:14px;font-weight:700;color:#2f5d50;display:block;margin-bottom:8px}
+.reason-text{font-size:14px;color:#5a5249;line-height:1.95;margin:0}
+
+.dim-card{background:#fbf8f1;border:1px solid #e3dccb;border-radius:4px;padding:24px;margin-bottom:20px;width:100%}
+.dim-card-title{font-family:'Noto Serif SC','Songti SC',serif;font-size:17px;font-weight:700;color:#232020;margin-bottom:20px}
+.dim-grid{display:flex;flex-direction:column;gap:12px}
+.dim-row{display:flex;align-items:center;gap:12px}
+.dim-label{font-size:12px;color:#9a9183;width:72px;flex-shrink:0}
+.dim-track{flex:1;height:6px;background:#e3dccb;border-radius:0;overflow:hidden}
+.dim-bar{height:100%;background:#2f5d50;transition:width .6s ease}
+.dim-val{font-size:12px;font-weight:700;color:#232020;width:28px;text-align:right;flex-shrink:0}
+
+.others-card{background:#fbf8f1;border:1px solid #e3dccb;border-radius:4px;padding:24px;margin-bottom:24px;width:100%}
+.others-title{font-family:'Noto Serif SC','Songti SC',serif;font-size:17px;font-weight:700;color:#232020;margin-bottom:20px}
+.others-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:480px){.others-grid{grid-template-columns:1fr}}
+.other-card{border:1px solid #e3dccb;border-radius:4px;padding:16px 14px;background:#fff}
+.other-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.other-name{font-family:'Noto Serif SC','Songti SC',serif;font-size:16px;font-weight:700;color:#232020}
+.other-prov{font-size:12px;color:#9a9183}
+.other-score{font-size:18px;font-weight:700;color:#2f5d50}
+.other-desc{font-size:12px;color:#9a9183;line-height:1.85;margin-top:10px}
+.tag-chip-sm{background:#232020;color:#f4efe4;border-radius:2px;padding:3px 10px;font-size:11px}
+.kw-chip-sm{background:#ece6d8;color:#5a5249;border-radius:2px;padding:3px 10px;font-size:11px}
+
+.decl-text{font-size:13px;color:#5a5249;line-height:1.9;margin-bottom:16px}
+.decl-text strong{color:#2f5d50}
+</style>
+</head>
+<body>
+
+<!-- ══════════ PAGE: PASSWORD ══════════ -->
+<div class="page active" id="page-password">
+  <div class="wrap">
+    <div class="icon-box">⚔️</div>
+    <h1 class="hero-title">测测你在武侠世界是谁</h1>
+    <p class="hero-sub">JIANGHU SOUL · 2026</p>
+    <div class="pw-card">
+      <p class="pw-label">🔑 请输入通关密语</p>
+      <input type="password" id="pw-input" class="pw-input" maxlength="4" placeholder="••••" />
+      <p class="pw-err" id="pw-err">校验码错误，请重试</p>
+    </div>
+    <div class="info-box">
+      <p class="info-box-title">ℹ️ 说明</p>
+      <p class="info-box-text">本测验唤醒你沉睡的侠客魂，匹配你最可能的前世江湖身份。仅供娱乐，但准得有点吓人。</p>
+    </div>
+    <button class="btn-primary" onclick="checkPwd()">→ 踏入江湖</button>
+  </div>
+</div>
+
+<!-- ══════════ PAGE: INTRO ══════════ -->
+<div class="page" id="page-intro">
+  <div class="wrap">
+    <div class="icon-box">🗡️</div>
+    <h1 class="hero-title">你的侠骨，早刻在骨血里</h1>
+    <p class="hero-sub">JIANGHU SOUL · 2026</p>
+
+    <div class="stats-grid"><div class="stat-card"><span class="stat-icon">❓</span><span class="stat-num">40道</span><span class="stat-desc">江湖试炼</span></div><div class="stat-card"><span class="stat-icon">⏱️</span><span class="stat-num">约2分钟</span><span class="stat-desc">测出真身</span></div><div class="stat-card"><span class="stat-icon">🗡️</span><span class="stat-num">14种</span><span class="stat-desc">江湖身份</span></div><div class="stat-card"><span class="stat-icon">🧬</span><span class="stat-num">10维度</span><span class="stat-desc">侠客画像</span></div></div>
+
+    <div class="card">
+      <p class="card-title">📜 测试说明</p>
+      <p class="decl-text">本测试共 <strong>40道题</strong>，穿越以下 <strong>10个侠客维度</strong>，每道题选择后<strong>自动跳转</strong>下一题。完成后系统将从<strong>14种江湖身份</strong>中，为你点出最契合的那一个。</p>
+      <div class="dim-list"><div class="dim-item"><span class="dim-item-icon">👑</span><div><span class="dim-item-name">权势野心</span><span class="dim-item-desc"> — 你图不图那江湖地位？</span></div></div><div class="dim-item"><span class="dim-item-icon">💰</span><div><span class="dim-item-name">金银执念</span><span class="dim-item-desc"> — 贪不贪那一箱金银？</span></div></div><div class="dim-item"><span class="dim-item-icon">🕊️</span><div><span class="dim-item-name">自在逍遥</span><span class="dim-item-desc"> — 受不受得住清规束缚？</span></div></div><div class="dim-item"><span class="dim-item-icon">💞</span><div><span class="dim-item-name">儿女情长</span><span class="dim-item-desc"> — 放不放得下那一段情？</span></div></div><div class="dim-item"><span class="dim-item-icon">📜</span><div><span class="dim-item-name">智计谋略</span><span class="dim-item-desc"> — 谋不谋那一步先手？</span></div></div><div class="dim-item"><span class="dim-item-icon">⚔️</span><div><span class="dim-item-name">侠义之心</span><span class="dim-item-desc"> — 管不管那一场不平？</span></div></div><div class="dim-item"><span class="dim-item-icon">🎨</span><div><span class="dim-item-name">琴棋书画</span><span class="dim-item-desc"> — 风雅不风雅？</span></div></div><div class="dim-item"><span class="dim-item-icon">🏔️</span><div><span class="dim-item-name">退隐之志</span><span class="dim-item-desc"> — 归不归那座青山？</span></div></div><div class="dim-item"><span class="dim-item-icon">🔥</span><div><span class="dim-item-name">闯荡之心</span><span class="dim-item-desc"> — 敢不敢闯那方险地？</span></div></div><div class="dim-item"><span class="dim-item-icon">🕯️</span><div><span class="dim-item-name">因果信仰</span><span class="dim-item-desc"> — 信不信那冥冥天道？</span></div></div></div>
+    </div>
+
+    <div class="category-section"><div class="category-card"><div class="category-header"><div class="category-left"><div class="category-icon a">👑</div><div class="category-name">名门正道</div></div><div class="category-desc">权势 · 威望 · 正道</div></div><div class="city-tags"><span class="city-tag">剑客</span><span class="city-tag">武林盟主</span><span class="city-tag">六扇门捕快</span></div></div><div class="category-card"><div class="category-header"><div class="category-left"><div class="category-icon b">🗡️</div><div class="category-name">江湖浪迹</div></div><div class="category-desc">自由 · 侠义 · 烟火</div></div><div class="city-tags"><span class="city-tag">浪迹侠客</span><span class="city-tag">红粉女侠</span><span class="city-tag">丐帮帮主</span></div></div><div class="category-card"><div class="category-header"><div class="category-left"><div class="category-icon c">🪷</div><div class="category-name">方外济世</div></div><div class="category-desc">医术 · 佛道 · 隐居</div></div><div class="city-tags"><span class="city-tag">神医毒手</span><span class="city-tag">佛门高僧</span><span class="city-tag">隐世高手</span></div></div><div class="category-card"><div class="category-header"><div class="category-left"><div class="category-icon d">📜</div><div class="category-name">市井诡谲</div></div><div class="category-desc">才情 · 算计 · 暗流</div></div><div class="city-tags"><span class="city-tag">落魄书生</span><span class="city-tag">商贾巨富</span><span class="city-tag">冷血杀手</span><span class="city-tag">百晓生</span></div></div></div>
+
+    <button class="btn-primary" onclick="startQuiz()">▶ 入江湖 →</button>
+  </div>
+</div>
+
+<!-- ══════════ PAGE: QUIZ ══════════ -->
+<div class="page" id="page-quiz">
+  <div class="q-header">
+    <div class="q-meta">
+      <span class="q-cat" id="q-cat">维度</span>
+      <span class="q-count" id="q-count">问题 1 / 50</span>
+      <span class="q-pct" id="q-pct">2%</span>
+    </div>
+    <div class="progress-track"><div class="progress-bar" id="progress-bar" style="width:2%"></div></div>
+  </div>
+  <div class="q-body" id="q-body">
+    <h2 class="q-text" id="q-text"></h2>
+    <div class="opts" id="opts"></div>
+  </div>
+  <div class="q-nav">
+    <button class="nav-btn" id="prev-btn" onclick="prevQ()">‹ 上一题</button>
+    <div class="auto-hint" id="auto-hint">← 点击选项自动跳转</div>
+  </div>
+</div>
+
+<!-- ══════════ PAGE: RESULT ══════════ -->
+<div class="page" id="page-result">
+  <div class="wide-wrap">
+    <div class="top-card">
+      <p class="top-sub">你的江湖身份是——</p>
+      <div class="top-icon-emoji">🗡️</div>
+      <div class="match-pct" id="r-pct">94%</div>
+      <h2 class="top-city" id="r-city">—</h2>
+      <p class="top-prov" id="r-prov">—</p>
+      <div class="tag-row" id="r-tags"></div>
+      <div class="tag-row" id="r-kws"></div>
+      <div class="match-reason">
+        <span class="reason-title">💫 前世江湖记忆</span>
+        <p class="reason-text" id="r-desc"></p>
+      </div>
+    </div>
+
+    <div class="dim-card">
+      <p class="dim-card-title">你的侠客灵魂画像</p>
+      <div class="dim-grid" id="dim-grid"></div>
+    </div>
+
+    <div class="others-card">
+      <p class="others-title">你还可能曾是……</p>
+      <div class="others-grid" id="others-grid"></div>
+    </div>
+
+    <button class="btn-secondary" onclick="resetQuiz()">↺ 再入江湖</button>
+  </div>
+</div>
+
+<script>
+// ══════════ DATA ══════════
+const CITIES=[{"name": "剑客", "province": "一剑霜寒十四州", "tags": ["名门型", "剑道巅峰", "正道栋梁"], "kw": ["一剑光寒", "名门正派", "剑心通明"], "p": {"power": 40, "wealth": 30, "freedom": 70, "love": 55, "wisdom": 60, "chivalry": 85, "art": 50, "reclusion": 30, "adventure": 80, "faith": 35}, "desc": "你前世是名门正派的顶尖剑客，一袭白衣、一柄长剑，剑锋所指皆有公道。你重规矩也重情义，是江湖人最信赖的那把剑。这一世你骨子里仍有一股不肯弯腰的傲气。"}, {"name": "浪迹侠客", "province": "笑傲江湖不计年", "tags": ["自由型", "浪子型", "侠义命"], "kw": ["仗剑天涯", "快意恩仇", "笑傲江湖"], "p": {"power": 20, "wealth": 25, "freedom": 92, "love": 60, "chivalry": 90, "art": 45, "reclusion": 40, "wisdom": 50, "adventure": 85, "faith": 35}, "desc": "你前世一袭破衣仗剑天涯，快意恩仇、笑傲江湖。庙堂的荣华你嗤之以鼻，只爱清风明月与兄弟情义。这一世你依旧向往自由，最恨被任何门规束缚。"}, {"name": "神医毒手", "province": "悬壶济世亦杀伐", "tags": ["仁心型", "药王命", "双面型"], "kw": ["悬壶济世", "妙手回春", "毒亦为医"], "p": {"power": 20, "wealth": 50, "love": 70, "freedom": 55, "wisdom": 85, "chivalry": 50, "art": 40, "reclusion": 60, "adventure": 45, "faith": 55}, "desc": "你前世是亦正亦邪的神医，一手回春、一手用毒，救人杀人都在一念。你懂人性也懂生死，仁心比医术更珍贵。这一世你仍是那个被人需要的温暖存在。"}, {"name": "魔教教主", "province": "号令群魔嗜血狂", "tags": ["霸主型", "魔头命", "野心型"], "kw": ["唯我独尊", "翻云覆雨", "号令群魔"], "p": {"power": 90, "wealth": 70, "wisdom": 75, "freedom": 40, "love": 45, "chivalry": 20, "art": 40, "reclusion": 15, "adventure": 70, "faith": 50}, "desc": "你前世是令正道闻风丧胆的魔教教主，翻云覆雨、唯我独尊。你不在乎骂名，只在乎手中的权与力。这一世你骨血里仍有一股不肯屈居人下的狠劲。"}, {"name": "武林盟主", "province": "一呼百应镇江湖", "tags": ["领袖型", "盟主命", "威望型"], "kw": ["一呼百应", "执牛耳者", "江湖共主"], "p": {"power": 85, "wealth": 55, "wisdom": 80, "freedom": 30, "love": 50, "chivalry": 80, "art": 40, "reclusion": 20, "adventure": 50, "faith": 45}, "desc": "你前世是执掌江湖牛耳的武林盟主，一呼百应、黑白两道皆忌惮三分。你以大局为重，也甘愿背负骂名。这一世你仍是那个在人群里发号施令、扛起责任的人。"}, {"name": "红粉女侠", "province": "剑气如虹自掌公道", "tags": ["独立型", "侠女命", "炽热型"], "kw": ["红妆侠骨", "剑气如虹", "自掌公道"], "p": {"power": 25, "wealth": 35, "love": 65, "freedom": 88, "chivalry": 92, "art": 40, "reclusion": 30, "wisdom": 55, "adventure": 88, "faith": 30}, "desc": "你前世是红妆不让须眉的奇女子，剑气如虹、侠骨柔情。你不靠谁庇护，自己的公道自己讨。这一世你独立而炽热，爱情与自由都要握在自己手里。"}, {"name": "六扇门捕快", "province": "铁面无私守律法", "tags": ["秩序型", "捕快命", "铁血型"], "kw": ["铁面无私", "明察秋毫", "法度江湖"], "p": {"power": 55, "wealth": 40, "love": 50, "wisdom": 65, "freedom": 35, "chivalry": 70, "art": 30, "reclusion": 25, "adventure": 55, "faith": 40}, "desc": "你前世是六扇门的神捕，铁面无私、明察秋毫，在法与情之间反复煎熬却从不偏私。你信规矩也信人心。这一世你仍是那个在混乱中守住底线的人。"}, {"name": "落魄书生", "province": "诗酒风流白衣客", "tags": ["才子型", "文艺命", "自由型"], "kw": ["诗酒风流", "白衣才子", "胸怀锦绣"], "p": {"power": 20, "wealth": 25, "love": 65, "freedom": 55, "wisdom": 90, "chivalry": 45, "art": 92, "reclusion": 55, "adventure": 40, "faith": 45}, "desc": "你前世是白衣胜雪的落魄才子，诗酒趁年华，一笔写尽人间风流。你重情重义、厌弃功名，只求灵魂自在。这一世你仍在喧嚣中守住内心那点诗意。"}, {"name": "丐帮帮主", "province": "打狗棒下聚义气", "tags": ["草根型", "帮主命", "义气型"], "kw": ["打狗棒法", "义薄云天", "市井天下"], "p": {"power": 50, "wealth": 40, "wisdom": 60, "freedom": 75, "love": 55, "chivalry": 80, "art": 30, "reclusion": 35, "adventure": 65, "faith": 40}, "desc": "你前世是丐帮帮主，一根打狗棒聚起天下义气，市井之中自有乾坤。你不嫌贫贱，最重兄弟情。这一世你依旧平易近人，三教九流都能交心。"}, {"name": "佛门高僧", "province": "青灯古佛慈悲怀", "tags": ["修行型", "佛缘命", "慈悲型"], "kw": ["青灯古佛", "慈悲为怀", "超脱轮回"], "p": {"power": 15, "wealth": 10, "love": 20, "freedom": 50, "wisdom": 85, "chivalry": 30, "art": 45, "reclusion": 90, "adventure": 30, "faith": 95}, "desc": "你前世是青灯古佛旁的得道高僧，参透因果、慈悲为怀。功名利禄于你如浮云，只愿度人度己。这一世你心静如水，总能在纷争里给人安宁。"}, {"name": "商贾巨富", "province": "富甲天下货通衢", "tags": ["商业型", "巨富命", "嗅觉型"], "kw": ["富甲天下", "货通四海", "点石成金"], "p": {"power": 50, "wealth": 95, "wisdom": 70, "freedom": 40, "love": 55, "chivalry": 50, "art": 40, "reclusion": 20, "adventure": 60, "faith": 35}, "desc": "你前世是富甲天下的商界巨擘，驼队走遍丝路、货通四海。你天生懂人性的贪与欲，也懂如何把雪球滚大。这一世你仍有敏锐嗅觉，能把机会变成金山。"}, {"name": "冷血杀手", "province": "暗夜独行索人命", "tags": ["孤煞型", "杀手足", "冷峻型"], "kw": ["暗夜独行", "一击必杀", "索命无常"], "p": {"power": 45, "wealth": 50, "love": 25, "freedom": 65, "wisdom": 60, "chivalry": 15, "art": 35, "reclusion": 40, "adventure": 75, "faith": 20}, "desc": "你前世是暗夜里的冷血杀手，一袭黑衣、一击必杀，索命无常却从无失手。你把自己活成了一把刀。这一世你仍习惯独行，不轻易交付信任。"}, {"name": "隐世高手", "province": "世外高人超然物", "tags": ["隐逸型", "高人命", "通透型"], "kw": ["世外高人", "深藏不露", "返璞归真"], "p": {"power": 30, "wealth": 30, "love": 40, "freedom": 70, "wisdom": 92, "chivalry": 40, "art": 60, "reclusion": 92, "adventure": 40, "faith": 70}, "desc": "你前世是隐居深山的世外高人，深藏不露、返璞归真，却往往在乱世中被请出山。你智慧通天却甘于寂寞。这一世你仍向往清净，不争不抢却自有境界。"}, {"name": "百晓生", "province": "江湖秘辛尽在握", "tags": ["情报型", "说书命", "通透型"], "kw": ["江湖百晓", "笔下春秋", "洞若观火"], "p": {"power": 25, "wealth": 45, "love": 60, "freedom": 65, "wisdom": 70, "chivalry": 40, "art": 75, "reclusion": 45, "adventure": 50, "faith": 40}, "desc": "你前世是通晓江湖秘辛的百晓生，一支笔写尽恩怨、一张嘴说遍春秋。你未必武功高强，却无人敢小觑你的消息。这一世你依旧消息灵通、妙语连珠。"}];
+
+const QUESTIONS=[{"q": "若有朝一日给你一派掌门之位，你的第一反应是？", "cat": "👑 权势野心", "opts": [{"t": "欣然接下，这本就该是我的", "w": {"power": 30}}, {"t": "谨慎接下，权位即责任", "w": {"power": 10, "wisdom": 10}}, {"t": "婉拒，高处不胜寒", "w": {"power": -20, "reclusion": 10}}, {"t": "无所谓，权势非我所求", "w": {"power": -30}}]}, {"q": "你更渴望在江湖里被怎样记住？", "cat": "👑 权势野心", "opts": [{"t": "一代宗师，开宗立派", "w": {"power": 30}}, {"t": "富甲一方，名动天下", "w": {"power": 15, "wealth": 15}}, {"t": "才情传世，青史留名", "w": {"power": 10, "art": 20}}, {"t": "无人记得，自在逍遥", "w": {"power": -20, "reclusion": 20}}]}, {"q": "面对一场必赢的棋局，你更享受？", "cat": "👑 权势野心", "opts": [{"t": "掌控全局、运筹帷幄", "w": {"power": 25, "wisdom": 10}}, {"t": "与人对弈的过程", "w": {"wisdom": 5}}, {"t": "赢之后的名望地位", "w": {"power": 20, "wealth": 10}}, {"t": "其实更想掀翻棋盘", "w": {"power": -25, "freedom": 15}}]}, {"q": "你认为理想的江湖地位是？", "cat": "👑 权势野心", "opts": [{"t": "武林盟主，一言九鼎", "w": {"power": 30}}, {"t": "一方堂主，手握实权", "w": {"power": 15}}, {"t": "幕僚之首，幕后操盘", "w": {"power": 10, "wisdom": 15}}, {"t": "布衣草莽，逍遥自在", "w": {"power": -25, "freedom": 20}}]}, {"q": "你对金银的态度更接近？", "cat": "💰 金银执念", "opts": [{"t": "越多越好，银子即底气", "w": {"wealth": 30}}, {"t": "够花就好，不刻意追", "w": {"wealth": -5}}, {"t": "够温饱就行，看淡", "w": {"wealth": -20}}, {"t": "钱财身外物，可散", "w": {"wealth": -30, "reclusion": 10}}]}, {"q": "若得一笔横财，第一件事是？", "cat": "💰 金银执念", "opts": [{"t": "置产扩张，让钱生钱", "w": {"wealth": 25}}, {"t": "改善生计，惠及同门", "w": {"wealth": 10, "love": 10}}, {"t": "攒起来，求个安稳", "w": {"wealth": 5}}, {"t": "散些给落难之人", "w": {"wealth": -15, "freedom": 10}}]}, {"q": "你更欣赏哪种致富路数？", "cat": "💰 金银执念", "opts": [{"t": "胆大布局，敢赌风口", "w": {"wealth": 25, "adventure": 10}}, {"t": "踏实经营，细水长流", "w": {"wealth": 10}}, {"t": "靠一门手艺吃饭", "w": {"wealth": -5, "art": 10}}, {"t": "无所谓，清贫亦可", "w": {"wealth": -25, "reclusion": 10}}]}, {"q": "你愿为更高的身家付出什么？", "cat": "💰 金银执念", "opts": [{"t": "倾尽所有，赌上一切", "w": {"wealth": 30, "adventure": 10}}, {"t": "奋力拼搏，留有余地", "w": {"wealth": 10}}, {"t": "适度努力，平衡生活", "w": {"wealth": -5}}, {"t": "不愿为财牺牲自在", "w": {"wealth": -25, "freedom": 10}}]}, {"q": "你最怕的江湖状态是？", "cat": "🕊️ 自在逍遥", "opts": [{"t": "被门规帮条死死束缚", "w": {"freedom": 30}}, {"t": "一眼望到头的安稳", "w": {"freedom": 15}}, {"t": "孤独无依的漂泊", "w": {"freedom": -15, "love": 10}}, {"t": "其实享受规矩与归属", "w": {"freedom": -25}}]}, {"q": "长假你最想？", "cat": "🕊️ 自在逍遥", "opts": [{"t": "一个人背上剑说走就走", "w": {"freedom": 30, "adventure": 10}}, {"t": "约上兄弟来场自在游", "w": {"freedom": 15, "love": 10}}, {"t": "回老家陪陪亲人", "w": {"freedom": -10, "love": 15}}, {"t": "宅着，哪儿都不去", "w": {"freedom": -20, "reclusion": 10}}]}, {"q": "面对门派规矩，你的本能是？", "cat": "🕊️ 自在逍遥", "opts": [{"t": "先想怎么绕过去", "w": {"freedom": 25}}, {"t": "遵守，但心里嘀咕", "w": {"freedom": -5}}, {"t": "规矩自有道理", "w": {"freedom": -15}}, {"t": "主动维护秩序", "w": {"freedom": -25, "power": 10}}]}, {"q": "你理想的人际距离是？", "cat": "🕊️ 自在逍遥", "opts": [{"t": "各自精彩，不必黏腻", "w": {"freedom": 25}}, {"t": "亲密但有空间", "w": {"freedom": 5}}, {"t": "喜欢热闹有人陪", "w": {"freedom": -10, "love": 10}}, {"t": "恨不得天天黏一起", "w": {"freedom": -20, "love": 15}}]}, {"q": "你更相信哪一种情？", "cat": "💞 儿女情长", "opts": [{"t": "至死不渝的深情", "w": {"love": 30}}, {"t": "细水长流的陪伴", "w": {"love": 15}}, {"t": "合则来不合则去", "w": {"love": -10, "freedom": 10}}, {"t": "情爱是牵绊，独身更自在", "w": {"love": -25, "reclusion": 10}}]}, {"q": "为爱你可以放弃什么？", "cat": "💞 儿女情长", "opts": [{"t": "放弃前途与远方", "w": {"love": 30, "freedom": -10}}, {"t": "放弃部分原则", "w": {"love": 10}}, {"t": "看情况，不会全舍去", "w": {"love": -5}}, {"t": "什么都不愿放弃", "w": {"love": -20, "freedom": 10}}]}, {"q": "你眼里的浪漫是？", "cat": "💞 儿女情长", "opts": [{"t": "轰轰烈烈，惊天动地", "w": {"love": 25, "art": 10}}, {"t": "柴米油盐里的小确幸", "w": {"love": 10}}, {"t": "灵魂同频的默契", "w": {"love": 15, "wisdom": 10}}, {"t": "不需要浪漫，务实就好", "w": {"love": -20}}]}, {"q": "若所爱之人要退隐山林，你？", "cat": "💞 儿女情长", "opts": [{"t": "放下一切随TA而去", "w": {"love": 30, "freedom": 10}}, {"t": "奋力挽留", "w": {"love": 10}}, {"t": "尊重选择，含泪祝福", "w": {"love": 5, "wisdom": 10}}, {"t": "早有预感，平静接受", "w": {"love": -15, "reclusion": 10}}]}, {"q": "遇难题，第一反应是？", "cat": "📜 智计谋略", "opts": [{"t": "先谋后动，想透再出手", "w": {"wisdom": 30}}, {"t": "边做边学，实践出真知", "w": {"wisdom": 10, "adventure": 10}}, {"t": "请教高明之人", "w": {"wisdom": 15}}, {"t": "凭直觉，不想太多", "w": {"wisdom": -20, "freedom": 10}}]}, {"q": "你更享受哪种成就感？", "cat": "📜 智计谋略", "opts": [{"t": "看穿别人看不穿的局", "w": {"wisdom": 30}}, {"t": "靠双手拼出的成果", "w": {"wisdom": 10, "chivalry": 10}}, {"t": "被众人拥戴", "w": {"wisdom": -5, "power": 10}}, {"t": "内心的平静与通透", "w": {"wisdom": 10, "reclusion": 15}}]}, {"q": "茶余饭后你更爱聊？", "cat": "📜 智计谋略", "opts": [{"t": "天下大势与人心博弈", "w": {"wisdom": 25}}, {"t": "江湖趣事与人间烟火", "w": {"wisdom": 5, "freedom": 10}}, {"t": "风花雪月与武学", "w": {"wisdom": 10, "art": 10}}, {"t": "家长里短，图个乐", "w": {"wisdom": -10}}]}, {"q": "你对「聪明」的定义是？", "cat": "📜 智计谋略", "opts": [{"t": "算无遗策，洞若观火", "w": {"wisdom": 30}}, {"t": "大智若愚，难得糊涂", "w": {"wisdom": 15, "reclusion": 10}}, {"t": "学以致用，解决问题", "w": {"wisdom": 10}}, {"t": "赤诚坦荡，不耍心机", "w": {"wisdom": -15, "freedom": 10}}]}, {"q": "路边有人被恶霸欺凌，你会？", "cat": "⚔️ 侠义之心", "opts": [{"t": "拔剑而上，打抱不平", "w": {"chivalry": 30}}, {"t": "先判断，再出手相助", "w": {"chivalry": 15, "wisdom": 5}}, {"t": "悄悄叫人帮忙", "w": {"chivalry": 5}}, {"t": "多一事不如少一事", "w": {"chivalry": -25}}]}, {"q": "你最看重的兄弟品质是？", "cat": "⚔️ 侠义之心", "opts": [{"t": "讲义气，两肋插刀", "w": {"chivalry": 30}}, {"t": "真诚靠谱", "w": {"chivalry": 10}}, {"t": "有趣投缘", "w": {"chivalry": -5, "freedom": 10}}, {"t": "各自安好，互不麻烦", "w": {"chivalry": -20, "reclusion": 10}}]}, {"q": "你愿为「公道」付出多大代价？", "cat": "⚔️ 侠义之心", "opts": [{"t": "倾尽所有，在所不惜", "w": {"chivalry": 30}}, {"t": "力所能及，不冒大险", "w": {"chivalry": 10}}, {"t": "量力而行", "w": {"chivalry": -5}}, {"t": "公道不如自保", "w": {"chivalry": -25}}]}, {"q": "你更向往哪种名声？", "cat": "⚔️ 侠义之心", "opts": [{"t": "快意恩仇的侠客", "w": {"chivalry": 30, "freedom": 10}}, {"t": "威震一方的名宿", "w": {"chivalry": 15, "power": 15}}, {"t": "德高望重的长者", "w": {"chivalry": 15, "wisdom": 10}}, {"t": "不涉纷争的闲人", "w": {"chivalry": -20, "reclusion": 10}}]}, {"q": "你更被什么打动？", "cat": "🎨 琴棋书画", "opts": [{"t": "一首琴曲、一幅画的意境", "w": {"art": 30}}, {"t": "一段江湖故事的悲欢", "w": {"art": 10, "love": 10}}, {"t": "一件事办成的爽感", "w": {"art": -10, "power": 10}}, {"t": "实用的东西最打动我", "w": {"art": -25}}]}, {"q": "闲暇时你更可能？", "cat": "🎨 琴棋书画", "opts": [{"t": "抚琴写字、赏花弄月", "w": {"art": 30}}, {"t": "练功出游、折腾点事", "w": {"art": -10, "adventure": 10}}, {"t": "钻研有用的本事", "w": {"art": -10, "wisdom": 10}}, {"t": "发呆放空", "w": {"art": 5, "reclusion": 10}}]}, {"q": "你如何看待「风雅」？", "cat": "🎨 琴棋书画", "opts": [{"t": "处处皆诗意，必须讲究", "w": {"art": 30}}, {"t": "悦己就好，不必苛求", "w": {"art": 10}}, {"t": "实用优先，雅不雅无所谓", "w": {"art": -15}}, {"t": "浮华不如质朴", "w": {"art": -25, "reclusion": 10}}]}, {"q": "你更想拥有的才华是？", "cat": "🎨 琴棋书画", "opts": [{"t": "诗书琴画的才情", "w": {"art": 30}}, {"t": "妙手回春的医术", "w": {"art": 10, "wisdom": 10}}, {"t": "纵横捭阖的谋略", "w": {"art": -10, "wisdom": 15}}, {"t": "力能扛鼎的武勇", "w": {"art": -15, "chivalry": 10}}]}, {"q": "你心中最好的归宿是？", "cat": "🏔️ 退隐之志", "opts": [{"t": "深山古刹，与世无争", "w": {"reclusion": 30}}, {"t": "小院清幽，三五知己", "w": {"reclusion": 15, "love": 10}}, {"t": "繁华市镇，热气腾腾", "w": {"reclusion": -20, "freedom": 10}}, {"t": "建功立业，名震武林", "w": {"reclusion": -25, "power": 15}}]}, {"q": "人声鼎沸的场合让你？", "cat": "🏔️ 退隐之志", "opts": [{"t": "疲惫，只想快点脱身", "w": {"reclusion": 30}}, {"t": "有点累，但能应付", "w": {"reclusion": 10}}, {"t": "还行，挺热闹", "w": {"reclusion": -10}}, {"t": "如鱼得水，越热闹越精神", "w": {"reclusion": -25, "freedom": 10}}]}, {"q": "名动天下之后，你最想？", "cat": "🏔️ 退隐之志", "opts": [{"t": "功成身退，归隐山林", "w": {"reclusion": 30}}, {"t": "半隐半闯，留三分自由", "w": {"reclusion": 15, "freedom": 10}}, {"t": "继续攀登，更高处见", "w": {"reclusion": -15, "power": 15}}, {"t": "享尽荣华，不谈退隐", "w": {"reclusion": -25, "wealth": 10}}]}, {"q": "你更向往哪种清晨？", "cat": "🏔️ 退隐之志", "opts": [{"t": "山间鸟鸣，雾气未散", "w": {"reclusion": 30}}, {"t": "庭院煮茶，慢悠悠", "w": {"reclusion": 15, "art": 10}}, {"t": "市镇早市，匆忙充实", "w": {"reclusion": -15}}, {"t": "校场号角，即刻出发", "w": {"reclusion": -25, "adventure": 10}}]}, {"q": "面对未知的新路，你？", "cat": "🔥 闯荡之心", "opts": [{"t": "兴奋，必须去探一探", "w": {"adventure": 30}}, {"t": "心动但会先评估", "w": {"adventure": 10, "wisdom": 5}}, {"t": "犹豫，偏好稳妥", "w": {"adventure": -15}}, {"t": "拒绝，未知让我不安", "w": {"adventure": -30, "reclusion": 10}}]}, {"q": "你更爱的游历是？", "cat": "🔥 闯荡之心", "opts": [{"t": "无人区探险、秘境寻宝", "w": {"adventure": 30}}, {"t": "小众秘境、说走就走", "w": {"adventure": 15, "freedom": 10}}, {"t": "成熟城镇，省心就好", "w": {"adventure": -15}}, {"t": "宅家最舒服", "w": {"adventure": -25, "reclusion": 10}}]}, {"q": "赌一把大的机会摆在面前，你？", "cat": "🔥 闯荡之心", "opts": [{"t": "all in，富贵险中求", "w": {"adventure": 30, "wealth": 10}}, {"t": "押一部分，可控风险", "w": {"adventure": 10}}, {"t": "再看，宁愿错过", "w": {"adventure": -15}}, {"t": "绝不，落袋为安", "w": {"adventure": -30}}]}, {"q": "你眼中的英雄旅程是？", "cat": "🔥 闯荡之心", "opts": [{"t": "闯禁地、斩恶徒、逆天改命", "w": {"adventure": 30, "chivalry": 10}}, {"t": "历尽千帆，归来仍是少年", "w": {"adventure": 15}}, {"t": "守一方安宁，平凡是真", "w": {"adventure": -15, "reclusion": 10}}, {"t": "不必远行，心安处即英雄", "w": {"adventure": -25, "reclusion": 10}}]}, {"q": "你更相信什么力量？", "cat": "🕯️ 因果信仰", "opts": [{"t": "冥冥之中的因果与天道", "w": {"faith": 30}}, {"t": "善恶有报，心要向善", "w": {"faith": 15}}, {"t": "人定胜天，事在人为", "w": {"faith": -15, "power": 10}}, {"t": "只信看得见摸得着的", "w": {"faith": -25}}]}, {"q": "遇到无解的苦难，你？", "cat": "🕯️ 因果信仰", "opts": [{"t": "相信是劫数，坦然承受", "w": {"faith": 30, "reclusion": 10}}, {"t": "寻个寄托，求得心安", "w": {"faith": 15}}, {"t": "硬扛过去，不靠运气", "w": {"faith": -15, "chivalry": 10}}, {"t": "质疑一切，包括天命", "w": {"faith": -25, "wisdom": 10}}]}, {"q": "你对「修行」的理解是？", "cat": "🕯️ 因果信仰", "opts": [{"t": "修心炼性，超脱恩怨", "w": {"faith": 30, "reclusion": 10}}, {"t": "心存善念，日日自省", "w": {"faith": 15}}, {"t": "把日子过好就是修行", "w": {"faith": -10}}, {"t": "玄之又玄，与我无关", "w": {"faith": -25}}]}, {"q": "你希望留给后世的一句是？", "cat": "🕯️ 因果信仰", "opts": [{"t": "善念不灭，因果自有轮回", "w": {"faith": 30}}, {"t": "不负此生，爱过拼过", "w": {"faith": -10, "love": 10}}, {"t": "威名千秋，名震武林", "w": {"faith": -10, "power": 15}}, {"t": "清风明月，自在而已", "w": {"faith": 10, "reclusion": 15}}]}];
+
+// ══════════ STATE ══════════
+let current=0, answers={}, autoTimer=null;
+
+// ══════════ UTILS ══════════
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0,0);
+}
+
+function calcMatch(prefs,city){
+  const dims=["power","wealth","freedom","love","wisdom","chivalry","art","reclusion","adventure","faith"];
+  const s=dims.map(d=>100-Math.abs((prefs[d]||50)-(city.p[d]||50)));
+  return Math.round(s.reduce((a,b)=>a+b,0)/dims.length);
+}
+
+function buildPrefs(ans){
+  const base={power:50,wealth:50,freedom:50,love:50,wisdom:50,chivalry:50,art:50,reclusion:50,adventure:50,faith:50};
+  Object.values(ans).forEach(w=>{Object.entries(w).forEach(([k,v])=>{base[k]=Math.max(0,Math.min(100,base[k]+v));})});
+  return base;
+}
+
+// ══════════ PASSWORD ══════════
+function checkPwd(){
+  const v=document.getElementById('pw-input').value;
+  const err=document.getElementById('pw-err');
+  const inp=document.getElementById('pw-input');
+  if(v==='2026'){showPage('page-intro');}
+  else{
+    err.style.display='block';
+    inp.style.border='2px solid #FF8A8A';
+    inp.style.animation='pwShake 0.4s ease';
+    setTimeout(()=>{inp.style.animation='';},400);
+  }
+}
+document.getElementById('pw-input').addEventListener('keydown',e=>{if(e.key==='Enter')checkPwd();});
+
+// ══════════ QUIZ ══════════
+function startQuiz(){current=0;answers={};renderQ();showPage('page-quiz');}
+
+function renderQ(){
+  const q=QUESTIONS[current];
+  const total=QUESTIONS.length;
+  const pct=Math.round(((current+1)/total)*100);
+  document.getElementById('q-cat').textContent=q.cat;
+  document.getElementById('q-count').textContent=`问题 ${current+1} / ${total}`;
+  document.getElementById('q-pct').textContent=pct+'%';
+  document.getElementById('progress-bar').style.width=pct+'%';
+  document.getElementById('q-text').textContent=q.q;
+  document.getElementById('prev-btn').style.opacity=current===0?'0.3':'1';
+  document.getElementById('auto-hint').style.opacity='1';
+  const body=document.getElementById('q-body');
+  body.style.opacity='1';
+  const opts=document.getElementById('opts');
+  opts.innerHTML='';
+  q.opts.forEach((opt,i)=>{
+    const btn=document.createElement('button');
+    btn.className='opt';
+    const prevW=answers[current];
+    const isSelected=prevW&&JSON.stringify(prevW)===JSON.stringify(opt.w)&&Object.keys(opt.w).every(k=>prevW[k]===opt.w[k]);
+    if(isSelected)btn.classList.add('selected');
+    btn.innerHTML=`<span class="opt-radio">${isSelected?'●':'○'}</span>${opt.t}`;
+    btn.onclick=()=>selectOpt(opt,btn,q);
+    opts.appendChild(btn);
+  });
+}
+
+function selectOpt(opt,btn,q){
+  if(autoTimer)clearTimeout(autoTimer);
+  document.querySelectorAll('.opt').forEach(b=>{b.classList.remove('selected');b.querySelector('.opt-radio').textContent='○';});
+  btn.classList.add('selected');
+  btn.querySelector('.opt-radio').textContent='●';
+  document.getElementById('auto-hint').style.opacity='0';
+  answers[current]=opt.w;
+  autoTimer=setTimeout(()=>{
+    if(current===QUESTIONS.length-1){showResults();}
+    else{current++;renderQ();}
+  },80);
+}
+
+function prevQ(){
+  if(current===0)return;
+  if(autoTimer)clearTimeout(autoTimer);
+  const body=document.getElementById('q-body');
+  body.style.opacity='0';
+  setTimeout(()=>{current--;renderQ();},200);
+}
+
+// ══════════ GENERATE REASON ══════════
+function generateReason(prefs, city){
+  const dimInfo = {power:{name:"权势野心",high:"问鼎群雄的野心",low:"不慕虚名的淡泊",cityHigh:c=>`你骨子里有${c.name}那般问鼎江湖的野心，宁做执剑人，不当看客，人群之中你天生要做那个定夺的人`,cityLow:c=>`你与${c.name}一样不慕虚名，宁可闲云野鹤，也不愿被权位锁住筋骨，这份洒脱正是你的本真`},
+wealth:{name:"金银执念",high:"点石成金的贪婪",low:"安贫乐道的淡泊",cityHigh:c=>`你承袭了${c.name}对金银的敏锐，懂得让银子越滚越大，物质的底气对你不可或缺`,cityLow:c=>`一如${c.name}，你对钱财看得很淡，粗茶淡饭亦能甘之如饴，精神的丰盈远胜金玉满堂`},
+freedom:{name:"自在逍遥",high:"不羁放纵的野气",low:"安于归属的安稳",cityHigh:c=>`你有着${c.name}那般向往无拘无束的魂，门规帮条困不住你，清风明月才是你的归处`,cityLow:c=>`比起${c.name}式的飘泊，你更眷恋安稳的秩序与归属，脚踏实地方能心安`},
+love:{name:"儿女情长",high:"至情至性的深情",low:"超然物外的寡欲",cityHigh:c=>`你拥有${c.name}般炽烈的情肠，肯为一人倾尽温柔，情之一字是你前世今生的软肋亦是铠甲`,cityLow:c=>`你如${c.name}般看破情执，七情六欲皆可放下，独处与修行才是你的安宁之源`},
+wisdom:{name:"智计谋略",high:"算无遗策的谋智",low:"率性而为的赤心",cityHigh:c=>`你继承了${c.name}的通透，凡事喜谋而后动，看人看事总比旁人深三尺`,cityLow:c=>`你与${c.name}一样率真，不屑算计、不喜弯绕，一颗赤子之心胜过千般心机`},
+chivalry:{name:"侠义之心",high:"快意恩仇的侠骨",low:"明哲保身的清醒",cityHigh:c=>`你骨血里流淌着${c.name}的侠气，路见不平便要拔剑，护人所不能护是你本能`,cityLow:c=>`比起${c.name}的锋芒，你更懂明哲保身，不惹事也不怕事，安静地走自己的路`},
+art:{name:"琴棋书画",high:"风花雪月的才情",low:"务实质朴的本色",cityHigh:c=>`你带着${c.name}般的艺术灵性，一草一木皆成诗意，寻常日子也能过得风雅生香`,cityLow:c=>`你不如${c.name}那般风雅，更偏爱脚踏实地的实在，质朴本色便是你的可爱`},
+reclusion:{name:"退隐之志",high:"超然物外的归隐",low:"入世闯荡的进取",cityHigh:c=>`你与${c.name}一般，心向深山与清净，功名利禄如浮云，宁静致远才是你的归宿`,cityLow:c=>`你不似${c.name}般避世，反而热衷入世闯荡，在红尘里搏一份属于自己的天地`},
+adventure:{name:"闯荡之心",high:"赴险如夷的悍勇",low:"稳守现状的谨慎",cityHigh:c=>`你承袭${c.name}的悍勇，越是险峰越要登临，安稳的温室困不住一颗猎奇的心`,cityLow:c=>`你不如${c.name}那般好勇斗狠，更愿稳扎稳打、守好眼前，平平安安便是福`},
+faith:{name:"因果信仰",high:"虔信天道的笃定",low:"务实入世的尘念",cityHigh:c=>`你心怀${c.name}般的信仰，信命也信善，在纷扰江湖里总能守住一方清净与慈悲`,cityLow:c=>`你少有${c.name}式的宗教执念，更信人事与当下，把日子过得实在便是你的修行`}};
+  const dims=Object.keys(dimInfo);
+  const userTop=dims.map(d=>({dim:d,val:prefs[d]||50,diff:Math.abs((prefs[d]||50)-50)})).sort((a,b)=>b.diff-a.diff).slice(0,3);
+  const matchTop=dims.map(d=>({dim:d,match:100-Math.abs((prefs[d]||50)-(city.p[d]||50))})).sort((a,b)=>b.match-a.match).slice(0,3);
+  const seen=new Set();
+  const usedDims=[];
+  userTop.forEach(u=>{if(!seen.has(u.dim)){seen.add(u.dim);usedDims.push(u.dim);}});
+  matchTop.forEach(m=>{if(!seen.has(m.dim)&&usedDims.length<4){seen.add(m.dim);usedDims.push(m.dim);}});
+
+  let reason=`根据你的灵魂偏好，${city.name}是你最契合的那一个。`;
+  usedDims.slice(0,3).forEach(d=>{
+    const info=dimInfo[d];
+    const userVal=prefs[d]||50;
+    const cityVal=city.p[d]||50;
+    if(userVal>=55&&cityVal>=55){
+      reason+=info.cityHigh(city)+'。';
+    }else if(userVal<45&&cityVal<45){
+      reason+=info.cityLow(city)+'。';
+    }else if(Math.abs(userVal-cityVal)<=20){
+      reason+=`在${info.name}上，${city.name}与你的灵魂频率十分接近，能默契呼应你心底的声音。`;
+    }
+  });
+  reason+=`综合来看，你此生的许多执念，都藏着那一世的回响。`;
+  return reason;
+}
+
+function generateOtherReason(prefs, city){
+  const dimLabelsShort = {power:"权势野心",wealth:"金银执念",freedom:"自在逍遥",love:"儿女情长",wisdom:"智计谋略",chivalry:"侠义之心",art:"琴棋书画",reclusion:"退隐之志",adventure:"闯荡之心",faith:"因果信仰"};
+  const dims=Object.keys(dimLabelsShort);
+  const matchDims=dims.map(d=>({dim:d,label:dimLabelsShort[d],match:100-Math.abs((prefs[d]||50)-(city.p[d]||50))})).sort((a,b)=>b.match-a.match);
+  const topDims=matchDims.slice(0,3).map(m=>m.label);
+  return `你在${topDims.join('、')}等方面与${city.name}高度吻合，匹配度${city.score}%。${city.desc}`;
+}
+
+// ══════════ RESULTS ══════════
+function showResults(){
+  const prefs=buildPrefs(answers);
+  const ranked=CITIES.map(c=>({...c,score:calcMatch(prefs,c)})).sort((a,b)=>b.score-a.score);
+  const top=ranked[0];
+  const others=ranked.slice(1,7);
+
+  document.getElementById('r-pct').textContent=top.score+'%';
+  document.getElementById('r-city').textContent=top.name;
+  document.getElementById('r-prov').textContent=top.province;
+  document.getElementById('r-tags').innerHTML=top.tags.map(t=>`<span class="tag-chip">${t}</span>`).join('');
+  document.getElementById('r-kws').innerHTML=top.kw.map(k=>`<span class="kw-chip">${k}</span>`).join('');
+  document.getElementById('r-desc').textContent=generateReason(prefs,top);
+
+  const dimLabels = {power:"权势野心",wealth:"金银执念",freedom:"自在逍遥",love:"儿女情长",wisdom:"智计谋略",chivalry:"侠义之心",art:"琴棋书画",reclusion:"退隐之志",adventure:"闯荡之心",faith:"因果信仰"};
+  const dg=document.getElementById('dim-grid');
+  dg.innerHTML='';
+  Object.entries(dimLabels).forEach(([k,label])=>{
+    const val=prefs[k];
+    dg.innerHTML+=`<div class="dim-row"><span class="dim-label">${label}</span><div class="dim-track"><div class="dim-bar" style="width:${val}%"></div></div><span class="dim-val">${val}</span></div>`;
+  });
+
+  const og=document.getElementById('others-grid');
+  og.innerHTML='';
+  others.forEach(c=>{
+    og.innerHTML+=`<div class="other-card"><div class="other-top"><div><span>🗡️</span><span class="other-name">${c.name}</span><span class="other-prov"> · ${c.province}</span></div><span class="other-score">${c.score}%</span></div><div class="tag-row">${c.tags.map(t=>`<span class="tag-chip-sm">${t}</span>`).join('')}</div><div class="tag-row">${c.kw.map(k=>`<span class="kw-chip-sm">${k}</span>`).join('')}</div><p class="other-desc">${generateOtherReason(prefs,c)}</p></div>`;
+  });
+
+  showPage('page-result');
+}
+
+function resetQuiz(){showPage('page-intro');}
+</script>
+</body>
+</html>
