@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>测测你的暧昧体质 · 暧昧向人格测试</title>
+<style>* { margin:0; padding:0; box-sizing:border-box }
+:root{--acc:#3A4A5A;--acc2:#B8893B;--paper:#F5EFE0;--ink:#2B2620;--seal:#A63A2E;--line:rgba(184,137,59,.45)}
+body{font-family:'Songti SC','STSong','SimSun','Noto Serif SC',serif;background-color:var(--paper);
+  background-image:radial-gradient(900px 600px at 10% -10%, rgba(58,74,90,.10), transparent 60%),radial-gradient(800px 560px at 110% 4%, rgba(166,58,46,.05), transparent 60%),radial-gradient(700px 700px at 50% 120%, rgba(58,74,90,.06), transparent 60%);
+  background-attachment:fixed;min-height:100vh;color:var(--ink);overflow-x:hidden;line-height:1.75;-webkit-font-smoothing:antialiased}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.4;background:repeating-linear-gradient(0deg, rgba(43,38,32,.015) 0 1px, transparent 1px 3px)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@keyframes sealIn{from{opacity:0;transform:rotate(-10deg) scale(.82)}to{opacity:1;transform:rotate(-3deg) scale(1)}}
+.page{display:none;min-height:100vh;padding:22px 16px 64px}
+.page.active{display:flex;flex-direction:column;align-items:center;animation:fadeUp .45s ease}
+.wrap,.wide-wrap{width:100%}
+.wrap{max-width:520px}
+.wide-wrap{max-width:680px}
+.icon-box{width:74px;height:74px;border-radius:12px;background:linear-gradient(135deg,var(--acc),#4a5a6a);color:var(--paper);display:flex;align-items:center;justify-content:center;font-size:34px;margin:26px auto 14px;border:1px solid var(--acc2);box-shadow:0 6px 18px rgba(43,38,32,.12);transform:rotate(-3deg);animation:sealIn .5s ease}
+.hero-title{font-family:'STKaiti','KaiTi','Kaiti SC','SimSun',serif;font-size:27px;font-weight:700;color:var(--ink);text-align:center;margin-bottom:6px;line-height:1.4;letter-spacing:3px}
+.hero-sub{font-size:12px;color:var(--acc2);letter-spacing:6px;font-weight:600;text-align:center;margin-bottom:22px}
+.card,.stat-card,.info-box,.dim-item,.category-card,.pw-card,.btn-secondary,.q-header,.q-body,.top-card,.dim-card,.others-card,.other-card{border:1px solid var(--line);background:#FCF8EE;box-shadow:0 4px 18px rgba(43,38,32,.06);border-radius:10px}
+.card{padding:20px 18px;margin-bottom:16px}
+.card-title{font-size:15px;font-weight:700;color:var(--acc);margin-bottom:10px;letter-spacing:1px;padding-left:12px;position:relative}
+.card-title::before{content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);width:4px;height:14px;background:var(--acc2);border-radius:2px}
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+.stat-card{padding:16px 12px;display:flex;flex-direction:column;align-items:center;gap:4px}
+.stat-icon{font-size:24px}
+.stat-num{font-size:19px;font-weight:700;color:var(--ink)}
+.stat-desc{font-size:12px;color:var(--acc2)}
+.info-box{padding:14px 18px;margin-bottom:20px;border-left:4px solid var(--acc2)}
+.info-box-title{font-size:13px;font-weight:700;color:var(--acc);margin-bottom:6px;letter-spacing:1px}
+.info-box-text{font-size:13px;color:#5b554c;line-height:1.7}
+.dim-list{display:flex;flex-direction:column;gap:8px}
+.dim-item{padding:8px 12px;display:flex;align-items:flex-start;gap:10px}
+.dim-item-icon{font-size:18px;flex-shrink:0;margin-top:1px}
+.dim-item-name{font-size:13px;font-weight:700;color:var(--acc)}
+.dim-item-desc{font-size:12px;color:#6b655b}
+.category-section{margin-bottom:24px}
+.category-card{padding:16px 18px;margin-bottom:12px}
+.category-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.category-left{display:flex;align-items:center;gap:10px}
+.category-icon{width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:18px;background:var(--acc);color:var(--paper);font-weight:700}
+.category-name{font-size:15px;font-weight:700;color:var(--ink)}
+.category-desc{font-size:11px;color:var(--acc2);background:rgba(184,137,59,.12);padding:4px 10px;border-radius:20px}
+.city-tags{display:flex;flex-wrap:wrap;gap:8px}
+.city-tag{padding:6px 14px;background:var(--paper);border:1px solid var(--line);border-radius:20px;font-size:13px;color:var(--ink)}
+.pw-card{border-radius:12px;padding:24px;margin-bottom:20px;text-align:center}
+.pw-label{font-size:15px;font-weight:700;color:var(--acc);margin-bottom:16px;letter-spacing:1px}
+.pw-input{width:100%;text-align:center;font-size:28px;letter-spacing:12px;font-weight:700;padding:14px;border-radius:8px;outline:none;color:var(--acc);font-family:serif;border:2px solid var(--acc2);background:var(--paper);transition:box-shadow .2s}
+.pw-input:focus{box-shadow:0 0 0 3px rgba(184,137,59,.18)}
+.pw-err{color:var(--seal);font-size:13px;margin-top:8px;display:none;font-weight:700}
+.pw-hint{font-size:12px;color:var(--acc2);margin-top:10px}
+.btn-primary{width:100%;padding:16px;border-radius:8px;border:1px solid var(--acc);background:linear-gradient(135deg,var(--acc),#4a5a6a);color:var(--paper);font-size:18px;font-weight:700;cursor:pointer;letter-spacing:3px;font-family:'STKaiti','KaiTi','SimSun',serif;box-shadow:0 6px 18px rgba(43,38,32,.16);transition:transform .12s,box-shadow .12s}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(43,38,32,.22)}
+.btn-primary:active{transform:translateY(0)}
+.btn-secondary{width:100%;padding:16px;border-radius:8px;border:1px solid var(--line);background:#FCF8EE;cursor:pointer;font-size:16px;font-weight:700;color:var(--acc);font-family:serif;transition:background .15s;margin-bottom:10px}
+.btn-secondary:hover{background:var(--acc);color:var(--paper)}
+.footer{text-align:center;padding:16px 0 8px;width:100%}
+.footer a{font-size:13px;color:var(--acc2);text-decoration:none;border-bottom:1px solid var(--acc2);padding-bottom:2px}
+.q-header{border-radius:10px;padding:16px 20px;margin-bottom:20px;width:100%;max-width:600px}
+.q-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.q-cat{font-size:13px;font-weight:700;color:var(--acc);letter-spacing:1px}
+.q-count{font-size:13px;color:var(--acc2)}
+.q-pct{font-size:13px;font-weight:700;color:var(--ink)}
+.progress-track{height:10px;background:var(--paper);border:1px solid var(--line);border-radius:99px;overflow:hidden}
+.progress-bar{height:100%;background:linear-gradient(90deg,var(--acc),var(--acc2));border-radius:99px;transition:width .4s ease}
+.q-body{border-radius:12px;padding:28px 24px;margin-bottom:20px;width:100%;max-width:600px}
+.q-text{font-size:20px;font-weight:700;color:var(--ink);margin-bottom:24px;line-height:1.5;font-family:'STKaiti','KaiTi','SimSun',serif}
+.opts{display:flex;flex-direction:column;gap:12px}
+.opt{padding:16px 20px;border-radius:10px;border:1px solid var(--line);background:#FCF8EE;cursor:pointer;text-align:left;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:12px;transition:all .15s;font-family:serif;width:100%}
+.opt:hover{border-color:var(--acc);background:#fff;transform:translateX(3px)}
+.opt.selected{border-color:var(--acc);background:var(--acc);color:var(--paper);font-weight:600}
+.opt-radio{font-size:18px;color:var(--acc);flex-shrink:0;width:20px;font-weight:700}
+.opt.selected .opt-radio{color:var(--paper)}
+.q-nav{display:flex;justify-content:space-between;align-items:center;gap:12px;width:100%;max-width:600px}
+.nav-btn{padding:13px 24px;border-radius:8px;border:1px solid var(--line);background:#FCF8EE;cursor:pointer;font-size:15px;color:var(--acc2);font-family:serif;transition:background .15s}
+.nav-btn:hover{background:var(--acc);color:var(--paper)}
+.auto-hint{font-size:13px;color:var(--acc2);flex:1;text-align:center;transition:opacity .3s}
+.top-card{border-radius:14px;padding:26px 24px 28px;text-align:center;margin-bottom:20px;width:100%;border:1px solid var(--acc2);box-shadow:0 8px 30px rgba(43,38,32,.10);background:linear-gradient(180deg,#FCF8EE,#F3EAD6);position:relative;overflow:hidden}
+.top-card::before{content:"";position:absolute;top:10px;left:50%;transform:translateX(-50%);width:60px;height:2px;background:var(--acc2);opacity:.6}
+.top-sub{font-size:13px;color:var(--acc2);font-weight:600;margin-bottom:12px;letter-spacing:3px;font-family:'STKaiti','KaiTi',serif}
+.top-portrait{width:170px;height:204px;margin:4px auto 8px}
+.top-portrait .pt-svg{width:100%;height:100%;display:block;filter:drop-shadow(0 4px 12px rgba(43,38,32,.14))}
+.match-pct{font-size:60px;font-weight:900;color:var(--acc);line-height:1;font-family:'STKaiti','KaiTi','SimSun',serif}
+.top-city{font-size:28px;font-weight:900;color:var(--ink);margin:10px 0 4px;font-family:'STKaiti','KaiTi','SimSun',serif;letter-spacing:2px}
+.top-prov{font-size:13px;color:var(--acc2);margin-bottom:14px}
+.tag-row{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:10px}
+.tag-chip{background:var(--acc);color:var(--paper);border-radius:20px;padding:4px 14px;font-size:13px;font-weight:600}
+.kw-chip{background:var(--paper);color:var(--acc2);border-radius:20px;padding:4px 14px;font-size:12px;border:1px solid var(--line)}
+.match-reason{background:var(--paper);border-radius:8px;padding:16px 20px;text-align:left;margin-top:16px;border:1px solid var(--line)}
+.reason-title{font-size:14px;font-weight:700;color:var(--acc);display:block;margin-bottom:8px;letter-spacing:1px}
+.reason-text{font-size:14px;color:#5b554c;line-height:1.9;margin:0}
+.dim-card{border-radius:12px;padding:24px;margin-bottom:20px;width:100%;border:1px solid var(--line)}
+.dim-card-title{font-size:16px;font-weight:700;color:var(--ink);margin-bottom:20px;letter-spacing:1px}
+.dim-grid{display:flex;flex-direction:column;gap:12px}
+.dim-row{display:flex;align-items:center;gap:12px}
+.dim-label{font-size:12px;color:var(--acc2);width:70px;flex-shrink:0}
+.dim-track{flex:1;height:10px;background:var(--paper);border:1px solid var(--line);border-radius:99px;overflow:hidden}
+.dim-bar{height:100%;background:linear-gradient(90deg,var(--acc),var(--acc2));border-radius:99px;transition:width .6s ease}
+.dim-val{font-size:12px;font-weight:700;color:var(--acc);width:28px;text-align:right;flex-shrink:0}
+.others-card{border-radius:12px;padding:24px;margin-bottom:24px;width:100%;border:1px solid var(--line)}
+.others-title{font-size:16px;font-weight:700;color:var(--ink);margin-bottom:20px;letter-spacing:1px}
+.others-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:480px){.others-grid{grid-template-columns:1fr}}
+.other-card{border-radius:10px;padding:16px 14px;background:#FCF8EE;border:1px solid var(--line);text-align:center}
+.other-portrait{width:60px;height:72px;margin:0 auto 8px;opacity:.96}
+.other-portrait .pt-svg{width:100%;height:100%;display:block}
+.other-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.other-name{font-size:16px;font-weight:700;color:var(--ink);font-family:'STKaiti','KaiTi',serif}
+.other-prov{font-size:11px;color:var(--acc2)}
+.other-score{font-size:18px;font-weight:900;color:var(--acc)}
+.other-desc{font-size:12px;color:var(--acc2);line-height:1.7;margin-top:8px;text-align:left}
+.tag-chip-sm{background:var(--acc);color:var(--paper);border-radius:20px;padding:3px 10px;font-size:11px;font-weight:600}
+.kw-chip-sm{background:var(--paper);color:var(--acc2);border-radius:20px;padding:3px 10px;font-size:11px;border:1px solid var(--line)}
+.decl-text{font-size:13px;color:#5b554c;line-height:1.9;margin-bottom:16px}
+.decl-text strong{color:var(--acc)}</style>
+</head>
+<body>
+
+<!-- ══════════ PAGE: PASSWORD ══════════ -->
+<div class="page active" id="page-password">
+  <div class="wrap">
+    <div class="icon-box">📜</div>
+    <h1 class="hero-title">测测你的暧昧体质</h1>
+    <p class="hero-sub">FLIRT PERSONA</p>
+    <div class="pw-card">
+      <p class="pw-label">🔑 请输入通关密语</p>
+      <input type="password" id="pw-input" class="pw-input" maxlength="4" placeholder="••••" />
+      <p class="pw-err" id="pw-err">校验码错误，请重试</p>
+    </div>
+    <div class="info-box">
+      <p class="info-box-title">ℹ️ 说明</p>
+      <p class="info-box-text">本测验以 12 种撩人灵魂为底，匹配你最像的那一种。仅供娱乐，但准得有点上头。</p>
+    </div>
+    <button class="btn-primary" onclick="checkPwd()">→ 开启测试</button>
+  </div>
+</div>
+
+<!-- ══════════ PAGE: INTRO ══════════ -->
+<div class="page" id="page-intro">
+  <div class="wrap">
+    <div class="icon-box">💋</div>
+    <h1 class="hero-title">你的暧昧体质，藏在这12种撩人灵魂里</h1>
+    <p class="hero-sub">FLIRT PERSONALITY</p>
+
+    <div class="stats-grid"><div class="stat-card"><span class="stat-icon">❓</span><span class="stat-num">30道</span><span class="stat-desc">暧昧试炼</span></div><div class="stat-card"><span class="stat-icon">⏱️</span><span class="stat-num">约1分钟</span><span class="stat-desc">测出真身</span></div><div class="stat-card"><span class="stat-icon">🔥</span><span class="stat-num">12位</span><span class="stat-desc">撩人人格</span></div><div class="stat-card"><span class="stat-icon">🧬</span><span class="stat-num">10维度</span><span class="stat-desc">暧昧画像</span></div></div>
+
+    <div class="card">
+      <p class="card-title">📜 测试说明</p>
+      <p class="decl-text">本测试共 <strong>30道题</strong>，穿越以下 <strong>10个暧昧维度</strong>，每道题选择后<strong>自动跳转</strong>下一题。完成后系统将从<strong>12种暧昧人格</strong>中，为你点出最契合的那一个。</p>
+      <div class="dim-list">
+<div class="dim-item"><span class="dim-item-icon">🔥</span><div><span class="dim-item-name">掌控气场</span><span class="dim-item-desc"> — 你压不压得住暧昧的场？</span></div></div>
+<div class="dim-item"><span class="dim-item-icon">🍷</span><div><span class="dim-item-name">感官享受</span><span class="dim-item-desc"> — 贪不贪那点撩拨心弦的甜？</span></div></div>
+<div class="dim-item"><span class="dim-item-icon">🕊️</span><div><span class="dim-item-name">抽离独立</span><span class="dim-item-desc"> — 受不受得住若即若离？</span></div></div>
+<div class="dim-item"><span class="dim-item-icon">💞</span><div><span class="dim-item-name">情动沉溺</span><span class="dim-item-desc"> — 情之一字是不是你的软肋？</span></div></div>
+<div class="dim-item"><span class="dim-item-icon">🧠</span><div><span class="dim-item-name">情场段位</span><span class="dim-item-desc"> — 懂不懂推拉撩拨的火候？</span></div></div>
+<div class="dim-item"><span class="dim-item-icon">🛡️</span><div><span class="dim-item-name">守护占有</span><span class="dim-item-desc"> — 占有欲强不强、护不护短？</span></div></div>
+<div class="dim-item"><span class="dim-item-icon">🌹</span><div><span class="dim-item-name">氛围浪漫</span><span class="dim-item-desc"> — 会不会制造暧昧的氛围感？</span></div></div>
+<div class="dim-item"><span class="dim-item-icon">🐚</span><div><span class="dim-item-name">慢热内敛</span><span class="dim-item-desc"> — 慢不慢热、藏不藏得住心意？</span></div></div>
+<div class="dim-item"><span class="dim-item-icon">⚡</span><div><span class="dim-item-name">大胆主动</span><span class="dim-item-desc"> — 敢不敢先开口、主动出击？</span></div></div>
+<div class="dim-item"><span class="dim-item-icon">💍</span><div><span class="dim-item-name">专一长情</span><span class="dim-item-desc"> — 认准一人还是来者不拒？</span></div></div>
+</div>
+    </div>
+
+    <div class="category-section"><div class="category-card"><div class="category-header"><div class="category-left"><div class="category-icon a">💋</div><div class="category-name">主动出击型</div></div><div class="category-desc">直球 · 掌控 · 情话</div></div><div class="city-tags"><span class="city-tag">直球进攻</span><span class="city-tag">霸道宠溺</span><span class="city-tag">调情高手</span></div></div><div class="category-card"><div class="category-header"><div class="category-left"><div class="category-icon b">🎭</div><div class="category-name">推拉撩拨型</div></div><div class="category-desc">欲擒故纵 · 以柔克刚</div></div><div class="city-tags"><span class="city-tag">若即若离</span><span class="city-tag">绿茶撩心</span><span class="city-tag">撩而不自知</span></div></div><div class="category-card"><div class="category-header"><div class="category-left"><div class="category-icon c">🌹</div><div class="category-name">温柔沉溺型</div></div><div class="category-desc">温柔 · 专一 · 占有</div></div><div class="city-tags"><span class="city-tag">温柔陷阱</span><span class="city-tag">忠犬专一</span><span class="city-tag">醋王</span></div></div><div class="category-card"><div class="category-header"><div class="category-left"><div class="category-icon d">🕯️</div><div class="category-name">氛围慢热型</div></div><div class="category-desc">浪漫 · 反差 · 内秀</div></div><div class="city-tags"><span class="city-tag">氛围感大师</span><span class="city-tag">反差萌</span><span class="city-tag">闷骚内秀</span></div></div></div>
+
+    <button class="btn-primary" onclick="startQuiz()">▶ 测测我的暧昧体质 →</button>
+  </div>
+</div>
+<!-- ══════════ PAGE: QUIZ ══════════ -->
+<div class="page" id="page-quiz">
+  <div class="q-header">
+    <div class="q-meta">
+      <span class="q-cat" id="q-cat">维度</span>
+      <span class="q-count" id="q-count">问题 1 / 30</span>
+      <span class="q-pct" id="q-pct">2%</span>
+    </div>
+    <div class="progress-track"><div class="progress-bar" id="progress-bar" style="width:2%"></div></div>
+  </div>
+  <div class="q-body" id="q-body">
+    <h2 class="q-text" id="q-text"></h2>
+    <div class="opts" id="opts"></div>
+  </div>
+  <div class="q-nav">
+    <button class="nav-btn" id="prev-btn" onclick="prevQ()">‹ 上一题</button>
+    <div class="auto-hint" id="auto-hint">← 点击选项自动跳转</div>
+  </div>
+</div>
+
+<!-- ══════════ PAGE: RESULT ══════════ -->
+<div class="page" id="page-result">
+  <div class="wide-wrap">
+    <div class="top-card">
+      <p class="top-sub">你灵魂深处，是——</p>
+      <div class="top-portrait" id="r-portrait"></div>
+      <div class="match-pct" id="r-pct">94%</div>
+      <h2 class="top-city" id="r-city">—</h2>
+      <p class="top-prov" id="r-prov">—</p>
+      <div class="tag-row" id="r-tags"></div>
+      <div class="tag-row" id="r-kws"></div>
+      <div class="match-reason">
+        <span class="reason-title">💫 你的暧昧画像</span>
+        <p class="reason-text" id="r-desc"></p>
+      </div>
+    </div>
+
+    <div class="dim-card">
+      <p class="dim-card-title">你的撩人画像</p>
+      <div class="dim-grid" id="dim-grid"></div>
+    </div>
+
+    <div class="others-card">
+      <p class="others-title">你还可能是……</p>
+      <div class="others-grid" id="others-grid"></div>
+    </div>
+
+    <button class="btn-secondary" onclick="resetQuiz()">↺ 再测一次</button>
+  </div>
+</div>
+
+<script>
+const PORTRAITS = {
+"撩而不自知":'<svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="xp0" cx="50%" cy="38%" r="72%"><stop offset="0%" stop-color="#7a1f2b"/><stop offset="100%" stop-color="#c9a227"/></radialGradient></defs><circle cx="120" cy="120" r="108" fill="url(#xp0)" stroke="#c9a227" stroke-width="3"/><circle cx="120" cy="120" r="92" fill="none" stroke="#c9a227" stroke-width="1" opacity="0.5"/><text x="120" y="122" font-size="86" text-anchor="middle" dominant-baseline="central">🦊</text><circle cx="188" cy="188" r="17" fill="#c9a227"/><text x="188" y="189" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="central">暧</text></svg>',
+"温柔陷阱":'<svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="xp1" cx="50%" cy="38%" r="72%"><stop offset="0%" stop-color="#9c3b4a"/><stop offset="100%" stop-color="#e0b252"/></radialGradient></defs><circle cx="120" cy="120" r="108" fill="url(#xp1)" stroke="#e0b252" stroke-width="3"/><circle cx="120" cy="120" r="92" fill="none" stroke="#e0b252" stroke-width="1" opacity="0.5"/><text x="120" y="122" font-size="86" text-anchor="middle" dominant-baseline="central">🌹</text><circle cx="188" cy="188" r="17" fill="#e0b252"/><text x="188" y="189" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="central">暧</text></svg>',
+"直球进攻":'<svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="xp2" cx="50%" cy="38%" r="72%"><stop offset="0%" stop-color="#5b2a3a"/><stop offset="100%" stop-color="#d98a8a"/></radialGradient></defs><circle cx="120" cy="120" r="108" fill="url(#xp2)" stroke="#d98a8a" stroke-width="3"/><circle cx="120" cy="120" r="92" fill="none" stroke="#d98a8a" stroke-width="1" opacity="0.5"/><text x="120" y="122" font-size="86" text-anchor="middle" dominant-baseline="central">🎯</text><circle cx="188" cy="188" r="17" fill="#d98a8a"/><text x="188" y="189" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="central">暧</text></svg>',
+"若即若离":'<svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="xp3" cx="50%" cy="38%" r="72%"><stop offset="0%" stop-color="#3d2b4a"/><stop offset="100%" stop-color="#b98ad9"/></radialGradient></defs><circle cx="120" cy="120" r="108" fill="url(#xp3)" stroke="#b98ad9" stroke-width="3"/><circle cx="120" cy="120" r="92" fill="none" stroke="#b98ad9" stroke-width="1" opacity="0.5"/><text x="120" y="122" font-size="86" text-anchor="middle" dominant-baseline="central">🎭</text><circle cx="188" cy="188" r="17" fill="#b98ad9"/><text x="188" y="189" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="central">暧</text></svg>',
+"氛围感大师":'<svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="xp4" cx="50%" cy="38%" r="72%"><stop offset="0%" stop-color="#4a2f1a"/><stop offset="100%" stop-color="#d9a566"/></radialGradient></defs><circle cx="120" cy="120" r="108" fill="url(#xp4)" stroke="#d9a566" stroke-width="3"/><circle cx="120" cy="120" r="92" fill="none" stroke="#d9a566" stroke-width="1" opacity="0.5"/><text x="120" y="122" font-size="86" text-anchor="middle" dominant-baseline="central">🕯</text><circle cx="188" cy="188" r="17" fill="#d9a566"/><text x="188" y="189" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="central">暧</text></svg>',
+"醋王":'<svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="xp5" cx="50%" cy="38%" r="72%"><stop offset="0%" stop-color="#6b1f1f"/><stop offset="100%" stop-color="#e0c14a"/></radialGradient></defs><circle cx="120" cy="120" r="108" fill="url(#xp5)" stroke="#e0c14a" stroke-width="3"/><circle cx="120" cy="120" r="92" fill="none" stroke="#e0c14a" stroke-width="1" opacity="0.5"/><text x="120" y="122" font-size="86" text-anchor="middle" dominant-baseline="central">🍋</text><circle cx="188" cy="188" r="17" fill="#e0c14a"/><text x="188" y="189" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="central">暧</text></svg>',
+"反差萌":'<svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="xp6" cx="50%" cy="38%" r="72%"><stop offset="0%" stop-color="#2b3a4a"/><stop offset="100%" stop-color="#9ab8d9"/></radialGradient></defs><circle cx="120" cy="120" r="108" fill="url(#xp6)" stroke="#9ab8d9" stroke-width="3"/><circle cx="120" cy="120" r="92" fill="none" stroke="#9ab8d9" stroke-width="1" opacity="0.5"/><text x="120" y="122" font-size="86" text-anchor="middle" dominant-baseline="central">🐱</text><circle cx="188" cy="188" r="17" fill="#9ab8d9"/><text x="188" y="189" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="central">暧</text></svg>',
+"霸道宠溺":'<svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="xp7" cx="50%" cy="38%" r="72%"><stop offset="0%" stop-color="#4a1a2a"/><stop offset="100%" stop-color="#e0b252"/></radialGradient></defs><circle cx="120" cy="120" r="108" fill="url(#xp7)" stroke="#e0b252" stroke-width="3"/><circle cx="120" cy="120" r="92" fill="none" stroke="#e0b252" stroke-width="1" opacity="0.5"/><text x="120" y="122" font-size="86" text-anchor="middle" dominant-baseline="central">👑</text><circle cx="188" cy="188" r="17" fill="#e0b252"/><text x="188" y="189" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="central">暧</text></svg>',
+"绿茶撩心":'<svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="xp8" cx="50%" cy="38%" r="72%"><stop offset="0%" stop-color="#2f4a3a"/><stop offset="100%" stop-color="#9ad9b0"/></radialGradient></defs><circle cx="120" cy="120" r="108" fill="url(#xp8)" stroke="#9ad9b0" stroke-width="3"/><circle cx="120" cy="120" r="92" fill="none" stroke="#9ad9b0" stroke-width="1" opacity="0.5"/><text x="120" y="122" font-size="86" text-anchor="middle" dominant-baseline="central">🍵</text><circle cx="188" cy="188" r="17" fill="#9ad9b0"/><text x="188" y="189" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="central">暧</text></svg>',
+"忠犬专一":'<svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="xp9" cx="50%" cy="38%" r="72%"><stop offset="0%" stop-color="#3a1f4a"/><stop offset="100%" stop-color="#c98ad9"/></radialGradient></defs><circle cx="120" cy="120" r="108" fill="url(#xp9)" stroke="#c98ad9" stroke-width="3"/><circle cx="120" cy="120" r="92" fill="none" stroke="#c98ad9" stroke-width="1" opacity="0.5"/><text x="120" y="122" font-size="86" text-anchor="middle" dominant-baseline="central">🐶</text><circle cx="188" cy="188" r="17" fill="#c98ad9"/><text x="188" y="189" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="central">暧</text></svg>',
+"闷骚内秀":'<svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="xp10" cx="50%" cy="38%" r="72%"><stop offset="0%" stop-color="#1f2b3a"/><stop offset="100%" stop-color="#8ab8d9"/></radialGradient></defs><circle cx="120" cy="120" r="108" fill="url(#xp10)" stroke="#8ab8d9" stroke-width="3"/><circle cx="120" cy="120" r="92" fill="none" stroke="#8ab8d9" stroke-width="1" opacity="0.5"/><text x="120" y="122" font-size="86" text-anchor="middle" dominant-baseline="central">🌚</text><circle cx="188" cy="188" r="17" fill="#8ab8d9"/><text x="188" y="189" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="central">暧</text></svg>',
+"调情高手":'<svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="xp11" cx="50%" cy="38%" r="72%"><stop offset="0%" stop-color="#4a1a2f"/><stop offset="100%" stop-color="#d98a9a"/></radialGradient></defs><circle cx="120" cy="120" r="108" fill="url(#xp11)" stroke="#d98a9a" stroke-width="3"/><circle cx="120" cy="120" r="92" fill="none" stroke="#d98a9a" stroke-width="1" opacity="0.5"/><text x="120" y="122" font-size="86" text-anchor="middle" dominant-baseline="central">💋</text><circle cx="188" cy="188" r="17" fill="#d98a9a"/><text x="188" y="189" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="central">暧</text></svg>'
+};
+// ══════════ DATA ══════════
+const CITIES=[{"name": "撩而不自知", "emoji": "🦊", "province": "黄昏的咖啡馆", "tags": ["天然撩", "不做作", "甜系"], "kw": ["天生撩而不知", "自然甜"], "p": {"power": 50, "wealth": 45, "freedom": 75, "love": 70, "wisdom": 30, "chivalry": 50, "art": 60, "reclusion": 30, "adventure": 55, "faith": 55}, "desc": "你天生带着不自知的甜，一举一动都撩人心弦，自己却浑然不觉。"}, {"name": "温柔陷阱", "emoji": "🌹", "province": "雨后的窗台", "tags": ["温柔", "治愈", "绕指柔"], "kw": ["温柔是武器"], "p": {"power": 45, "wealth": 55, "freedom": 40, "love": 80, "wisdom": 70, "chivalry": 60, "art": 75, "reclusion": 50, "adventure": 40, "faith": 60}, "desc": "你用温柔织一张网，让人心甘情愿陷进去，还以为是归宿。"}, {"name": "直球进攻", "emoji": "🎯", "province": "深夜的霓虹街", "tags": ["直球", "主动", "热烈"], "kw": ["喜欢就追"], "p": {"power": 65, "wealth": 50, "freedom": 70, "love": 75, "wisdom": 55, "chivalry": 55, "art": 40, "reclusion": 25, "adventure": 80, "faith": 50}, "desc": "你从不绕弯子，喜欢就靠近、就表态，热烈得像夏天的风。"}, {"name": "若即若离", "emoji": "🎭", "province": "月下的天台", "tags": ["推拉", "欲擒故纵", "高手"], "kw": ["若即若离"], "p": {"power": 60, "wealth": 55, "freedom": 65, "love": 50, "wisdom": 80, "chivalry": 45, "art": 70, "reclusion": 60, "adventure": 45, "faith": 40}, "desc": "你最懂推拉的分寸，给一点甜又抽身，让人越追越上头。"}, {"name": "氛围感大师", "emoji": "🕯", "province": "微醺的酒馆", "tags": ["氛围感", "浪漫", "情绪价值"], "kw": ["氛围感拉满"], "p": {"power": 40, "wealth": 70, "freedom": 45, "love": 65, "wisdom": 65, "chivalry": 50, "art": 95, "reclusion": 55, "adventure": 35, "faith": 50}, "desc": "你不在乎结果，只在乎当下的氛围，烛光音乐里你就是主角。"}, {"name": "醋王", "emoji": "🍋", "province": "醋意翻涌的晚风", "tags": ["占有欲", "吃醋", "专宠"], "kw": ["爱吃醋"], "p": {"power": 55, "wealth": 45, "freedom": 30, "love": 85, "wisdom": 45, "chivalry": 75, "art": 50, "reclusion": 40, "adventure": 50, "faith": 80}, "desc": "你一旦动了心就藏不住占有欲，醋坛子打翻的样子又凶又可爱。"}, {"name": "反差萌", "emoji": "🐱", "province": "私下的二人世界", "tags": ["反差", "表里不一", "黏人"], "kw": ["人前高冷人后黏"], "p": {"power": 60, "wealth": 50, "freedom": 40, "love": 75, "wisdom": 60, "chivalry": 55, "art": 55, "reclusion": 65, "adventure": 45, "faith": 70}, "desc": "人前你疏离淡然，人后却把软糯全给了那一个人。"}, {"name": "霸道宠溺", "emoji": "👑", "province": "俯瞰全城的高楼", "tags": ["霸道", "宠溺", "掌控"], "kw": ["霸总护短"], "p": {"power": 90, "wealth": 75, "freedom": 35, "love": 70, "wisdom": 60, "chivalry": 85, "art": 45, "reclusion": 30, "adventure": 60, "faith": 65}, "desc": "你习惯把人护在身后，霸道里裹着宠溺，认定了就不撒手。"}, {"name": "绿茶撩心", "emoji": "🍵", "province": "撒娇的午后", "tags": ["撒娇", "示弱", "以柔克刚"], "kw": ["撒娇女人最好命"], "p": {"power": 50, "wealth": 60, "freedom": 50, "love": 70, "wisdom": 85, "chivalry": 40, "art": 70, "reclusion": 45, "adventure": 40, "faith": 45}, "desc": "你深谙以柔克刚，一句撒娇就能让对方缴械投降。"}, {"name": "忠犬专一", "emoji": "🐶", "province": "只属于你的领地", "tags": ["专一", "忠诚", "只对你"], "kw": ["一生只认你"], "p": {"power": 45, "wealth": 40, "freedom": 25, "love": 90, "wisdom": 50, "chivalry": 80, "art": 45, "reclusion": 50, "adventure": 35, "faith": 95}, "desc": "你慢热却长情，认定一个人便是一生，眼里再无旁人。"}, {"name": "闷骚内秀", "emoji": "🌚", "province": "安静的图书馆角落", "tags": ["闷骚", "内秀", "表面正经"], "kw": ["闷骚型"], "p": {"power": 55, "wealth": 50, "freedom": 45, "love": 65, "wisdom": 70, "chivalry": 55, "art": 60, "reclusion": 70, "adventure": 40, "faith": 55}, "desc": "你表面正经克制，私下却藏着一肚子撩人的小心思。"}, {"name": "调情高手", "emoji": "💋", "province": "暧昧的私信框", "tags": ["调情", "情话", "撩技满分"], "kw": ["情话信手拈来"], "p": {"power": 55, "wealth": 55, "freedom": 60, "love": 75, "wisdom": 75, "chivalry": 45, "art": 80, "reclusion": 30, "adventure": 65, "faith": 45}, "desc": "你信手拈来的情话像糖，撩技满分却从不轻易动用真心。"}];
+
+
+const QUESTIONS=[{"cat": "💋 撩人本能", "q": "周末深夜，手机弹出一条暧昧消息，你？", "opts": [{"t": "装没看见，让对方猜", "w": {"freedom": 20, "reclusion": 15}}, {"t": "秒回，顺便撩一句回去", "w": {"adventure": 25, "wisdom": 10}}, {"t": "回个表情包，留点悬念", "w": {"wisdom": 20, "freedom": 10}}, {"t": "直接打电话过去", "w": {"adventure": 30, "love": 15}}]}, {"cat": "💋 撩人本能", "q": "有人当面夸你「今天很好看」，你？", "opts": [{"t": "淡淡说谢谢，内心暗爽", "w": {"reclusion": 20, "chivalry": 5}}, {"t": "谢啦，你也不差嘛", "w": {"wisdom": 15, "art": 10}}, {"t": "这话我录下来了", "w": {"adventure": 25, "wisdom": 15}}, {"t": "假装没听见，耳朵却红了", "w": {"reclusion": 25, "love": 15}}]}, {"cat": "💋 撩人本能", "q": "你觉得自己撩人的最大本钱是？", "opts": [{"t": "长相身材", "w": {"art": 25, "wealth": 5}}, {"t": "会说话、会接话", "w": {"wisdom": 30, "art": 10}}, {"t": "天然不做作", "w": {"freedom": 25, "reclusion": 10}}, {"t": "气场和掌控感", "w": {"power": 30, "chivalry": 10}}]}, {"cat": "💋 撩人本能", "q": "暧昧期你最享受的是？", "opts": [{"t": "那种不确定的心跳", "w": {"freedom": 25, "love": 10}}, {"t": "慢慢靠近的过程", "w": {"reclusion": 20, "art": 10}}, {"t": "一举拿下的成就感", "w": {"adventure": 30, "power": 10}}, {"t": "被认真对待的感觉", "w": {"love": 25, "faith": 10}}]}, {"cat": "💋 撩人本能", "q": "第一次约会，你更倾向？", "opts": [{"t": "安静咖啡馆，慢慢聊", "w": {"reclusion": 20, "art": 10}}, {"t": "热闹酒吧，气氛拉满", "w": {"art": 25, "adventure": 10}}, {"t": "户外冒险，一起疯", "w": {"adventure": 30, "freedom": 10}}, {"t": "在家做饭，二人世界", "w": {"love": 25, "chivalry": 10}}]}, {"cat": "💋 撩人本能", "q": "对方迟迟不表白，你？", "opts": [{"t": "继续耗，看谁先急", "w": {"wisdom": 25, "freedom": 10}}, {"t": "旁敲侧击给暗示", "w": {"wisdom": 20, "art": 10}}, {"t": "直接问「我们算什么」", "w": {"adventure": 30, "power": 10}}, {"t": "默默降热情，打算撤", "w": {"reclusion": 25, "freedom": 15}}]}, {"cat": "🌹 心动瞬间", "q": "什么场景最让你心动？", "opts": [{"t": "他认真记着你随口说的话", "w": {"love": 30, "faith": 10}}, {"t": "危难时二话不说护着你", "w": {"chivalry": 30, "power": 10}}, {"t": "隔着人群对你一笑", "w": {"art": 25, "freedom": 10}}, {"t": "笨拙却真诚的告白", "w": {"love": 25, "reclusion": 10}}]}, {"cat": "🌹 心动瞬间", "q": "你更容易对哪种人动心？", "opts": [{"t": "温柔体贴的", "w": {"love": 25, "art": 10}}, {"t": "有点坏、会撩的", "w": {"wisdom": 20, "adventure": 15}}, {"t": "强大有掌控感的", "w": {"power": 25, "chivalry": 10}}, {"t": "安静内秀的", "w": {"reclusion": 25, "wisdom": 10}}]}, {"cat": "🌹 心动瞬间", "q": "对方做过最撩你的一件事是？", "opts": [{"t": "半夜问我睡了没", "w": {"freedom": 20, "love": 10}}, {"t": "突然的肢体靠近", "w": {"love": 20, "adventure": 10}}, {"t": "记得我的小习惯", "w": {"love": 25, "faith": 10}}, {"t": "当众护着我", "w": {"chivalry": 25, "power": 10}}]}, {"cat": "🌹 心动瞬间", "q": "你觉得「喜欢」和「暧昧」的区别是？", "opts": [{"t": "暧昧更自由，不想负责", "w": {"freedom": 30, "faith": -10}}, {"t": "喜欢才肯认真", "w": {"love": 30, "faith": 15}}, {"t": "都喜欢，享受当下", "w": {"art": 25, "wealth": 10}}, {"t": "暧昧是喜欢的前奏", "w": {"wisdom": 25, "love": 10}}]}, {"cat": "🌹 心动瞬间", "q": "看到心动的人，你第一反应是？", "opts": [{"t": "多看两眼，不动声色", "w": {"reclusion": 25, "wisdom": 10}}, {"t": "想办法搭上话", "w": {"adventure": 25, "wisdom": 10}}, {"t": "跟朋友兴奋分享", "w": {"love": 20, "freedom": 10}}, {"t": "暗中观察，再决定", "w": {"wisdom": 25, "reclusion": 10}}]}, {"cat": "🌹 心动瞬间", "q": "你相信「一眼万年」吗？", "opts": [{"t": "信，直觉最准", "w": {"love": 25, "faith": 15}}, {"t": "半信，还得相处", "w": {"wisdom": 20, "reclusion": 10}}, {"t": "不信，感觉会变", "w": {"freedom": 25, "wealth": 10}}, {"t": "看人，遇对了就信", "w": {"faith": 25, "chivalry": 10}}]}, {"cat": "🎭 推拉博弈", "q": "对方忽冷忽热，你？", "opts": [{"t": "以其人之道还治其身", "w": {"wisdom": 30, "freedom": 10}}, {"t": "主动问清楚怎么回事", "w": {"adventure": 25, "love": 10}}, {"t": "也冷回去，看谁扛得住", "w": {"chivalry": 20, "power": 10}}, {"t": "有点慌，但装作没事", "w": {"reclusion": 20, "love": 10}}]}, {"cat": "🎭 推拉博弈", "q": "你擅长「欲擒故纵」吗？", "opts": [{"t": "太擅长，信手拈来", "w": {"wisdom": 30, "art": 10}}, {"t": "偶尔为之", "w": {"wisdom": 15, "freedom": 10}}, {"t": "不会，喜欢就直说", "w": {"adventure": 20, "love": 10}}, {"t": "反而容易用力过猛", "w": {"reclusion": 15, "wisdom": 10}}]}, {"cat": "🎭 推拉博弈", "q": "吵架后谁先低头？", "opts": [{"t": "我，但要有台阶", "w": {"love": 20, "wisdom": 10}}, {"t": "等对方先哄我", "w": {"chivalry": 20, "freedom": 10}}, {"t": "死扛，绝不先认", "w": {"power": 25, "reclusion": 10}}, {"t": "主动撒娇化解", "w": {"wisdom": 25, "art": 10}}]}, {"cat": "🎭 推拉博弈", "q": "你觉得暧昧里最重要的是？", "opts": [{"t": "分寸感", "w": {"wisdom": 25, "reclusion": 10}}, {"t": "真诚", "w": {"love": 25, "faith": 10}}, {"t": "刺激感", "w": {"adventure": 25, "freedom": 10}}, {"t": "被重视", "w": {"chivalry": 25, "love": 10}}]}, {"cat": "🎭 推拉博弈", "q": "对方回消息很慢，你？", "opts": [{"t": "也慢回去，对等", "w": {"wisdom": 20, "freedom": 10}}, {"t": "忍不住多发几条", "w": {"love": 20, "adventure": 10}}, {"t": "无所谓，我有我的事", "w": {"freedom": 25, "reclusion": 10}}, {"t": "暗自吃醋但不说", "w": {"chivalry": 20, "love": 10}}]}, {"cat": "🎭 推拉博弈", "q": "你愿意为暧昧「演」一下吗？", "opts": [{"t": "会，适当包装自己", "w": {"art": 25, "wisdom": 10}}, {"t": "看情况，顺势而为", "w": {"wisdom": 15, "freedom": 10}}, {"t": "不演，做自己", "w": {"reclusion": 25, "freedom": 10}}, {"t": "演技在线，完全投入", "w": {"art": 30, "wisdom": 10}}]}, {"cat": "🔥 亲密边界", "q": "肢体接触上你？", "opts": [{"t": "慢热，需要时间", "w": {"reclusion": 30, "love": 5}}, {"t": "顺其自然，不抗拒", "w": {"freedom": 20, "love": 10}}, {"t": "主动靠近，喜欢触碰", "w": {"adventure": 25, "love": 10}}, {"t": "看感觉，对的人才行", "w": {"love": 25, "faith": 10}}]}, {"cat": "🔥 亲密边界", "q": "你介意对方有异性好友吗？", "opts": [{"t": "介意，会吃醋", "w": {"chivalry": 30, "faith": 10}}, {"t": "不介意，相信边界", "w": {"freedom": 25, "faith": 10}}, {"t": "看亲密程度", "w": {"wisdom": 20, "love": 10}}, {"t": "有点在意但不说", "w": {"reclusion": 20, "chivalry": 10}}]}, {"cat": "🔥 亲密边界", "q": "独处时你更想？", "opts": [{"t": "聊天交心", "w": {"love": 25, "wisdom": 10}}, {"t": "一起做点有趣的事", "w": {"adventure": 20, "art": 10}}, {"t": "安静待着也舒服", "w": {"reclusion": 25, "freedom": 10}}, {"t": "有点肢体亲近", "w": {"love": 20, "adventure": 10}}]}, {"cat": "🔥 亲密边界", "q": "你眼里的「占有欲」是？", "opts": [{"t": "爱的表现", "w": {"chivalry": 30, "faith": 10}}, {"t": "需要克制的东西", "w": {"wisdom": 20, "reclusion": 10}}, {"t": "正常但不该过度", "w": {"freedom": 20, "wisdom": 10}}, {"t": "我占有欲很强", "w": {"chivalry": 25, "power": 10}}]}, {"cat": "🔥 亲密边界", "q": "对方当众对你亲昵，你？", "opts": [{"t": "享受被宣示", "w": {"chivalry": 20, "love": 10}}, {"t": "有点害羞但暗喜", "w": {"reclusion": 25, "love": 10}}, {"t": "配合，气氛到了", "w": {"art": 20, "adventure": 10}}, {"t": "更愿意私下", "w": {"reclusion": 25, "freedom": 10}}]}, {"cat": "🔥 亲密边界", "q": "你觉得暧昧该不该有边界？", "opts": [{"t": "该，尊重彼此", "w": {"faith": 25, "wisdom": 10}}, {"t": "边界是给不爱的人设的", "w": {"love": 25, "freedom": 10}}, {"t": "看关系阶段", "w": {"wisdom": 20, "reclusion": 10}}, {"t": "我界限感比较模糊", "w": {"freedom": 25, "art": 10}}]}, {"cat": "💞 恋爱姿态", "q": "你理想的关系是？", "opts": [{"t": "势均力敌，互相成就", "w": {"power": 25, "wisdom": 10}}, {"t": "被宠着，当小朋友", "w": {"love": 25, "chivalry": 10}}, {"t": "自由又亲密", "w": {"freedom": 25, "love": 10}}, {"t": "专一长久，细水长流", "w": {"faith": 30, "love": 10}}]}, {"cat": "💞 恋爱姿态", "q": "你更想被怎样对待？", "opts": [{"t": "被懂、被看见", "w": {"love": 25, "wisdom": 10}}, {"t": "被宠、被护着", "w": {"chivalry": 25, "love": 10}}, {"t": "被尊重独立空间", "w": {"freedom": 25, "reclusion": 10}}, {"t": "被热烈地爱", "w": {"love": 25, "adventure": 10}}]}, {"cat": "💞 恋爱姿态", "q": "分手了你通常？", "opts": [{"t": "干脆利落，不拖泥", "w": {"freedom": 25, "power": 10}}, {"t": "难过很久才走出来", "w": {"love": 30, "reclusion": 10}}, {"t": "反思自己哪里错了", "w": {"wisdom": 25, "reclusion": 10}}, {"t": "很快重启新生活", "w": {"adventure": 25, "freedom": 10}}]}, {"cat": "💞 恋爱姿态", "q": "你愿意为爱改变自己吗？", "opts": [{"t": "愿意为对的人", "w": {"love": 25, "faith": 10}}, {"t": "小改，本性难移", "w": {"reclusion": 20, "wisdom": 10}}, {"t": "不改，爱我就接受我", "w": {"freedom": 25, "power": 10}}, {"t": "看对方值不值", "w": {"wisdom": 20, "chivalry": 10}}]}, {"cat": "💞 恋爱姿态", "q": "你眼中「长情」是？", "opts": [{"t": "认定就一生", "w": {"faith": 30, "love": 10}}, {"t": "用心经营每一天", "w": {"love": 25, "wisdom": 10}}, {"t": "不轻易开始也不易结束", "w": {"reclusion": 20, "faith": 10}}, {"t": "随缘，不强求", "w": {"freedom": 25, "faith": -10}}]}, {"cat": "💞 恋爱姿态", "q": "暧昧转正式关系，你希望谁开口？", "opts": [{"t": "我主动，不喜欢拖", "w": {"adventure": 25, "power": 10}}, {"t": "等对方先说", "w": {"reclusion": 20, "love": 10}}, {"t": "自然到不用说就在一起", "w": {"love": 25, "freedom": 10}}, {"t": "给足暗示让他开口", "w": {"wisdom": 25, "art": 10}}]}];
+
+
+// ══════════ STATE ══════════
+let current=0, answers={}, autoTimer=null;
+
+// ══════════ UTILS ══════════
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0,0);
+}
+
+function calcMatch(prefs,city){
+  const dims=["power","wealth","freedom","love","wisdom","chivalry","art","reclusion","adventure","faith"];
+  const s=dims.map(d=>100-Math.abs((prefs[d]||50)-(city.p[d]||50)));
+  return Math.round(s.reduce((a,b)=>a+b,0)/dims.length);
+}
+
+function buildPrefs(ans){
+  const base={power:50,wealth:50,freedom:50,love:50,wisdom:50,chivalry:50,art:50,reclusion:50,adventure:50,faith:50};
+  Object.values(ans).forEach(w=>{Object.entries(w).forEach(([k,v])=>{base[k]=Math.max(0,Math.min(100,base[k]+v));})});
+  return base;
+}
+
+// ══════════ PASSWORD ══════════
+function checkPwd(){
+  const v=document.getElementById('pw-input').value;
+  const err=document.getElementById('pw-err');
+  const inp=document.getElementById('pw-input');
+  if(v==='7749'){showPage('page-intro');}
+  else{
+    err.style.display='block';
+    inp.style.border='2px solid #FF8A8A';
+    inp.style.animation='pwShake 0.4s ease';
+    setTimeout(()=>{inp.style.animation='';},400);
+  }
+}
+document.getElementById('pw-input').addEventListener('keydown',e=>{if(e.key==='Enter')checkPwd();});
+
+// ══════════ QUIZ ══════════
+function startQuiz(){current=0;answers={};renderQ();showPage('page-quiz');}
+
+function renderQ(){
+  const q=QUESTIONS[current];
+  const total=QUESTIONS.length;
+  const pct=Math.round(((current+1)/total)*100);
+  document.getElementById('q-cat').textContent=q.cat;
+  document.getElementById('q-count').textContent=`问题 ${current+1} / ${total}`;
+  document.getElementById('q-pct').textContent=pct+'%';
+  document.getElementById('progress-bar').style.width=pct+'%';
+  document.getElementById('q-text').textContent=q.q;
+  document.getElementById('prev-btn').style.opacity=current===0?'0.3':'1';
+  document.getElementById('auto-hint').style.opacity='1';
+  const body=document.getElementById('q-body');
+  body.style.opacity='1';
+  const opts=document.getElementById('opts');
+  opts.innerHTML='';
+  q.opts.forEach((opt,i)=>{
+    const btn=document.createElement('button');
+    btn.className='opt';
+    const prevW=answers[current];
+    const isSelected=prevW&&JSON.stringify(prevW)===JSON.stringify(opt.w)&&Object.keys(opt.w).every(k=>prevW[k]===opt.w[k]);
+    if(isSelected)btn.classList.add('selected');
+    btn.innerHTML=`<span class="opt-radio">${isSelected?'●':'○'}</span>${opt.t}`;
+    btn.onclick=()=>selectOpt(opt,btn,q);
+    opts.appendChild(btn);
+  });
+}
+
+function selectOpt(opt,btn,q){
+  if(autoTimer)clearTimeout(autoTimer);
+  document.querySelectorAll('.opt').forEach(b=>{b.classList.remove('selected');b.querySelector('.opt-radio').textContent='○';});
+  btn.classList.add('selected');
+  btn.querySelector('.opt-radio').textContent='●';
+  document.getElementById('auto-hint').style.opacity='0';
+  answers[current]=opt.w;
+  autoTimer=setTimeout(()=>{
+    if(current===QUESTIONS.length-1){showResults();}
+    else{current++;renderQ();}
+  },80);
+}
+
+function prevQ(){
+  if(current===0)return;
+  if(autoTimer)clearTimeout(autoTimer);
+  const body=document.getElementById('q-body');
+  body.style.opacity='0';
+  setTimeout(()=>{current--;renderQ();},200);
+}
+
+// ══════════ GENERATE REASON ══════════
+function generateReason(prefs, city){
+  const dimInfo = {
+power:{name:"掌控气场",high:"压得住全场的掌控感",low:"甘当配角的松弛",cityHigh:c=>`你骨子里有${c.name}那般压得住场的气场，暧昧之中你天生要做那个掌控节奏的人`,cityLow:c=>`你与${c.name}不同，你更愿把主动权交出去，在暧昧里做个松弛的配角`},
+wealth:{name:"感官享受",high:"贪恋暧昧里的甜",low:"清心寡欲的自持",cityHigh:c=>`你承袭${c.name}对暧昧甜头的敏锐，一点撩拨就心弦微动`,cityLow:c=>`一如${c.name}，你对风月看得很淡，宁可守住一份清醒的自持`},
+freedom:{name:"抽离独立",high:"若即若离的洒脱",low:"黏人恋慕的投入",cityHigh:c=>`你有着${c.name}那般说放就放的洒脱，暧昧于你从不是羁绊`,cityLow:c=>`比起${c.name}式的抽离，你更贪恋黏在一起的温度`},
+love:{name:"情动沉溺",high:"一碰就化的深情",low:"游刃有余的清醒",cityHigh:c=>`你拥有${c.name}般炽烈的情肠，暧昧里最怕认真二字，却又最逃不开`,cityLow:c=>`你如${c.name}般游刃有余，情动而不沉溺，留三分给自己`},
+wisdom:{name:"情场段位",high:"看透推拉的透彻",low:"笨拙赤诚的坦荡",cityHigh:c=>`你继承了${c.name}的段位，推拉撩拨的火候拿捏得分毫不差`,cityLow:c=>`你与${c.name}一样率真，不屑算计，赤子之心胜过千般心机`},
+chivalry:{name:"守护占有",high:"护短占有的本能",low:"体面退场的清醒",cityHigh:c=>`你骨血里流淌${c.name}的占有，认定的人绝不容旁人靠近`,cityLow:c=>`比起${c.name}的锋芒，你更懂体面退场，安静祝福也好`},
+art:{name:"氛围浪漫",high:"制造浪漫的天赋",low:"直来直去的实在",cityHigh:c=>`你带着${c.name}般的艺术灵性，一杯一盏皆能调出暧昧的浓度`,cityLow:c=>`你不如${c.name}那般风雅，更偏爱直来直去不绕弯子`},
+reclusion:{name:"慢热内敛",high:"藏不住心事的慢热",low:"一见如故的敞亮",cityHigh:c=>`你与${c.name}一般慢热，心意要发酵许久才肯示人`,cityLow:c=>`你不似${c.name}矜持，暧昧里你敞亮得快，欢喜都写在脸上`},
+adventure:{name:"大胆主动",high:"先开口的悍勇",low:"静待花开的谨慎",cityHigh:c=>`你承袭${c.name}的悍勇，心动了就先开口，绝不暗自等待`,cityLow:c=>`你不如${c.name}好勇，更愿静待缘分水到渠成`},
+faith:{name:"专一长情",high:"认准一生的执念",low:"来者不拒的洒脱",cityHigh:c=>`你心怀${c.name}般的专一，动了心便是一生，眼里再无旁人`,cityLow:c=>`你少有${c.name}式执念，暧昧对你而言是体验，不必非要结局`}
+};
+const dims=Object.keys(dimInfo);
+  const userTop=dims.map(d=>({dim:d,val:prefs[d]||50,diff:Math.abs((prefs[d]||50)-50)})).sort((a,b)=>b.diff-a.diff).slice(0,3);
+  const matchTop=dims.map(d=>({dim:d,match:100-Math.abs((prefs[d]||50)-(city.p[d]||50))})).sort((a,b)=>b.match-a.match).slice(0,3);
+  const seen=new Set();
+  const usedDims=[];
+  userTop.forEach(u=>{if(!seen.has(u.dim)){seen.add(u.dim);usedDims.push(u.dim);}});
+  matchTop.forEach(m=>{if(!seen.has(m.dim)&&usedDims.length<4){seen.add(m.dim);usedDims.push(m.dim);}});
+
+  let reason=`根据你的灵魂偏好，${city.name}是你最契合的那一个。`;
+  usedDims.slice(0,3).forEach(d=>{
+    const info=dimInfo[d];
+    const userVal=prefs[d]||50;
+    const cityVal=city.p[d]||50;
+    if(userVal>=55&&cityVal>=55){
+      reason+=info.cityHigh(city)+'。';
+    }else if(userVal<45&&cityVal<45){
+      reason+=info.cityLow(city)+'。';
+    }else if(Math.abs(userVal-cityVal)<=20){
+      reason+=`在${info.name}上，${city.name}与你的灵魂频率十分接近，能默契呼应你心底的声音。`;
+    }
+  });
+  reason+=`综合来看，你此生的许多执念，都藏着那一世的回响。`;
+  return reason;
+}
+
+function generateOtherReason(prefs, city){
+  const dimLabelsShort = {power:"掌控气场",wealth:"感官享受",freedom:"抽离独立",love:"情动沉溺",wisdom:"情场段位",chivalry:"守护占有",art:"氛围浪漫",reclusion:"慢热内敛",adventure:"大胆主动",faith:"专一长情"};
+const dims=Object.keys(dimLabelsShort);
+  const matchDims=dims.map(d=>({dim:d,label:dimLabelsShort[d],match:100-Math.abs((prefs[d]||50)-(city.p[d]||50))})).sort((a,b)=>b.match-a.match);
+  const topDims=matchDims.slice(0,3).map(m=>m.label);
+  return `你在${topDims.join('、')}等方面与${city.name}高度吻合，匹配度${city.score}%。${city.desc}`;
+}
+
+// ══════════ RESULTS ══════════
+function showResults(){
+  const prefs=buildPrefs(answers);
+  const ranked=CITIES.map(c=>({...c,score:calcMatch(prefs,c)})).sort((a,b)=>b.score-a.score);
+  const top=ranked[0];
+  const others=ranked.slice(1,7);
+
+  document.getElementById('r-pct').textContent=top.score+'%';
+  document.getElementById('r-city').textContent=top.name;
+  document.getElementById('r-prov').textContent=top.province;
+  document.getElementById('r-portrait').innerHTML=(PORTRAITS[top.name]||'');
+  document.getElementById('r-tags').innerHTML=top.tags.map(t=>`<span class="tag-chip">${t}</span>`).join('');
+  document.getElementById('r-kws').innerHTML=top.kw.map(k=>`<span class="kw-chip">${k}</span>`).join('');
+  document.getElementById('r-desc').textContent=generateReason(prefs,top);
+
+  const dimLabels = {power:"掌控气场",wealth:"感官享受",freedom:"抽离独立",love:"情动沉溺",wisdom:"情场段位",chivalry:"守护占有",art:"氛围浪漫",reclusion:"慢热内敛",adventure:"大胆主动",faith:"专一长情"};
+const dg=document.getElementById('dim-grid');
+  dg.innerHTML='';
+  Object.entries(dimLabels).forEach(([k,label])=>{
+    const val=prefs[k];
+    dg.innerHTML+=`<div class="dim-row"><span class="dim-label">${label}</span><div class="dim-track"><div class="dim-bar" style="width:${val}%"></div></div><span class="dim-val">${val}</span></div>`;
+  });
+
+  const og=document.getElementById('others-grid');
+  og.innerHTML='';
+  others.forEach(c=>{
+    og.innerHTML+=`<div class="other-card"><div class="other-portrait">${PORTRAITS[c.name]||''}</div><div class="other-top"><div><span>🏯</span><span class="other-name">${c.name}</span><span class="other-prov"> · ${c.province}</span></div><span class="other-score">${c.score}%</span></div><div class="tag-row">${c.tags.map(t=>`<span class="tag-chip-sm">${t}</span>`).join('')}</div><div class="tag-row">${c.kw.map(k=>`<span class="kw-chip-sm">${k}</span>`).join('')}</div><p class="other-desc">${generateOtherReason(prefs,c)}</p></div>`;
+  });
+
+  showPage('page-result');
+}
+
+function resetQuiz(){showPage('page-intro');}
+</script>
+</body>
+</html>
