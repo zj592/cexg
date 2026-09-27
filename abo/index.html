@@ -119,8 +119,39 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9999;o
 .kw-chip-sm{background:var(--paper);color:var(--acc2);border-radius:20px;padding:3px 10px;font-size:11px;border:1px solid var(--line)}
 .decl-text{font-size:13px;color:#BCA9C6;line-height:1.9;margin-bottom:16px}
 .decl-text strong{color:var(--acc)}</style>
+
+<!-- LAYOUT-PATCH-START -->
+<style id="layout-patch">
+body[data-layout="stack"] .wrap{max-width:540px}
+body[data-layout="stack"] .card,
+body[data-layout="stack"] .pw-card,
+body[data-layout="stack"] .info-box,
+body[data-layout="stack"] .category-card,
+body[data-layout="stack"] .dim-card,
+body[data-layout="stack"] .others-card,
+body[data-layout="stack"] .q-body,
+body[data-layout="stack"] .q-header,
+body[data-layout="stack"] .top-card{position:relative;border-radius:14px;box-shadow:7px 7px 0 -1px var(--acc2)}
+body[data-layout="stack"] .stat-card{border-radius:12px;box-shadow:4px 4px 0 -1px var(--acc2)}
+body[data-layout="stack"] .opt{border-radius:12px;box-shadow:4px 4px 0 -1px rgba(201,162,39,.30)}
+body[data-layout="stack"] .opt.selected{box-shadow:4px 4px 0 -1px var(--acc2)}
+body[data-layout="stack"] .btn-primary{border-radius:12px;box-shadow:5px 5px 0 -1px var(--acc2);background:linear-gradient(135deg,var(--acc),var(--acc))}
+body[data-layout="stack"] .btn-secondary{border-radius:12px;box-shadow:5px 5px 0 -1px var(--acc2)}
+body[data-layout="stack"] .pw-input{border-radius:10px}
+body[data-layout="stack"] .pw-card{border-radius:18px}
+body[data-layout="stack"] .dim-item{border-radius:10px}
+body[data-layout="stack"] .category-card:nth-child(3n+2){margin-left:14px}
+body[data-layout="stack"] .category-card:nth-child(3n){margin-left:28px}
+body[data-layout="stack"] .other-card{border-radius:12px;box-shadow:4px 4px 0 -1px var(--acc2)}
+body[data-layout="stack"] .match-reason{border-radius:12px}
+body[data-layout="stack"] .city-tag{border-radius:6px}
+body[data-layout="stack"] .city-tag{border-radius:6px}
+body[data-layout="stack"] .nav-btn{border-radius:10px;box-shadow:4px 4px 0 -1px var(--acc2)}
+body[data-layout="stack"] .tag-chip,body[data-layout="stack"] .kw-chip{border-radius:6px}
+</style>
+<!-- LAYOUT-PATCH-END -->
 </head>
-<body>
+<body data-layout="stack">
 
 <!-- ══════════ PAGE: PASSWORD ══════════ -->
 <div class="page active" id="page-password">
