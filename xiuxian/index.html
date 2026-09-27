@@ -121,8 +121,40 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9999;o
 .kw-chip-sm{background:var(--paper);color:var(--acc2);border-radius:20px;padding:3px 10px;font-size:11px;border:1px solid rgba(46,42,38,.2)}
 .decl-text{font-size:13px;color:#5b554c;line-height:1.9;margin-bottom:16px}
 .decl-text strong{color:var(--acc)}</style>
+
+<!-- LAYOUT-PATCH-START -->
+<style id="layout-patch">
+body[data-layout="bottomsheet"] .page.active{padding:26px 16px 34px}
+body[data-layout="bottomsheet"] #page-password.active,
+body[data-layout="bottomsheet"] #page-intro.active{justify-content:flex-end}
+body[data-layout="bottomsheet"] .wrap{max-width:620px}
+body[data-layout="bottomsheet"] #page-password .wrap,
+body[data-layout="bottomsheet"] #page-intro .wrap{position:relative;background:linear-gradient(180deg,rgba(255,255,255,.78),rgba(255,255,255,.34));border-radius:30px 30px 0 0;border-top:1px solid var(--line);padding:34px 20px 26px;box-shadow:0 -16px 44px rgba(46,42,38,.14)}
+body[data-layout="bottomsheet"] #page-password .wrap::before,
+body[data-layout="bottomsheet"] #page-intro .wrap::before{content:"";position:absolute;top:12px;left:50%;transform:translateX(-50%);width:58px;height:5px;border-radius:99px;background:rgba(46,42,38,.20)}
+body[data-layout="bottomsheet"] .icon-box{margin:6px auto 8px;width:64px;height:64px;font-size:28px}
+body[data-layout="bottomsheet"] .hero-title{font-size:25px}
+body[data-layout="bottomsheet"] .hero-sub{margin-bottom:14px}
+body[data-layout="bottomsheet"] .pw-card,
+body[data-layout="bottomsheet"] .card,
+body[data-layout="bottomsheet"] .info-box,
+body[data-layout="bottomsheet"] .category-card,
+body[data-layout="bottomsheet"] .top-card,
+body[data-layout="bottomsheet"] .dim-card,
+body[data-layout="bottomsheet"] .others-card,
+body[data-layout="bottomsheet"] .q-body,
+body[data-layout="bottomsheet"] .q-header{border-radius:24px 24px 8px 8px}
+body[data-layout="bottomsheet"] .stat-card{border-radius:20px 20px 6px 6px}
+body[data-layout="bottomsheet"] .opt{border-radius:20px 20px 6px 6px}
+body[data-layout="bottomsheet"] .btn-primary{border-radius:24px 24px 8px 8px;padding:18px 16px}
+body[data-layout="bottomsheet"] .btn-secondary{border-radius:20px 20px 6px 6px}
+body[data-layout="bottomsheet"] .city-tag{border-radius:20px 20px 6px 6px}
+body[data-layout="bottomsheet"] .other-card{border-radius:20px 20px 6px 6px}
+body[data-layout="bottomsheet"] .match-reason{border-radius:20px 20px 6px 6px}
+</style>
+<!-- LAYOUT-PATCH-END -->
 </head>
-<body>
+<body data-layout="bottomsheet">
 
 <!-- ══════════ PAGE: PASSWORD ══════════ -->
 <div class="page active" id="page-password">
