@@ -119,8 +119,44 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9999;o
 .kw-chip-sm{background:var(--paper);color:var(--acc2);border-radius:20px;padding:3px 10px;font-size:11px;border:1px solid var(--line)}
 .decl-text{font-size:13px;color:#5b554c;line-height:1.9;margin-bottom:16px}
 .decl-text strong{color:var(--acc)}</style>
+
+<!-- LAYOUT-PATCH-START -->
+<style id="layout-patch">
+body[data-layout="page"] .page.active{padding:30px 20px 80px}
+body[data-layout="page"] .wrap{max-width:540px}
+body[data-layout="page"] .icon-box{width:62px;height:62px;border-radius:0;transform:none;font-size:28px;margin:20px auto 12px}
+body[data-layout="page"] .hero-title{font-size:26px;letter-spacing:5px}
+body[data-layout="page"] .card,
+body[data-layout="page"] .pw-card,
+body[data-layout="page"] .info-box,
+body[data-layout="page"] .category-card,
+body[data-layout="page"] .dim-card,
+body[data-layout="page"] .others-card,
+body[data-layout="page"] .q-body,
+body[data-layout="page"] .q-header,
+body[data-layout="page"] .top-card{border-radius:0;box-shadow:none;border:1px solid var(--line);outline:1px solid var(--line);outline-offset:4px}
+body[data-layout="page"] .stat-card,
+body[data-layout="page"] .dim-item,
+body[data-layout="page"] .city-tag,
+body[data-layout="page"] .tag-chip,
+body[data-layout="page"] .kw-chip,
+body[data-layout="page"] .opt,
+body[data-layout="page"] .btn-primary,
+body[data-layout="page"] .btn-secondary,
+body[data-layout="page"] .nav-btn,
+body[data-layout="page"] .pw-input,
+body[data-layout="page"] .category-icon,
+body[data-layout="page"] .other-card,
+body[data-layout="page"] .match-reason,
+body[data-layout="page"] .progress-track,
+body[data-layout="page"] .progress-bar{border-radius:0}
+body[data-layout="page"] .top-card::before{width:44px;height:1px}
+body[data-layout="page"] .btn-primary{letter-spacing:5px}
+body[data-layout="page"] .category-desc{background:transparent;border:1px solid var(--line);border-radius:0}
+</style>
+<!-- LAYOUT-PATCH-END -->
 </head>
-<body>
+<body data-layout="page">
 
 <!-- ══════════ PAGE: PASSWORD ══════════ -->
 <div class="page active" id="page-password">
