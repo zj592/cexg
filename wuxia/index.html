@@ -121,8 +121,48 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9999;o
 .kw-chip-sm{background:var(--paper);color:var(--acc2);border-radius:20px;padding:3px 10px;font-size:11px;border:1px solid rgba(46,42,38,.2)}
 .decl-text{font-size:13px;color:#5b554c;line-height:1.9;margin-bottom:16px}
 .decl-text strong{color:var(--acc)}</style>
+
+<!-- LAYOUT-PATCH-START -->
+<style id="layout-patch">
+body[data-layout="editorial"] .page.active{align-items:flex-start}
+body[data-layout="editorial"] .wrap{max-width:580px}
+body[data-layout="editorial"] .icon-box{width:auto;height:auto;padding:8px 14px;border-radius:3px;font-size:26px;margin:22px 0 12px;transform:none}
+body[data-layout="editorial"] .hero-title{text-align:left;font-size:34px;letter-spacing:2px;line-height:1.3;max-width:94%}
+body[data-layout="editorial"] .hero-sub{text-align:left;letter-spacing:9px;margin-bottom:20px}
+body[data-layout="editorial"] .card,
+body[data-layout="editorial"] .info-box,
+body[data-layout="editorial"] .pw-card,
+body[data-layout="editorial"] .category-card,
+body[data-layout="editorial"] .dim-card,
+body[data-layout="editorial"] .others-card,
+body[data-layout="editorial"] .top-card,
+body[data-layout="editorial"] .q-header,
+body[data-layout="editorial"] .q-body{border-radius:0;border:none;border-left:5px solid var(--acc2);box-shadow:none;background:transparent;padding-left:18px;padding-right:0}
+body[data-layout="editorial"] .card-title{padding-left:0}
+body[data-layout="editorial"] .card-title::before{display:none}
+body[data-layout="editorial"] .decl-text{text-align:left}
+body[data-layout="editorial"] .stats-grid{gap:0 16px}
+body[data-layout="editorial"] .stat-card{border-radius:0;border:none;border-top:1px solid var(--line);background:transparent;box-shadow:none;align-items:flex-start;text-align:left}
+body[data-layout="editorial"] .dim-item{background:transparent;border:none;border-bottom:1px solid var(--line);border-radius:0;box-shadow:none;padding-left:0}
+body[data-layout="editorial"] .city-tag{background:transparent;border-radius:3px}
+body[data-layout="editorial"] .q-text{font-size:24px;text-align:left}
+body[data-layout="editorial"] .opt:not(.selected){background:transparent;border:none;border-bottom:1px solid var(--line);border-radius:0;padding-left:6px}
+body[data-layout="editorial"] .pw-input{border-radius:0}
+body[data-layout="editorial"] .btn-primary{border-radius:0;letter-spacing:5px}
+body[data-layout="editorial"] .btn-secondary{border-radius:0;background:transparent}
+body[data-layout="editorial"] .top-card{text-align:left;background:transparent}
+body[data-layout="editorial"] .top-card::before{left:0;transform:none;width:90px;height:3px}
+body[data-layout="editorial"] .top-portrait{margin:4px 0 10px}
+body[data-layout="editorial"] .match-pct{font-size:52px}
+body[data-layout="editorial"] .top-city{font-size:26px}
+body[data-layout="editorial"] .tag-row{justify-content:flex-start}
+body[data-layout="editorial"] .tag-chip,body[data-layout="editorial"] .kw-chip{border-radius:3px}
+body[data-layout="editorial"] .match-reason{border-radius:0;background:transparent;border:1px solid var(--line);border-left:5px solid var(--acc2)}
+body[data-layout="editorial"] .nav-btn{border-radius:0;background:transparent}
+</style>
+<!-- LAYOUT-PATCH-END -->
 </head>
-<body>
+<body data-layout="editorial">
 
 <!-- ══════════ PAGE: PASSWORD ══════════ -->
 <div class="page active" id="page-password">
