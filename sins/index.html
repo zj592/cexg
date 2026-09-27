@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>测测你背着哪一宗罪 · 十宗罪人格测试</title>
+<style>* { margin:0; padding:0; box-sizing:border-box }
+:root{--acc:#9E1B22;--acc2:#C6A15B;--paper:#0B0708;--ink:#EDE0D8;--seal:#C0392B;--line:rgba(198,161,91,.28)}
+body{font-family:-apple-system,'Microsoft YaHei','PingFang SC',sans-serif;background-color:var(--paper);
+  background-image:radial-gradient(900px 600px at 10% -10%, rgba(158,27,34,.16), transparent 60%),radial-gradient(800px 560px at 110% 4%, rgba(198,161,91,.06), transparent 60%),radial-gradient(700px 700px at 50% 120%, rgba(158,27,34,.10), transparent 60%);
+  background-attachment:fixed;min-height:100vh;color:var(--ink);overflow-x:hidden;line-height:1.75;-webkit-font-smoothing:antialiased}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.4;background:repeating-linear-gradient(0deg, rgba(255,255,255,.010) 0 1px, transparent 1px 3px)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@keyframes sealIn{from{opacity:0;transform:rotate(-10deg) scale(.82)}to{opacity:1;transform:rotate(-3deg) scale(1)}}
+.page{display:none;min-height:100vh;padding:22px 16px 64px}
+.page.active{display:flex;flex-direction:column;align-items:center;animation:fadeUp .45s ease}
+.wrap,.wide-wrap{width:100%}
+.wrap{max-width:520px}
+.wide-wrap{max-width:680px}
+.icon-box{width:74px;height:74px;border-radius:12px;background:linear-gradient(135deg,var(--acc),#460A10);color:var(--paper);display:flex;align-items:center;justify-content:center;font-size:34px;margin:26px auto 14px;border:1px solid var(--acc2);box-shadow:0 6px 18px rgba(0,0,0,.45);transform:rotate(-3deg);animation:sealIn .5s ease}
+.hero-title{font-family:'Microsoft YaHei','PingFang SC',sans-serif;font-size:27px;font-weight:700;color:var(--ink);text-align:center;margin-bottom:6px;line-height:1.4;letter-spacing:3px}
+.hero-sub{font-size:12px;color:var(--acc2);letter-spacing:6px;font-weight:600;text-align:center;margin-bottom:22px}
+.card,.stat-card,.info-box,.dim-item,.category-card,.pw-card,.btn-secondary,.q-header,.q-body,.top-card,.dim-card,.others-card,.other-card{border:1px solid var(--line);background:#150C0E;box-shadow:0 4px 18px rgba(0,0,0,.35);border-radius:10px}
+.card{padding:20px 18px;margin-bottom:16px}
+.card-title{font-size:15px;font-weight:700;color:var(--acc);margin-bottom:10px;letter-spacing:1px;padding-left:12px;position:relative}
+.card-title::before{content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);width:4px;height:14px;background:var(--acc2);border-radius:2px}
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+.stat-card{padding:16px 12px;display:flex;flex-direction:column;align-items:center;gap:4px}
+.stat-icon{font-size:24px}
+.stat-num{font-size:19px;font-weight:700;color:var(--ink)}
+.stat-desc{font-size:12px;color:var(--acc2)}
+.info-box{padding:14px 18px;margin-bottom:20px;border-left:4px solid var(--acc2)}
+.info-box-title{font-size:13px;font-weight:700;color:var(--acc);margin-bottom:6px;letter-spacing:1px}
+.info-box-text{font-size:13px;color:#B5A29A;line-height:1.7}
+.dim-list{display:flex;flex-direction:column;gap:8px}
+.dim-item{padding:8px 12px;display:flex;align-items:flex-start;gap:10px}
+.dim-item-icon{font-size:18px;flex-shrink:0;margin-top:1px}
+.dim-item-name{font-size:13px;font-weight:700;color:var(--acc)}
+.dim-item-desc{font-size:12px;color:#9C8A82}
+.category-section{margin-bottom:24px}
+.category-card{padding:16px 18px;margin-bottom:12px}
+.category-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.category-left{display:flex;align-items:center;gap:10px}
+.category-icon{width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:18px;background:var(--acc);color:var(--paper);font-weight:700}
+.category-name{font-size:15px;font-weight:700;color:var(--ink)}
+.category-desc{font-size:11px;color:var(--acc2);background:rgba(198,161,91,.12);padding:4px 10px;border-radius:20px}
+.city-tags{display:flex;flex-wrap:wrap;gap:8px}
+.city-tag{padding:6px 14px;background:var(--paper);border:1px solid var(--line);border-radius:20px;font-size:13px;color:var(--ink)}
+.pw-card{border-radius:12px;padding:24px;margin-bottom:20px;text-align:center}
+.pw-label{font-size:15px;font-weight:700;color:var(--acc);margin-bottom:16px;letter-spacing:1px}
+.pw-input{width:100%;text-align:center;font-size:28px;letter-spacing:12px;font-weight:700;padding:14px;border-radius:8px;outline:none;color:var(--acc);font-family:serif;border:2px solid var(--acc2);background:var(--paper);transition:box-shadow .2s}
+.pw-input:focus{box-shadow:0 0 0 3px rgba(198,161,91,.18)}
+.pw-err{color:var(--seal);font-size:13px;margin-top:8px;display:none;font-weight:700}
+.pw-hint{font-size:12px;color:var(--acc2);margin-top:10px}
+.btn-primary{width:100%;padding:16px;border-radius:8px;border:1px solid var(--acc);background:linear-gradient(135deg,var(--acc),#460A10);color:var(--paper);font-size:18px;font-weight:700;cursor:pointer;letter-spacing:3px;font-family:'Microsoft YaHei','PingFang SC',sans-serif;box-shadow:0 6px 18px rgba(0,0,0,.5);transition:transform .12s,box-shadow .12s}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(0,0,0,.6)}
+.btn-primary:active{transform:translateY(0)}
+.btn-secondary{width:100%;padding:16px;border-radius:8px;border:1px solid var(--line);background:#150C0E;cursor:pointer;font-size:16px;font-weight:700;color:var(--acc);font-family:serif;transition:background .15s;margin-bottom:10px}
+.btn-secondary:hover{background:var(--acc);color:var(--paper)}
+.footer{text-align:center;padding:16px 0 8px;width:100%}
+.footer a{font-size:13px;color:var(--acc2);text-decoration:none;border-bottom:1px solid var(--acc2);padding-bottom:2px}
+.q-header{border-radius:10px;padding:16px 20px;margin-bottom:20px;width:100%;max-width:600px}
+.q-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.q-cat{font-size:13px;font-weight:700;color:var(--acc);letter-spacing:1px}
+.q-count{font-size:13px;color:var(--acc2)}
+.q-pct{font-size:13px;font-weight:700;color:var(--ink)}
+.progress-track{height:10px;background:var(--paper);border:1px solid var(--line);border-radius:99px;overflow:hidden}
+.progress-bar{height:100%;background:linear-gradient(90deg,var(--acc),var(--acc2));border-radius:99px;transition:width .4s ease}
+.q-body{border-radius:12px;padding:28px 24px;margin-bottom:20px;width:100%;max-width:600px}
+.q-text{font-size:20px;font-weight:700;color:var(--ink);margin-bottom:24px;line-height:1.5;font-family:'Microsoft YaHei','PingFang SC',sans-serif}
+.opts{display:flex;flex-direction:column;gap:12px}
+.opt{padding:16px 20px;border-radius:10px;border:1px solid var(--line);background:#150C0E;cursor:pointer;text-align:left;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:12px;transition:all .15s;font-family:serif;width:100%}
+.opt:hover{border-color:var(--acc);background:#fff;transform:translateX(3px)}
+.opt.selected{border-color:var(--acc);background:var(--acc);color:var(--paper);font-weight:600}
+.opt-radio{font-size:18px;color:var(--acc);flex-shrink:0;width:20px;font-weight:700}
+.opt.selected .opt-radio{color:var(--paper)}
+.q-nav{display:flex;justify-content:space-between;align-items:center;gap:12px;width:100%;max-width:600px}
+.nav-btn{padding:13px 24px;border-radius:8px;border:1px solid var(--line);background:#150C0E;cursor:pointer;font-size:15px;color:var(--acc2);font-family:serif;transition:background .15s}
+.nav-btn:hover{background:var(--acc);color:var(--paper)}
+.auto-hint{font-size:13px;color:var(--acc2);flex:1;text-align:center;transition:opacity .3s}
+.top-card{border-radius:14px;padding:26px 24px 28px;text-align:center;margin-bottom:20px;width:100%;border:1px solid var(--acc2);box-shadow:0 8px 30px rgba(43,38,32,.10);background:linear-gradient(180deg,#150C0E,#F3EAD6);position:relative;overflow:hidden}
+.top-card::before{content:"";position:absolute;top:10px;left:50%;transform:translateX(-50%);width:60px;height:2px;background:var(--acc2);opacity:.6}
+.top-sub{font-size:13px;color:var(--acc2);font-weight:600;margin-bottom:12px;letter-spacing:3px;font-family:'STKaiti','KaiTi',serif}
+.top-portrait{width:170px;height:204px;margin:4px auto 8px}
+.top-portrait .pt-svg{width:100%;height:100%;display:block;filter:drop-shadow(0 4px 12px rgba(43,38,32,.14))}
+.match-pct{font-size:60px;font-weight:900;color:var(--acc);line-height:1;font-family:'Microsoft YaHei','PingFang SC',sans-serif}
+.top-city{font-size:28px;font-weight:900;color:var(--ink);margin:10px 0 4px;font-family:'Microsoft YaHei','PingFang SC',sans-serif;letter-spacing:2px}
+.top-prov{font-size:13px;color:var(--acc2);margin-bottom:14px}
+.tag-row{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:10px}
+.tag-chip{background:var(--acc);color:var(--paper);border-radius:20px;padding:4px 14px;font-size:13px;font-weight:600}
+.kw-chip{background:var(--paper);color:var(--acc2);border-radius:20px;padding:4px 14px;font-size:12px;border:1px solid var(--line)}
+.match-reason{background:var(--paper);border-radius:8px;padding:16px 20px;text-align:left;margin-top:16px;border:1px solid var(--line)}
+.reason-title{font-size:14px;font-weight:700;color:var(--acc);display:block;margin-bottom:8px;letter-spacing:1px}
+.reason-text{font-size:14px;color:#B5A29A;line-height:1.9;margin:0}
+.dim-card{border-radius:12px;padding:24px;margin-bottom:20px;width:100%;border:1px solid var(--line)}
+.dim-card-title{font-size:16px;font-weight:700;color:var(--ink);margin-bottom:20px;letter-spacing:1px}
+.dim-grid{display:flex;flex-direction:column;gap:12px}
+.dim-row{display:flex;align-items:center;gap:12px}
+.dim-label{font-size:12px;color:var(--acc2);width:70px;flex-shrink:0}
+.dim-track{flex:1;height:10px;background:var(--paper);border:1px solid var(--line);border-radius:99px;overflow:hidden}
+.dim-bar{height:100%;background:linear-gradient(90deg,var(--acc),var(--acc2));border-radius:99px;transition:width .6s ease}
+.dim-val{font-size:12px;font-weight:700;color:var(--acc);width:28px;text-align:right;flex-shrink:0}
+.others-card{border-radius:12px;padding:24px;margin-bottom:24px;width:100%;border:1px solid var(--line)}
+.others-title{font-size:16px;font-weight:700;color:var(--ink);margin-bottom:20px;letter-spacing:1px}
+.others-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:480px){.others-grid{grid-template-columns:1fr}}
+.other-card{border-radius:10px;padding:16px 14px;background:#150C0E;border:1px solid var(--line);text-align:center}
+.other-portrait{width:60px;height:72px;margin:0 auto 8px;opacity:.96}
+.other-portrait .pt-svg{width:100%;height:100%;display:block}
+.other-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.other-name{font-size:16px;font-weight:700;color:var(--ink);font-family:'STKaiti','KaiTi',serif}
+.other-prov{font-size:11px;color:var(--acc2)}
+.other-score{font-size:18px;font-weight:900;color:var(--acc)}
+.other-desc{font-size:12px;color:var(--acc2);line-height:1.7;margin-top:8px;text-align:left}
+.tag-chip-sm{background:var(--acc);color:var(--paper);border-radius:20px;padding:3px 10px;font-size:11px;font-weight:600}
+.kw-chip-sm{background:var(--paper);color:var(--acc2);border-radius:20px;padding:3px 10px;font-size:11px;border:1px solid var(--line)}
+.decl-text{font-size:13px;color:#B5A29A;line-height:1.9;margin-bottom:16px}
+.decl-text strong{color:var(--acc)}</style>
+</head>
+<body>
+
+<!-- ══════════ PAGE: PASSWORD ══════════ -->
+<div class="page active" id="page-password">
+  <div class="wrap">
+    <div class="icon-box">⛓️</div>
+    <h1 class="hero-title">测测你背着哪一宗罪</h1>
+    <p class="hero-sub">THE TEN SINS</p>
+    <div class="pw-card">
+      <p class="pw-label">🔑 请输入通关密语</p>
+      <input type="password" id="pw-input" class="pw-input" maxlength="4" placeholder="••••" />
+      <p class="pw-err" id="pw-err">校验码错误，请重试</p>
+    </div>
+    <div class="info-box">
+      <p class="info-box-title">ℹ️ 说明</p>
+      <p class="info-box-text">本测验以十宗罪为底，30 道题剖出你藏在心底的那一宗。仅供娱乐，暗黑设定请勿对号入座。</p>
+    </div>
+    <button class="btn-primary" onclick="checkPwd()">→ 开启测试</button>
+  </div>
+</div>
+
+<!-- ══════════ PAGE: INTRO ══════════ -->
+<div class="page" id="page-intro">
+  <div class="wrap">
+    <div class="icon-box">🩸</div>
+    <h1 class="hero-title">每个人心里，都背着一宗罪</h1>
+    <p class="hero-sub">THE TEN SINS</p>
+
+    <div class="stats-grid"><div class="stat-card"><span class="stat-icon">🩸</span><span class="stat-num">30道</span><span class="stat-desc">灵魂拷问</span></div><div class="stat-card"><span class="stat-icon">⏱️</span><span class="stat-num">约1分钟</span><span class="stat-desc">剖出原罪</span></div><div class="stat-card"><span class="stat-icon">⛓️</span><span class="stat-num">10位</span><span class="stat-desc">罪名人格</span></div><div class="stat-card"><span class="stat-icon">🎭</span><span class="stat-num">10维度</span><span class="stat-desc">暗面画像</span></div></div>
+
+    <div class="card">
+      <p class="card-title">📜 测试说明</p>
+      <p class="decl-text">本测试共 <strong>30道题</strong>，穿越以下 <strong>10个暗面维度</strong>，每道题选择后<strong>自动跳转</strong>下一题。完成后系统将从 <strong>十宗罪</strong> 中，为你点出你背着的那一宗——傲慢、嫉妒、暴怒、懒惰、贪婪、暴食、色欲、虚荣、欺骗、执念。</p>
+      <div class="dim-list">
+<div class="dim-item"><span class="dim-item-icon">👑</span><div><span class="dim-item-name">支配欲</span><span class="dim-item-desc"> — 凡事你都要说了算吗？</span></div></div>
+<div class="dim-item"><span class="dim-item-icon">🪙</span><div><span class="dim-item-name">贪欲浓度</span><span class="dim-item-desc"> — 你要的是够，还是更多？</span></div></div>
+<div class="dim-item"><span class="dim-item-icon">🕸️</span><div><span class="dim-item-name">惰性疏离</span><span class="dim-item-desc"> — 你是懒得动，还是懒得在乎？</span></div></div>
+<div class="dim-item"><span class="dim-item-icon">⛓️</span><div><span class="dim-item-name">执念深浅</span><span class="dim-item-desc"> — 你放得下，还是忘不掉？</span></div></div>
+<div class="dim-item"><span class="dim-item-icon">🎭</span><div><span class="dim-item-name">心机城府</span><span class="dim-item-desc"> — 你看得穿几分人心？</span></div></div>
+<div class="dim-item"><span class="dim-item-icon">🔥</span><div><span class="dim-item-name">护短烈火</span><span class="dim-item-desc"> — 为了在意的人，你能多狠？</span></div></div>
+<div class="dim-item"><span class="dim-item-icon">🍷</span><div><span class="dim-item-name">欲念魅力</span><span class="dim-item-desc"> — 你往那一站，有没有戏？</span></div></div>
+<div class="dim-item"><span class="dim-item-icon">🕯️</span><div><span class="dim-item-name">隐忍压抑</span><span class="dim-item-desc"> — 情绪憋得住还是藏不住？</span></div></div>
+<div class="dim-item"><span class="dim-item-icon">⚡</span><div><span class="dim-item-name">冲动野性</span><span class="dim-item-desc"> — 说干就干，还是先想后果？</span></div></div>
+<div class="dim-item"><span class="dim-item-icon">🔗</span><div><span class="dim-item-name">忠贞成瘾</span><span class="dim-item-desc"> — 认定一生，还是随缘就好？</span></div></div>
+</div>
+    </div>
+
+    <div class="category-section"><div class="category-card"><div class="category-header"><div class="category-left"><div class="category-icon a">👑</div><div class="category-name">骄矜之罪</div></div><div class="category-desc">不肯低头的骄傲</div></div><div class="city-tags"><span class="city-tag">傲慢</span><span class="city-tag">虚荣</span></div></div><div class="category-card"><div class="category-header"><div class="category-left"><div class="category-icon b">🍷</div><div class="category-name">欲念之罪</div></div><div class="category-desc">填不满的渴望</div></div><div class="city-tags"><span class="city-tag">贪婪</span><span class="city-tag">暴食</span><span class="city-tag">色欲</span></div></div><div class="category-card"><div class="category-header"><div class="category-left"><div class="category-icon c">🔥</div><div class="category-name">怒火之罪</div></div><div class="category-desc">烧穿理智的火</div></div><div class="city-tags"><span class="city-tag">暴怒</span><span class="city-tag">嫉妒</span></div></div><div class="category-card"><div class="category-header"><div class="category-left"><div class="category-icon d">⛓️</div><div class="category-name">沉沦之罪</div></div><div class="category-desc">戒不掉的执与诈</div></div><div class="city-tags"><span class="city-tag">懒惰</span><span class="city-tag">欺骗</span><span class="city-tag">执念</span></div></div></div>
+
+    <button class="btn-primary" onclick="startQuiz()">▶ 剖出我的原罪 →</button>
+  </div>
+</div>
+<!-- ══════════ PAGE: QUIZ ══════════ -->
+<div class="page" id="page-quiz">
+  <div class="q-header">
+    <div class="q-meta">
+      <span class="q-cat" id="q-cat">维度</span>
+      <span class="q-count" id="q-count">问题 1 / 30</span>
+      <span class="q-pct" id="q-pct">2%</span>
+    </div>
+    <div class="progress-track"><div class="progress-bar" id="progress-bar" style="width:2%"></div></div>
+  </div>
+  <div class="q-body" id="q-body">
+    <h2 class="q-text" id="q-text"></h2>
+    <div class="opts" id="opts"></div>
+  </div>
+  <div class="q-nav">
+    <button class="nav-btn" id="prev-btn" onclick="prevQ()">‹ 上一题</button>
+    <div class="auto-hint" id="auto-hint">← 点击选项自动跳转</div>
+  </div>
+</div>
+
+<!-- ══════════ PAGE: RESULT ══════════ -->
+<div class="page" id="page-result">
+  <div class="wide-wrap">
+    <div class="top-card">
+      <p class="top-sub">你灵魂深处，是——</p>
+      <div class="top-portrait" id="r-portrait"></div>
+      <div class="match-pct" id="r-pct">94%</div>
+      <h2 class="top-city" id="r-city">—</h2>
+      <p class="top-prov" id="r-prov">—</p>
+      <div class="tag-row" id="r-tags"></div>
+      <div class="tag-row" id="r-kws"></div>
+      <div class="match-reason">
+        <span class="reason-title">🩸 你的原罪画像</span>
+        <p class="reason-text" id="r-desc"></p>
+      </div>
+    </div>
+
+    <div class="dim-card">
+      <p class="dim-card-title">你的暗面画像</p>
+      <div class="dim-grid" id="dim-grid"></div>
+    </div>
+
+    <div class="others-card">
+      <p class="others-title">你还可能是……</p>
+      <div class="others-grid" id="others-grid"></div>
+    </div>
+
+    <button class="btn-secondary" onclick="resetQuiz()">↺ 再测一次</button>
+  </div>
+</div>
+
+<script>
+const PORTRAITS = {
+"傲慢":'<svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="sn0" cx="50%" cy="38%" r="72%"><stop offset="0%" stop-color="#2A0A0F"/><stop offset="100%" stop-color="#C0392B"/></radialGradient></defs><circle cx="120" cy="120" r="108" fill="url(#sn0)" stroke="#C0392B" stroke-width="3"/><circle cx="120" cy="120" r="92" fill="none" stroke="#C0392B" stroke-width="1" opacity="0.5"/><circle cx="120" cy="120" r="78" fill="none" stroke="#C0392B" stroke-width="1" opacity="0.25" stroke-dasharray="3 6"/><text x="120" y="122" font-size="86" text-anchor="middle" dominant-baseline="central">🦚</text><circle cx="188" cy="188" r="17" fill="#C0392B"/><text x="188" y="189" font-size="15" fill="#fff" text-anchor="middle" dominant-baseline="central">罪</text></svg>',
+"嫉妒":'<svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="sn1" cx="50%" cy="38%" r="72%"><stop offset="0%" stop-color="#0F2418"/><stop offset="100%" stop-color="#4FA86E"/></radialGradient></defs><circle cx="120" cy="120" r="108" fill="url(#sn1)" stroke="#4FA86E" stroke-width="3"/><circle cx="120" cy="120" r="92" fill="none" stroke="#4FA86E" stroke-width="1" opacity="0.5"/><circle cx="120" cy="120" r="78" fill="none" stroke="#4FA86E" stroke-width="1" opacity="0.25" stroke-dasharray="3 6"/><text x="120" y="122" font-size="86" text-anchor="middle" dominant-baseline="central">🐍</text><circle cx="188" cy="188" r="17" fill="#4FA86E"/><text x="188" y="189" font-size="15" fill="#fff" text-anchor="middle" dominant-baseline="central">罪</text></svg>',
+"暴怒":'<svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="sn2" cx="50%" cy="38%" r="72%"><stop offset="0%" stop-color="#2A1405"/><stop offset="100%" stop-color="#E07A2B"/></radialGradient></defs><circle cx="120" cy="120" r="108" fill="url(#sn2)" stroke="#E07A2B" stroke-width="3"/><circle cx="120" cy="120" r="92" fill="none" stroke="#E07A2B" stroke-width="1" opacity="0.5"/><circle cx="120" cy="120" r="78" fill="none" stroke="#E07A2B" stroke-width="1" opacity="0.25" stroke-dasharray="3 6"/><text x="120" y="122" font-size="86" text-anchor="middle" dominant-baseline="central">🔥</text><circle cx="188" cy="188" r="17" fill="#E07A2B"/><text x="188" y="189" font-size="15" fill="#fff" text-anchor="middle" dominant-baseline="central">罪</text></svg>',
+"懒惰":'<svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="sn3" cx="50%" cy="38%" r="72%"><stop offset="0%" stop-color="#1A1A22"/><stop offset="100%" stop-color="#7A8290"/></radialGradient></defs><circle cx="120" cy="120" r="108" fill="url(#sn3)" stroke="#7A8290" stroke-width="3"/><circle cx="120" cy="120" r="92" fill="none" stroke="#7A8290" stroke-width="1" opacity="0.5"/><circle cx="120" cy="120" r="78" fill="none" stroke="#7A8290" stroke-width="1" opacity="0.25" stroke-dasharray="3 6"/><text x="120" y="122" font-size="86" text-anchor="middle" dominant-baseline="central">🕸</text><circle cx="188" cy="188" r="17" fill="#7A8290"/><text x="188" y="189" font-size="15" fill="#fff" text-anchor="middle" dominant-baseline="central">罪</text></svg>',
+"贪婪":'<svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="sn4" cx="50%" cy="38%" r="72%"><stop offset="0%" stop-color="#2A2005"/><stop offset="100%" stop-color="#D9B23A"/></radialGradient></defs><circle cx="120" cy="120" r="108" fill="url(#sn4)" stroke="#D9B23A" stroke-width="3"/><circle cx="120" cy="120" r="92" fill="none" stroke="#D9B23A" stroke-width="1" opacity="0.5"/><circle cx="120" cy="120" r="78" fill="none" stroke="#D9B23A" stroke-width="1" opacity="0.25" stroke-dasharray="3 6"/><text x="120" y="122" font-size="86" text-anchor="middle" dominant-baseline="central">🪙</text><circle cx="188" cy="188" r="17" fill="#D9B23A"/><text x="188" y="189" font-size="15" fill="#fff" text-anchor="middle" dominant-baseline="central">罪</text></svg>',
+"暴食":'<svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="sn5" cx="50%" cy="38%" r="72%"><stop offset="0%" stop-color="#2A1005"/><stop offset="100%" stop-color="#C97A3A"/></radialGradient></defs><circle cx="120" cy="120" r="108" fill="url(#sn5)" stroke="#C97A3A" stroke-width="3"/><circle cx="120" cy="120" r="92" fill="none" stroke="#C97A3A" stroke-width="1" opacity="0.5"/><circle cx="120" cy="120" r="78" fill="none" stroke="#C97A3A" stroke-width="1" opacity="0.25" stroke-dasharray="3 6"/><text x="120" y="122" font-size="86" text-anchor="middle" dominant-baseline="central">🍖</text><circle cx="188" cy="188" r="17" fill="#C97A3A"/><text x="188" y="189" font-size="15" fill="#fff" text-anchor="middle" dominant-baseline="central">罪</text></svg>',
+"色欲":'<svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="sn6" cx="50%" cy="38%" r="72%"><stop offset="0%" stop-color="#2A0518"/><stop offset="100%" stop-color="#E0559A"/></radialGradient></defs><circle cx="120" cy="120" r="108" fill="url(#sn6)" stroke="#E0559A" stroke-width="3"/><circle cx="120" cy="120" r="92" fill="none" stroke="#E0559A" stroke-width="1" opacity="0.5"/><circle cx="120" cy="120" r="78" fill="none" stroke="#E0559A" stroke-width="1" opacity="0.25" stroke-dasharray="3 6"/><text x="120" y="122" font-size="86" text-anchor="middle" dominant-baseline="central">🍷</text><circle cx="188" cy="188" r="17" fill="#E0559A"/><text x="188" y="189" font-size="15" fill="#fff" text-anchor="middle" dominant-baseline="central">罪</text></svg>',
+"虚荣":'<svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="sn7" cx="50%" cy="38%" r="72%"><stop offset="0%" stop-color="#2A1A2E"/><stop offset="100%" stop-color="#B98FDF"/></radialGradient></defs><circle cx="120" cy="120" r="108" fill="url(#sn7)" stroke="#B98FDF" stroke-width="3"/><circle cx="120" cy="120" r="92" fill="none" stroke="#B98FDF" stroke-width="1" opacity="0.5"/><circle cx="120" cy="120" r="78" fill="none" stroke="#B98FDF" stroke-width="1" opacity="0.25" stroke-dasharray="3 6"/><text x="120" y="122" font-size="86" text-anchor="middle" dominant-baseline="central">🪞</text><circle cx="188" cy="188" r="17" fill="#B98FDF"/><text x="188" y="189" font-size="15" fill="#fff" text-anchor="middle" dominant-baseline="central">罪</text></svg>',
+"欺骗":'<svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="sn8" cx="50%" cy="38%" r="72%"><stop offset="0%" stop-color="#0F1A26"/><stop offset="100%" stop-color="#5AA8D9"/></radialGradient></defs><circle cx="120" cy="120" r="108" fill="url(#sn8)" stroke="#5AA8D9" stroke-width="3"/><circle cx="120" cy="120" r="92" fill="none" stroke="#5AA8D9" stroke-width="1" opacity="0.5"/><circle cx="120" cy="120" r="78" fill="none" stroke="#5AA8D9" stroke-width="1" opacity="0.25" stroke-dasharray="3 6"/><text x="120" y="122" font-size="86" text-anchor="middle" dominant-baseline="central">🎭</text><circle cx="188" cy="188" r="17" fill="#5AA8D9"/><text x="188" y="189" font-size="15" fill="#fff" text-anchor="middle" dominant-baseline="central">罪</text></svg>',
+"执念":'<svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="sn9" cx="50%" cy="38%" r="72%"><stop offset="0%" stop-color="#2A0A14"/><stop offset="100%" stop-color="#E04F6A"/></radialGradient></defs><circle cx="120" cy="120" r="108" fill="url(#sn9)" stroke="#E04F6A" stroke-width="3"/><circle cx="120" cy="120" r="92" fill="none" stroke="#E04F6A" stroke-width="1" opacity="0.5"/><circle cx="120" cy="120" r="78" fill="none" stroke="#E04F6A" stroke-width="1" opacity="0.25" stroke-dasharray="3 6"/><text x="120" y="122" font-size="86" text-anchor="middle" dominant-baseline="central">⛓</text><circle cx="188" cy="188" r="17" fill="#E04F6A"/><text x="188" y="189" font-size="15" fill="#fff" text-anchor="middle" dominant-baseline="central">罪</text></svg>'
+};
+// ══════════ DATA ══════════
+const CITIES=[{"name": "傲慢", "emoji": "🦚", "province": "PRIDE · 堕天使的翅骨", "tags": ["七大原罪", "骄矜"], "kw": ["不肯低头", "高处不胜寒"], "p": {"power": 95, "wealth": 75, "freedom": 65, "love": 30, "wisdom": 70, "chivalry": 60, "art": 75, "reclusion": 70, "adventure": 45, "faith": 40}, "desc": "你背着的是傲慢。你宁可与全世界为敌，也不肯低一次头；宁可一个人站在高处，也不要半分将就的温存。你不是看不见自己的错，你只是不肯承认。这一宗罪让你耀眼，也让你孤独。"}, {"name": "嫉妒", "emoji": "🐍", "province": "INVIDIA · 绿眼的毒", "tags": ["七大原罪", "妒火"], "kw": ["暗中比较", "见不得你好"], "p": {"power": 45, "wealth": 55, "freedom": 35, "love": 85, "wisdom": 75, "chivalry": 50, "art": 55, "reclusion": 80, "adventure": 25, "faith": 55}, "desc": "你背着的是嫉妒。你从不吵闹，却会为一句轻描淡写的话，在心里翻来覆去一整个晚上。你嘴上说着恭喜，眼底那点绿意只有自己看得见。你比谁都清楚，那不是恨，是怕自己不够好。"}, {"name": "暴怒", "emoji": "🔥", "province": "IRA · 焚身的火", "tags": ["七大原罪", "怒火"], "kw": ["一点就着", "为谁翻脸"], "p": {"power": 80, "wealth": 50, "freedom": 60, "love": 65, "wisdom": 35, "chivalry": 90, "art": 50, "reclusion": 20, "adventure": 90, "faith": 60}, "desc": "你背着的是暴怒。你平时可以忍，可以笑，可以什么都不计较——直到有人碰了你最在意的人。那一刻你能和全世界为敌，烧得不管不顾。你的火，从来只为在乎的东西而燃。"}, {"name": "懒惰", "emoji": "🕸", "province": "ACEDIA · 腐朽的温床", "tags": ["七大原罪", "倦怠"], "kw": ["明日再说", "懒得在乎"], "p": {"power": 30, "wealth": 45, "freedom": 88, "love": 45, "wisdom": 50, "chivalry": 30, "art": 45, "reclusion": 70, "adventure": 15, "faith": 40}, "desc": "你背着的是懒惰。你不是没有能力，也不是没有想要的东西，你只是懒得伸手。明天、下次、以后，成了你最顺口的告别。你把自己埋进舒服的温床，任由外面的世界热闹，你都懒得睁眼。"}, {"name": "贪婪", "emoji": "🪙", "province": "AVARITIA · 无底的深井", "tags": ["七大原罪", "贪欲"], "kw": ["永远不够", "耐心织网"], "p": {"power": 85, "wealth": 95, "freedom": 50, "love": 50, "wisdom": 88, "chivalry": 45, "art": 65, "reclusion": 60, "adventure": 70, "faith": 30}, "desc": "你背着的是贪婪。你要的从来不是够，而是更多——更多的爱、更多的钱、更多的掌控。你最有耐心，擅长用时间织一张网，等人和事一点点落进你的领地，还以为是他们自己选的路。"}, {"name": "暴食", "emoji": "🍖", "province": "GULA · 填不满的空", "tags": ["七大原罪", "饕餮"], "kw": ["及时行乐", "用甜补洞"], "p": {"power": 35, "wealth": 82, "freedom": 55, "love": 60, "wisdom": 40, "chivalry": 40, "art": 60, "reclusion": 45, "adventure": 45, "faith": 35}, "desc": "你背着的是暴食。你信奉活在当下，好吃的、好睡的、好玩的，一样都不肯亏待自己。你用一场又一场的即时满足，去填心里那个其实填不满的洞。你不是贪吃，你只是怕停下来面对空。"}, {"name": "色欲", "emoji": "🍷", "province": "LUXURIA · 焚身的甜", "tags": ["七大原罪", "欲念"], "kw": ["沉溺心动", "明知故犯"], "p": {"power": 50, "wealth": 65, "freedom": 50, "love": 88, "wisdom": 60, "chivalry": 45, "art": 92, "reclusion": 35, "adventure": 70, "faith": 40}, "desc": "你背着的是色欲。你对心动的沉溺近乎成瘾——被注视、被需要、被点燃的那一瞬，明知危险也不肯停。你的魅力是一把双刃的刀，割伤别人的同时，也从未放过自己。"}, {"name": "虚荣", "emoji": "🪞", "province": "VANITAS · 镜中的牢笼", "tags": ["隐秘之罪", "虚饰"], "kw": ["活在目光里", "怕被冷落"], "p": {"power": 60, "wealth": 78, "freedom": 45, "love": 65, "wisdom": 68, "chivalry": 35, "art": 90, "reclusion": 40, "adventure": 55, "faith": 35}, "desc": "你背着的是虚荣。你太需要被看见、被羡慕、被称赞，一句夸奖能让你开心一整天，一句冷落也能让你辗转半宿。你把自己活成一张精致的封面，却在无人问津的深夜里，被镜子困住。"}, {"name": "欺骗", "emoji": "🎭", "province": "FRAUD · 甜言铸的刀", "tags": ["隐秘之罪", "巧诈"], "kw": ["笑里藏刀", "真话按需展开"], "p": {"power": 72, "wealth": 68, "freedom": 72, "love": 40, "wisdom": 95, "chivalry": 40, "art": 78, "reclusion": 65, "adventure": 60, "faith": 25}, "desc": "你背着的是欺骗。你不一定说谎，你只是擅长让真相按你想要的样子展开。你笑起来人畜无害，心里那本账却早已结得清清楚楚。你的每一句甜言，背后都藏着一把没出鞘的刀。"}, {"name": "执念", "emoji": "⛓", "province": "OBSESSIO · 戒不掉的你", "tags": ["隐秘之罪", "痴缠"], "kw": ["认定不放", "迟来的回信"], "p": {"power": 55, "wealth": 45, "freedom": 30, "love": 95, "wisdom": 58, "chivalry": 85, "art": 65, "reclusion": 75, "adventure": 30, "faith": 98}, "desc": "你背着的是执念。你可以对全世界云淡风轻，却唯独对一个人戒不掉。你把一段早已结束的关系反复回放，把每条迟到的消息读成千百种可能。这不是放不下别人，是你舍不得放过自己。"}];
+
+
+const QUESTIONS=[{"cat": "🩸 原罪本相", "q": "如果必须承认一种「坏」，你身上最重的是？", "opts": [{"t": "骄傲，我不肯认输", "w": {"power": 25, "reclusion": 10}}, {"t": "嫉妒，我见不得别人好", "w": {"love": 15, "wisdom": 15}}, {"t": "贪心，我总是想要更多", "w": {"wealth": 30, "power": 10}}, {"t": "懒散，我什么都不想做", "w": {"freedom": 30, "reclusion": 10}}]}, {"cat": "🩸 原罪本相", "q": "深夜独处时，最常冒出来的念头是？", "opts": [{"t": "我是不是还不够强", "w": {"power": 25, "adventure": 10}}, {"t": "凭什么是他不是我", "w": {"wisdom": 20, "love": 15}}, {"t": "好累，什么都不想管了", "w": {"freedom": 25, "reclusion": 15}}, {"t": "要是能重来就好了", "w": {"love": 25, "reclusion": 10}}]}, {"cat": "🩸 原罪本相", "q": "你最不敢让人看见的一面是？", "opts": [{"t": "其实我很想被人仰望", "w": {"power": 20, "art": 15}}, {"t": "其实我很有心机", "w": {"wisdom": 30, "reclusion": 10}}, {"t": "其实我在意得要命", "w": {"love": 25, "reclusion": 10}}, {"t": "其实我早就撑不住了", "w": {"reclusion": 25, "freedom": 10}}]}, {"cat": "🩸 原罪本相", "q": "别人说你「有点坏」，你心里想的是？", "opts": [{"t": "我本来就没打算当好", "w": {"power": 25, "adventure": 10}}, {"t": "我只是没让你看出来", "w": {"wisdom": 30, "art": 10}}, {"t": "随你怎么说", "w": {"freedom": 25, "wealth": 10}}, {"t": "其实我在意，但不会说", "w": {"reclusion": 25, "love": 10}}]}, {"cat": "🩸 原罪本相", "q": "你更容易在哪一刻失控？", "opts": [{"t": "被质疑能力的时候", "w": {"power": 30, "chivalry": 10}}, {"t": "被拿来和别人比较的时候", "w": {"love": 15, "wisdom": 20}}, {"t": "被无视、被冷落的时候", "w": {"art": 20, "love": 15}}, {"t": "被逼着做不想做的事", "w": {"freedom": 25, "adventure": 10}}]}, {"cat": "🩸 原罪本相", "q": "让你记恨最久的，通常是？", "opts": [{"t": "一次没赢过的较量", "w": {"power": 25, "wisdom": 10}}, {"t": "一句刺到心里的话", "w": {"love": 20, "reclusion": 15}}, {"t": "一个抢走你东西的人", "w": {"wealth": 30, "chivalry": 10}}, {"t": "一件本来属于你的机会", "w": {"adventure": 20, "wealth": 15}}]}, {"cat": "⛓ 欲望深渊", "q": "面对想要的东西，你会？", "opts": [{"t": "直接去拿，不绕弯", "w": {"power": 25, "adventure": 10}}, {"t": "慢慢布局，等它自己过来", "w": {"wisdom": 30, "reclusion": 10}}, {"t": "先看看代价值不值", "w": {"wisdom": 20, "wealth": 10}}, {"t": "算了，想想就好", "w": {"freedom": 25, "reclusion": 15}}]}, {"cat": "⛓ 欲望深渊", "q": "为了得到想要的，你能做到哪一步？", "opts": [{"t": "底线之内，无所不用", "w": {"power": 25, "wisdom": 15}}, {"t": "演一场戏也无所谓", "w": {"art": 20, "wisdom": 15}}, {"t": "等多久都行", "w": {"reclusion": 30, "faith": 10}}, {"t": "超过底线就算了", "w": {"faith": 25, "wisdom": 10}}]}, {"cat": "⛓ 欲望深渊", "q": "关于钱与欲望，你的态度是？", "opts": [{"t": "越多越好，永远不嫌够", "w": {"wealth": 35, "power": 10}}, {"t": "够花就行，不想太累", "w": {"freedom": 25, "reclusion": 10}}, {"t": "要赚，也要花得漂亮", "w": {"art": 20, "wealth": 15}}, {"t": "钱是工具，不是目的", "w": {"wisdom": 25, "faith": 10}}]}, {"cat": "⛓ 欲望深渊", "q": "吃到嘴里的那份甜，你会？", "opts": [{"t": "一口吞下，不管明天", "w": {"art": 30, "adventure": 10}}, {"t": "慢慢品，留着回味", "w": {"reclusion": 20, "wisdom": 10}}, {"t": "还想再来一份", "w": {"wealth": 25, "love": 10}}, {"t": "吃够了自然就停", "w": {"faith": 20, "freedom": 10}}]}, {"cat": "⛓ 欲望深渊", "q": "看到别人拥有你想要的，你会？", "opts": [{"t": "想办法抢过来", "w": {"power": 25, "wealth": 15}}, {"t": "酸一下，然后笑笑", "w": {"love": 20, "reclusion": 15}}, {"t": "研究他怎么得到的", "w": {"wisdom": 30, "adventure": 10}}, {"t": "那本来就没我的份", "w": {"freedom": 25, "reclusion": 10}}]}, {"cat": "⛓ 欲望深渊", "q": "你最舍不得放弃的是什么？", "opts": [{"t": "掌控权", "w": {"power": 30, "chivalry": 10}}, {"t": "被人需要的感觉", "w": {"love": 25, "art": 10}}, {"t": "手里攒下的东西", "w": {"wealth": 30, "reclusion": 10}}, {"t": "一个人的清静", "w": {"freedom": 30, "reclusion": 10}}]}, {"cat": "🎭 面具与真心", "q": "你对外展示的那一面，离真实的你多远？", "opts": [{"t": "几乎就是全部的我", "w": {"faith": 20, "power": 10}}, {"t": "差一点点，无伤大雅", "w": {"wisdom": 20, "art": 10}}, {"t": "差很多，我从不轻易交底", "w": {"wisdom": 30, "reclusion": 10}}, {"t": "分人，看值不值得", "w": {"wisdom": 20, "love": 15}}]}, {"cat": "🎭 面具与真心", "q": "有人当面把你夸上天，你？", "opts": [{"t": "受用，我喜欢被夸", "w": {"art": 25, "wealth": 10}}, {"t": "礼貌笑笑，心里打分", "w": {"wisdom": 25, "reclusion": 10}}, {"t": "警惕，他是不是有求于我", "w": {"wisdom": 30, "power": 10}}, {"t": "不太信，但会开心", "w": {"love": 20, "art": 10}}]}, {"cat": "🎭 面具与真心", "q": "你会为了让人喜欢你而修饰自己吗？", "opts": [{"t": "会，我很清楚怎么讨喜", "w": {"art": 30, "wisdom": 10}}, {"t": "会，但只修饰表面", "w": {"wisdom": 20, "art": 10}}, {"t": "不会，喜欢就喜欢", "w": {"freedom": 25, "power": 10}}, {"t": "看对方是谁", "w": {"wisdom": 20, "love": 10}}]}, {"cat": "🎭 面具与真心", "q": "一件事对你不利，你会？", "opts": [{"t": "正面顶回去", "w": {"power": 30, "adventure": 10}}, {"t": "绕着说，把话说圆", "w": {"wisdom": 30, "art": 10}}, {"t": "干脆不说话", "w": {"reclusion": 30, "freedom": 10}}, {"t": "找个人替你说", "w": {"art": 20, "wisdom": 15}}]}, {"cat": "🎭 面具与真心", "q": "你在意别人怎么看你吗？", "opts": [{"t": "非常在意，我要体面", "w": {"art": 25, "wealth": 15}}, {"t": "嘴上不在意，其实在意", "w": {"love": 20, "reclusion": 15}}, {"t": "基本不在意", "w": {"freedom": 30, "power": 10}}, {"t": "只在意我在意的人的眼光", "w": {"faith": 25, "love": 10}}]}, {"cat": "🎭 面具与真心", "q": "你撒过的谎，通常是为了？", "opts": [{"t": "不让别人看穿我", "w": {"reclusion": 25, "wisdom": 15}}, {"t": "让自己显得更好", "w": {"art": 25, "wealth": 10}}, {"t": "省掉一场麻烦的争吵", "w": {"wisdom": 20, "freedom": 10}}, {"t": "护住在意的人", "w": {"chivalry": 25, "faith": 10}}]}, {"cat": "🔥 失控时刻", "q": "有人踩到你的底线，你会？", "opts": [{"t": "当场发作，不留情面", "w": {"adventure": 25, "power": 15}}, {"t": "笑着记下来，慢慢还", "w": {"wisdom": 30, "reclusion": 10}}, {"t": "一句话噎回去", "w": {"power": 20, "art": 15}}, {"t": "转身就走，从此不来往", "w": {"freedom": 25, "reclusion": 15}}]}, {"cat": "🔥 失控时刻", "q": "你最凶的时候是什么样？", "opts": [{"t": "眼神就能杀人", "w": {"power": 30, "reclusion": 10}}, {"t": "越凶越冷静", "w": {"wisdom": 30, "reclusion": 10}}, {"t": "什么狠话都说得出口", "w": {"adventure": 30, "power": 10}}, {"t": "对着在乎的人最凶", "w": {"chivalry": 25, "love": 10}}]}, {"cat": "🔥 失控时刻", "q": "吵架的时候你会？", "opts": [{"t": "把旧账一笔笔翻出来", "w": {"wisdom": 25, "reclusion": 10}}, {"t": "提高音量，压过对方", "w": {"power": 25, "adventure": 10}}, {"t": "沉默，冷到底", "w": {"reclusion": 30, "power": 10}}, {"t": "先服软，回头再说", "w": {"wisdom": 20, "faith": 10}}]}, {"cat": "🔥 失控时刻", "q": "事后回想自己发过的火，你？", "opts": [{"t": "不后悔，我该发", "w": {"power": 25, "adventure": 10}}, {"t": "有点后悔，但不会认", "w": {"reclusion": 25, "power": 10}}, {"t": "会想是不是我太过分", "w": {"love": 20, "faith": 15}}, {"t": "早忘了，翻篇", "w": {"freedom": 25, "wealth": 10}}]}, {"cat": "🔥 失控时刻", "q": "什么最容易让你上头？", "opts": [{"t": "被人挑衅", "w": {"adventure": 25, "power": 15}}, {"t": "被辜负", "w": {"love": 25, "chivalry": 10}}, {"t": "被人比下去", "w": {"wealth": 20, "art": 15}}, {"t": "被人管着", "w": {"freedom": 30, "adventure": 10}}]}, {"cat": "🔥 失控时刻", "q": "你会冷战吗？", "opts": [{"t": "会，而且能冷很久", "w": {"reclusion": 30, "power": 10}}, {"t": "会，但等对方先低头", "w": {"power": 20, "reclusion": 15}}, {"t": "不会，有话直说", "w": {"adventure": 20, "faith": 10}}, {"t": "会，因为我怕吵", "w": {"love": 20, "reclusion": 15}}]}, {"cat": "🕯 沉沦与救赎", "q": "如果罪可以洗掉，你会洗掉哪一宗？", "opts": [{"t": "一个都不洗，这就是我", "w": {"power": 30, "reclusion": 10}}, {"t": "洗掉让我难受的那一个", "w": {"love": 20, "wisdom": 10}}, {"t": "洗掉会伤到别人的那一个", "w": {"chivalry": 25, "faith": 10}}, {"t": "随便，无所谓", "w": {"freedom": 25, "wealth": 10}}]}, {"cat": "🕯 沉沦与救赎", "q": "你愿意为谁低头？", "opts": [{"t": "谁也不，我从不低头", "w": {"power": 30, "reclusion": 10}}, {"t": "为认定的人", "w": {"faith": 30, "love": 10}}, {"t": "为值得的人", "w": {"wisdom": 20, "chivalry": 10}}, {"t": "为还没出现的那个人", "w": {"love": 25, "art": 10}}]}, {"cat": "🕯 沉沦与救赎", "q": "夜深人静时，你会后悔吗？", "opts": [{"t": "会，但天亮就忘", "w": {"freedom": 20, "adventure": 10}}, {"t": "会，而且能记很久", "w": {"reclusion": 25, "love": 15}}, {"t": "很少，我做的都认", "w": {"power": 25, "faith": 10}}, {"t": "会，但我不会改", "w": {"wisdom": 25, "reclusion": 10}}]}, {"cat": "🕯 沉沦与救赎", "q": "你相信有一天会变好吗？", "opts": [{"t": "信，我想要的都会到手", "w": {"wealth": 25, "power": 10}}, {"t": "信，只要那个人在", "w": {"faith": 25, "love": 15}}, {"t": "不太信，但我还会等", "w": {"reclusion": 25, "love": 10}}, {"t": "不想了，过好今天就行", "w": {"freedom": 25, "art": 10}}]}, {"cat": "🕯 沉沦与救赎", "q": "你想被原谅吗？", "opts": [{"t": "不需要，我没做错", "w": {"power": 30, "reclusion": 10}}, {"t": "想，但不会开口求", "w": {"reclusion": 25, "power": 10}}, {"t": "想，很想", "w": {"love": 25, "faith": 10}}, {"t": "无所谓，原不原谅都行", "w": {"freedom": 25, "wealth": 10}}]}, {"cat": "🕯 沉沦与救赎", "q": "最后一问：你承认自己有罪吗？", "opts": [{"t": "承认，而且我很享受", "w": {"art": 25, "power": 15}}, {"t": "承认，但我不会改", "w": {"reclusion": 25, "wisdom": 10}}, {"t": "承认，也愿意偿还", "w": {"faith": 25, "chivalry": 10}}, {"t": "不承认，我只是活着", "w": {"freedom": 25, "power": 10}}]}];
+
+
+// ══════════ STATE ══════════
+let current=0, answers={}, autoTimer=null;
+
+// ══════════ UTILS ══════════
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0,0);
+}
+
+function calcMatch(prefs,city){
+  const dims=["power","wealth","freedom","love","wisdom","chivalry","art","reclusion","adventure","faith"];
+  const s=dims.map(d=>100-Math.abs((prefs[d]||50)-(city.p[d]||50)));
+  return Math.round(s.reduce((a,b)=>a+b,0)/dims.length);
+}
+
+function buildPrefs(ans){
+  const base={power:50,wealth:50,freedom:50,love:50,wisdom:50,chivalry:50,art:50,reclusion:50,adventure:50,faith:50};
+  Object.values(ans).forEach(w=>{Object.entries(w).forEach(([k,v])=>{base[k]=Math.max(0,Math.min(100,base[k]+v));})});
+  return base;
+}
+
+// ══════════ PASSWORD ══════════
+function checkPwd(){
+  const v=document.getElementById('pw-input').value;
+  const err=document.getElementById('pw-err');
+  const inp=document.getElementById('pw-input');
+  if(v==='8865'){showPage('page-intro');}
+  else{
+    err.style.display='block';
+    inp.style.border='2px solid #FF8A8A';
+    inp.style.animation='pwShake 0.4s ease';
+    setTimeout(()=>{inp.style.animation='';},400);
+  }
+}
+document.getElementById('pw-input').addEventListener('keydown',e=>{if(e.key==='Enter')checkPwd();});
+
+// ══════════ QUIZ ══════════
+function startQuiz(){current=0;answers={};renderQ();showPage('page-quiz');}
+
+function renderQ(){
+  const q=QUESTIONS[current];
+  const total=QUESTIONS.length;
+  const pct=Math.round(((current+1)/total)*100);
+  document.getElementById('q-cat').textContent=q.cat;
+  document.getElementById('q-count').textContent=`问题 ${current+1} / ${total}`;
+  document.getElementById('q-pct').textContent=pct+'%';
+  document.getElementById('progress-bar').style.width=pct+'%';
+  document.getElementById('q-text').textContent=q.q;
+  document.getElementById('prev-btn').style.opacity=current===0?'0.3':'1';
+  document.getElementById('auto-hint').style.opacity='1';
+  const body=document.getElementById('q-body');
+  body.style.opacity='1';
+  const opts=document.getElementById('opts');
+  opts.innerHTML='';
+  q.opts.forEach((opt,i)=>{
+    const btn=document.createElement('button');
+    btn.className='opt';
+    const prevW=answers[current];
+    const isSelected=prevW&&JSON.stringify(prevW)===JSON.stringify(opt.w)&&Object.keys(opt.w).every(k=>prevW[k]===opt.w[k]);
+    if(isSelected)btn.classList.add('selected');
+    btn.innerHTML=`<span class="opt-radio">${isSelected?'●':'○'}</span>${opt.t}`;
+    btn.onclick=()=>selectOpt(opt,btn,q);
+    opts.appendChild(btn);
+  });
+}
+
+function selectOpt(opt,btn,q){
+  if(autoTimer)clearTimeout(autoTimer);
+  document.querySelectorAll('.opt').forEach(b=>{b.classList.remove('selected');b.querySelector('.opt-radio').textContent='○';});
+  btn.classList.add('selected');
+  btn.querySelector('.opt-radio').textContent='●';
+  document.getElementById('auto-hint').style.opacity='0';
+  answers[current]=opt.w;
+  autoTimer=setTimeout(()=>{
+    if(current===QUESTIONS.length-1){showResults();}
+    else{current++;renderQ();}
+  },80);
+}
+
+function prevQ(){
+  if(current===0)return;
+  if(autoTimer)clearTimeout(autoTimer);
+  const body=document.getElementById('q-body');
+  body.style.opacity='0';
+  setTimeout(()=>{current--;renderQ();},200);
+}
+
+// ══════════ GENERATE REASON ══════════
+function generateReason(prefs, city){
+  const dimInfo = {
+power:{name:"支配欲",high:"凡事都要说了算的强势",low:"随人安排也无所谓的松弛",cityHigh:c=>`你和${c.name}一样，骨子里要把局面攥在自己手里`,cityLow:c=>`你不像${c.name}那样强势，让别人拿主意你也自在`},
+wealth:{name:"贪欲浓度",high:"永远不满足的想要",low:"够用就好的清简",cityHigh:c=>`你像${c.name}一样贪心，要的从来不是够，而是更多`,cityLow:c=>`你不似${c.name}贪多，一份清简的日子对你刚刚好`},
+freedom:{name:"惰性疏离",high:"什么都不想管的重",low:"闲不下来的动",cityHigh:c=>`你承袭${c.name}的惰性，能拖就拖、能躺就躺`,cityLow:c=>`比起${c.name}的懒散，你闲下来反而发慌`},
+love:{name:"执念深浅",high:"放不下、也忘不掉",low:"随时能放手的淡",cityHigh:c=>`你拥有${c.name}般的执念，一旦挂心便再难放下`,cityLow:c=>`你如${c.name}般放得下，来去都不纠缠`},
+wisdom:{name:"心机城府",high:"把人心算得明明白白",low:"藏不住事的坦荡",cityHigh:c=>`你继承了${c.name}的城府，谁在演戏、谁在真心，你一眼看穿`,cityLow:c=>`你与${c.name}不同，心里藏不住事，坦荡得近乎透明`},
+chivalry:{name:"护短烈火",high:"划界护食的狠",low:"事不关己的淡",cityHigh:c=>`你骨血里淌着${c.name}的护短，认下的人，旁人碰不得`,cityLow:c=>`比起${c.name}的强护短，你更信奉各人有各人的路`},
+art:{name:"欲念魅力",high:"往那一站就有戏",low:"平淡如水的实在",cityHigh:c=>`你带着${c.name}般的欲念张力，一个眼神就能把气氛点着`,cityLow:c=>`你不像${c.name}那样惹眼，更偏爱不动声色的实在`},
+reclusion:{name:"隐忍压抑",high:"憋得住也忍得下的沉",low:"藏不住事的直",cityHigh:c=>`你与${c.name}一般隐忍，天大的情绪也先咽下去再说`,cityLow:c=>`你不似${c.name}压抑，喜怒都挂在脸上，藏不住`},
+adventure:{name:"冲动野性",high:"说干就干的野",low:"静观其变的稳",cityHigh:c=>`你承袭${c.name}的野性，想做什么从不问可不可以`,cityLow:c=>`你不如${c.name}冲动，总要想想后果才动`},
+faith:{name:"忠贞成瘾",high:"认定了就是一生的执",low:"谁都可以的无所谓",cityHigh:c=>`你心怀${c.name}般的忠贞，认定一个人便再没有退路`,cityLow:c=>`你少有${c.name}式痴缠，缘分来了就接，走了也不强留`}
+};
+const dims=Object.keys(dimInfo);
+  const userTop=dims.map(d=>({dim:d,val:prefs[d]||50,diff:Math.abs((prefs[d]||50)-50)})).sort((a,b)=>b.diff-a.diff).slice(0,3);
+  const matchTop=dims.map(d=>({dim:d,match:100-Math.abs((prefs[d]||50)-(city.p[d]||50))})).sort((a,b)=>b.match-a.match).slice(0,3);
+  const seen=new Set();
+  const usedDims=[];
+  userTop.forEach(u=>{if(!seen.has(u.dim)){seen.add(u.dim);usedDims.push(u.dim);}});
+  matchTop.forEach(m=>{if(!seen.has(m.dim)&&usedDims.length<4){seen.add(m.dim);usedDims.push(m.dim);}});
+
+  let reason=`根据你的灵魂偏好，${city.name}是你最契合的那一个。`;
+  usedDims.slice(0,3).forEach(d=>{
+    const info=dimInfo[d];
+    const userVal=prefs[d]||50;
+    const cityVal=city.p[d]||50;
+    if(userVal>=55&&cityVal>=55){
+      reason+=info.cityHigh(city)+'。';
+    }else if(userVal<45&&cityVal<45){
+      reason+=info.cityLow(city)+'。';
+    }else if(Math.abs(userVal-cityVal)<=20){
+      reason+=`在${info.name}上，${city.name}与你的灵魂频率十分接近，能默契呼应你心底的声音。`;
+    }
+  });
+  reason+=`综合来看，你此生的许多执念，都藏着那一世的回响。`;
+  return reason;
+}
+
+function generateOtherReason(prefs, city){
+  const dimLabelsShort = {power:"支配欲",wealth:"贪欲浓度",freedom:"惰性疏离",love:"执念深浅",wisdom:"心机城府",chivalry:"护短烈火",art:"欲念魅力",reclusion:"隐忍压抑",adventure:"冲动野性",faith:"忠贞成瘾"};
+const dims=Object.keys(dimLabelsShort);
+  const matchDims=dims.map(d=>({dim:d,label:dimLabelsShort[d],match:100-Math.abs((prefs[d]||50)-(city.p[d]||50))})).sort((a,b)=>b.match-a.match);
+  const topDims=matchDims.slice(0,3).map(m=>m.label);
+  return `你在${topDims.join('、')}等方面与${city.name}高度吻合，匹配度${city.score}%。${city.desc}`;
+}
+
+// ══════════ RESULTS ══════════
+function showResults(){
+  const prefs=buildPrefs(answers);
+  const ranked=CITIES.map(c=>({...c,score:calcMatch(prefs,c)})).sort((a,b)=>b.score-a.score);
+  const top=ranked[0];
+  const others=ranked.slice(1,7);
+
+  document.getElementById('r-pct').textContent=top.score+'%';
+  document.getElementById('r-city').textContent=top.name;
+  document.getElementById('r-prov').textContent=top.province;
+  document.getElementById('r-portrait').innerHTML=(PORTRAITS[top.name]||'');
+  document.getElementById('r-tags').innerHTML=top.tags.map(t=>`<span class="tag-chip">${t}</span>`).join('');
+  document.getElementById('r-kws').innerHTML=top.kw.map(k=>`<span class="kw-chip">${k}</span>`).join('');
+  document.getElementById('r-desc').textContent=generateReason(prefs,top);
+
+  const dimLabels = {power:"支配欲",wealth:"贪欲浓度",freedom:"惰性疏离",love:"执念深浅",wisdom:"心机城府",chivalry:"护短烈火",art:"欲念魅力",reclusion:"隐忍压抑",adventure:"冲动野性",faith:"忠贞成瘾"};
+const dg=document.getElementById('dim-grid');
+  dg.innerHTML='';
+  Object.entries(dimLabels).forEach(([k,label])=>{
+    const val=prefs[k];
+    dg.innerHTML+=`<div class="dim-row"><span class="dim-label">${label}</span><div class="dim-track"><div class="dim-bar" style="width:${val}%"></div></div><span class="dim-val">${val}</span></div>`;
+  });
+
+  const og=document.getElementById('others-grid');
+  og.innerHTML='';
+  others.forEach(c=>{
+    og.innerHTML+=`<div class="other-card"><div class="other-portrait">${PORTRAITS[c.name]||''}</div><div class="other-top"><div><span>🏯</span><span class="other-name">${c.name}</span><span class="other-prov"> · ${c.province}</span></div><span class="other-score">${c.score}%</span></div><div class="tag-row">${c.tags.map(t=>`<span class="tag-chip-sm">${t}</span>`).join('')}</div><div class="tag-row">${c.kw.map(k=>`<span class="kw-chip-sm">${k}</span>`).join('')}</div><p class="other-desc">${generateOtherReason(prefs,c)}</p></div>`;
+  });
+
+  showPage('page-result');
+}
+
+function resetQuiz(){showPage('page-intro');}
+</script>
+</body>
+</html>
