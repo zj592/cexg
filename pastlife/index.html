@@ -129,8 +129,44 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9999;
 .kw-chip-sm{background:#0d0221;color:var(--acc2);border-radius:2px;padding:3px 10px;font-size:11px;border:1px solid var(--acc)}
 .decl-text{font-size:13px;color:#cfeaff;line-height:1.8;margin-bottom:16px}
 .decl-text strong{color:var(--acc)}</style>
+
+<!-- LAYOUT-PATCH-START -->
+<style id="layout-patch">
+body[data-layout="immersive"] .page.active{padding:44px 22px 90px}
+body[data-layout="immersive"] .wrap{max-width:560px}
+body[data-layout="immersive"] .icon-box{width:auto;height:auto;background:transparent;border:none;box-shadow:none;font-size:48px;transform:none;margin:34px auto 2px}
+body[data-layout="immersive"] .hero-title{font-size:35px;letter-spacing:8px;margin-bottom:10px}
+body[data-layout="immersive"] .hero-sub{letter-spacing:9px;margin-bottom:30px}
+body[data-layout="immersive"] .card,
+body[data-layout="immersive"] .info-box,
+body[data-layout="immersive"] .pw-card,
+body[data-layout="immersive"] .q-header,
+body[data-layout="immersive"] .q-body,
+body[data-layout="immersive"] .dim-card,
+body[data-layout="immersive"] .others-card,
+body[data-layout="immersive"] .match-reason,
+body[data-layout="immersive"] .top-card{background:transparent;border:none;box-shadow:none;border-radius:0;padding-left:0;padding-right:0}
+body[data-layout="immersive"] .info-box{border-left:none;text-align:center}
+body[data-layout="immersive"] .card-title{padding-left:0;text-align:center;letter-spacing:5px}
+body[data-layout="immersive"] .card-title::before{display:none}
+body[data-layout="immersive"] .decl-text{text-align:center}
+body[data-layout="immersive"] .stats-grid{gap:0}
+body[data-layout="immersive"] .stat-card{background:transparent;border:none;border-top:1px solid var(--line);border-radius:0;box-shadow:none;padding:14px 6px}
+body[data-layout="immersive"] .dim-item{background:transparent;border:none;border-bottom:1px solid var(--line);border-radius:0;box-shadow:none}
+body[data-layout="immersive"] .category-card{background:transparent;border:none;border-top:1px solid var(--line);border-radius:0;box-shadow:none;padding:16px 0}
+body[data-layout="immersive"] .city-tag{background:transparent}
+body[data-layout="immersive"] .opt:not(.selected){background:transparent;border:none;border-bottom:1px solid var(--line);border-radius:0;padding:17px 6px}
+body[data-layout="immersive"] .opt:not(.selected):hover{transform:none;border-bottom-color:var(--acc2)}
+body[data-layout="immersive"] .pw-input{background:transparent;border:none;border-bottom:2px solid var(--acc2);border-radius:0;letter-spacing:16px}
+body[data-layout="immersive"] .nav-btn{background:transparent;border-radius:99px}
+body[data-layout="immersive"] .btn-primary{border-radius:99px;letter-spacing:6px}
+body[data-layout="immersive"] .btn-secondary{background:transparent;border-radius:99px}
+body[data-layout="immersive"] .other-card{background:transparent;border:none;border-top:1px solid var(--line);border-radius:0;box-shadow:none}
+body[data-layout="immersive"] .top-card::before{display:none}
+</style>
+<!-- LAYOUT-PATCH-END -->
 </head>
-<body>
+<body data-layout="immersive">
 
 <!-- ══════════ PAGE: PASSWORD ══════════ -->
 <div class="page active" id="page-password">
