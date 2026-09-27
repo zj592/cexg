@@ -119,8 +119,40 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9999;o
 .kw-chip-sm{background:var(--paper);color:var(--acc2);border-radius:20px;padding:3px 10px;font-size:11px;border:1px solid var(--line)}
 .decl-text{font-size:13px;color:#5b554c;line-height:1.9;margin-bottom:16px}
 .decl-text strong{color:var(--acc)}</style>
+
+<!-- LAYOUT-PATCH-START -->
+<style id="layout-patch">
+body[data-layout="sticker"] .wrap{max-width:540px}
+body[data-layout="sticker"] .icon-box{border-radius:26px;transform:rotate(-6deg);margin:28px auto 16px}
+body[data-layout="sticker"] .hero-title{font-size:28px}
+body[data-layout="sticker"] .hero-sub{width:fit-content;margin:0 auto 22px;background:var(--acc);color:var(--paper);padding:5px 18px;border-radius:99px;letter-spacing:4px;transform:rotate(-2deg);font-weight:700}
+body[data-layout="sticker"] .card,
+body[data-layout="sticker"] .pw-card,
+body[data-layout="sticker"] .info-box,
+body[data-layout="sticker"] .category-card,
+body[data-layout="sticker"] .dim-card,
+body[data-layout="sticker"] .others-card,
+body[data-layout="sticker"] .q-body,
+body[data-layout="sticker"] .q-header,
+body[data-layout="sticker"] .top-card{border-radius:26px;box-shadow:0 10px 0 -2px rgba(0,0,0,.10)}
+body[data-layout="sticker"] .stat-card{border-radius:20px;transform:rotate(-1.5deg)}
+body[data-layout="sticker"] .stats-grid > .stat-card:nth-child(even){transform:rotate(1.5deg)}
+body[data-layout="sticker"] .category-card:nth-child(odd){transform:rotate(-1.2deg)}
+body[data-layout="sticker"] .category-card:nth-child(even){transform:rotate(1.2deg)}
+body[data-layout="sticker"] .dim-item{border-radius:16px}
+body[data-layout="sticker"] .opt{border-radius:20px;box-shadow:0 5px 0 -1px rgba(0,0,0,.08)}
+body[data-layout="sticker"] .btn-primary{border-radius:99px}
+body[data-layout="sticker"] .btn-secondary{border-radius:99px}
+body[data-layout="sticker"] .pw-input{border-radius:20px}
+body[data-layout="sticker"] .pw-card{border-radius:30px}
+body[data-layout="sticker"] .city-tag{border-radius:99px}
+body[data-layout="sticker"] .other-card{border-radius:22px;transform:rotate(1deg)}
+body[data-layout="sticker"] .match-reason{border-radius:22px}
+body[data-layout="sticker"] .nav-btn{border-radius:99px}
+</style>
+<!-- LAYOUT-PATCH-END -->
 </head>
-<body>
+<body data-layout="sticker">
 
 <!-- ══════════ PAGE: PASSWORD ══════════ -->
 <div class="page active" id="page-password">
