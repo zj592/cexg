@@ -129,8 +129,63 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9999;
 .kw-chip-sm{background:#0d0221;color:var(--acc2);border-radius:2px;padding:3px 10px;font-size:11px;border:1px solid var(--acc)}
 .decl-text{font-size:13px;color:#cfeaff;line-height:1.8;margin-bottom:16px}
 .decl-text strong{color:var(--acc)}</style>
+
+<!-- LAYOUT-PATCH-START -->
+<style id="layout-patch">
+body[data-layout="dossier"] .wrap{max-width:560px}
+body[data-layout="dossier"] .card,
+body[data-layout="dossier"] .info-box,
+body[data-layout="dossier"] .pw-card,
+body[data-layout="dossier"] .category-card,
+body[data-layout="dossier"] .dim-card,
+body[data-layout="dossier"] .others-card,
+body[data-layout="dossier"] .q-body,
+body[data-layout="dossier"] .q-header,
+body[data-layout="dossier"] .top-card,
+body[data-layout="dossier"] .other-card,
+body[data-layout="dossier"] .stat-card,
+body[data-layout="dossier"] .opt,
+body[data-layout="dossier"] .btn-primary,
+body[data-layout="dossier"] .btn-secondary,
+body[data-layout="dossier"] .pw-input,
+body[data-layout="dossier"] .match-reason,
+body[data-layout="dossier"] .city-tag,
+body[data-layout="dossier"] .tag-chip,
+body[data-layout="dossier"] .kw-chip,
+body[data-layout="dossier"] .nav-btn,
+body[data-layout="dossier"] .category-icon,
+body[data-layout="dossier"] .icon-box,
+body[data-layout="dossier"] .progress-track,
+body[data-layout="dossier"] .progress-bar{border-radius:0}
+body[data-layout="dossier"] .card-title{letter-spacing:3px;font-size:13px;border-bottom:1px solid var(--line);padding:0 0 8px 0}
+body[data-layout="dossier"] .card-title::before{display:none}
+body[data-layout="dossier"] .decl-text{font-size:12.5px}
+body[data-layout="dossier"] .stats-grid{gap:0;border-top:1px solid var(--line)}
+body[data-layout="dossier"] .stat-card{border:none;border-bottom:1px solid var(--line);border-radius:0;display:grid;grid-template-columns:26px 1fr auto;align-items:center;justify-items:start;gap:8px;padding:12px 2px;background:transparent;box-shadow:none}
+body[data-layout="dossier"] .stat-icon{font-size:16px}
+body[data-layout="dossier"] .stat-num{font-size:16px}
+body[data-layout="dossier"] .stat-desc{font-size:11px;margin-left:auto}
+body[data-layout="dossier"] .info-box{border-left:none;border-top:2px solid var(--acc2);background:transparent}
+body[data-layout="dossier"] .dim-item{border:none;border-bottom:1px dashed var(--line);background:transparent;box-shadow:none;display:grid;grid-template-columns:92px 1fr;align-items:baseline;gap:6px}
+body[data-layout="dossier"] .dim-item:last-child{border-bottom:none}
+body[data-layout="dossier"] .dim-item-icon{font-size:15px}
+body[data-layout="dossier"] .dim-item > div{grid-column:2}
+body[data-layout="dossier"] .dim-item-name{letter-spacing:1px}
+body[data-layout="dossier"] .category-card{border:none;border-bottom:1px solid var(--line);background:transparent;box-shadow:none;padding:14px 0}
+body[data-layout="dossier"] .category-icon{width:28px;height:28px;font-size:14px}
+body[data-layout="dossier"] .category-desc{background:transparent;border:1px solid var(--line);border-radius:0}
+body[data-layout="dossier"] .city-tag{background:transparent}
+body[data-layout="dossier"] .opt:not(.selected){background:transparent}
+body[data-layout="dossier"] .btn-primary{letter-spacing:4px}
+body[data-layout="dossier"] .btn-secondary{background:transparent}
+body[data-layout="dossier"] .others-grid{gap:0;border-top:1px solid var(--line)}
+body[data-layout="dossier"] .other-card{border:none;border-bottom:1px solid var(--line);background:transparent;box-shadow:none;text-align:left}
+body[data-layout="dossier"] .other-portrait{margin:0 0 6px}
+body[data-layout="dossier"] .other-desc{text-align:left}
+</style>
+<!-- LAYOUT-PATCH-END -->
 </head>
-<body>
+<body data-layout="dossier">
 
 <!-- ══════════ PAGE: PASSWORD ══════════ -->
 <div class="page active" id="page-password">
