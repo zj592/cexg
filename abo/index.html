@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>测测你的 ABO 信息素人格 · 暗黑人设测试</title>
+<style>* { margin:0; padding:0; box-sizing:border-box }
+:root{--acc:#8E2A44;--acc2:#C9A227;--paper:#130A1A;--ink:#EDE4F2;--seal:#D43A5E;--line:rgba(201,162,39,.30)}
+body{font-family:-apple-system,'Microsoft YaHei','PingFang SC',sans-serif;background-color:var(--paper);
+  background-image:radial-gradient(900px 600px at 10% -10%, rgba(142,42,68,.16), transparent 60%),radial-gradient(800px 560px at 110% 4%, rgba(201,162,39,.06), transparent 60%),radial-gradient(700px 700px at 50% 120%, rgba(142,42,68,.10), transparent 60%);
+  background-attachment:fixed;min-height:100vh;color:var(--ink);overflow-x:hidden;line-height:1.75;-webkit-font-smoothing:antialiased}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.4;background:repeating-linear-gradient(0deg, rgba(255,255,255,.012) 0 1px, transparent 1px 3px)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@keyframes sealIn{from{opacity:0;transform:rotate(-10deg) scale(.82)}to{opacity:1;transform:rotate(-3deg) scale(1)}}
+.page{display:none;min-height:100vh;padding:22px 16px 64px}
+.page.active{display:flex;flex-direction:column;align-items:center;animation:fadeUp .45s ease}
+.wrap,.wide-wrap{width:100%}
+.wrap{max-width:520px}
+.wide-wrap{max-width:680px}
+.icon-box{width:74px;height:74px;border-radius:12px;background:linear-gradient(135deg,var(--acc),#5A1E30);color:var(--paper);display:flex;align-items:center;justify-content:center;font-size:34px;margin:26px auto 14px;border:1px solid var(--acc2);box-shadow:0 6px 18px rgba(0,0,0,.45);transform:rotate(-3deg);animation:sealIn .5s ease}
+.hero-title{font-family:'Microsoft YaHei','PingFang SC',sans-serif;font-size:27px;font-weight:700;color:var(--ink);text-align:center;margin-bottom:6px;line-height:1.4;letter-spacing:3px}
+.hero-sub{font-size:12px;color:var(--acc2);letter-spacing:6px;font-weight:600;text-align:center;margin-bottom:22px}
+.card,.stat-card,.info-box,.dim-item,.category-card,.pw-card,.btn-secondary,.q-header,.q-body,.top-card,.dim-card,.others-card,.other-card{border:1px solid var(--line);background:#1E1226;box-shadow:0 4px 18px rgba(0,0,0,.35);border-radius:10px}
+.card{padding:20px 18px;margin-bottom:16px}
+.card-title{font-size:15px;font-weight:700;color:var(--acc);margin-bottom:10px;letter-spacing:1px;padding-left:12px;position:relative}
+.card-title::before{content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);width:4px;height:14px;background:var(--acc2);border-radius:2px}
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+.stat-card{padding:16px 12px;display:flex;flex-direction:column;align-items:center;gap:4px}
+.stat-icon{font-size:24px}
+.stat-num{font-size:19px;font-weight:700;color:var(--ink)}
+.stat-desc{font-size:12px;color:var(--acc2)}
+.info-box{padding:14px 18px;margin-bottom:20px;border-left:4px solid var(--acc2)}
+.info-box-title{font-size:13px;font-weight:700;color:var(--acc);margin-bottom:6px;letter-spacing:1px}
+.info-box-text{font-size:13px;color:#BCA9C6;line-height:1.7}
+.dim-list{display:flex;flex-direction:column;gap:8px}
+.dim-item{padding:8px 12px;display:flex;align-items:flex-start;gap:10px}
+.dim-item-icon{font-size:18px;flex-shrink:0;margin-top:1px}
+.dim-item-name{font-size:13px;font-weight:700;color:var(--acc)}
+.dim-item-desc{font-size:12px;color:#A995B5}
+.category-section{margin-bottom:24px}
+.category-card{padding:16px 18px;margin-bottom:12px}
+.category-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.category-left{display:flex;align-items:center;gap:10px}
+.category-icon{width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:18px;background:var(--acc);color:var(--paper);font-weight:700}
+.category-name{font-size:15px;font-weight:700;color:var(--ink)}
+.category-desc{font-size:11px;color:var(--acc2);background:rgba(201,162,39,.14);padding:4px 10px;border-radius:20px}
+.city-tags{display:flex;flex-wrap:wrap;gap:8px}
+.city-tag{padding:6px 14px;background:var(--paper);border:1px solid var(--line);border-radius:20px;font-size:13px;color:var(--ink)}
+.pw-card{border-radius:12px;padding:24px;margin-bottom:20px;text-align:center}
+.pw-label{font-size:15px;font-weight:700;color:var(--acc);margin-bottom:16px;letter-spacing:1px}
+.pw-input{width:100%;text-align:center;font-size:28px;letter-spacing:12px;font-weight:700;padding:14px;border-radius:8px;outline:none;color:var(--acc);font-family:serif;border:2px solid var(--acc2);background:var(--paper);transition:box-shadow .2s}
+.pw-input:focus{box-shadow:0 0 0 3px rgba(201,162,39,.20)}
+.pw-err{color:var(--seal);font-size:13px;margin-top:8px;display:none;font-weight:700}
+.pw-hint{font-size:12px;color:var(--acc2);margin-top:10px}
+.btn-primary{width:100%;padding:16px;border-radius:8px;border:1px solid var(--acc);background:linear-gradient(135deg,var(--acc),#5A1E30);color:var(--paper);font-size:18px;font-weight:700;cursor:pointer;letter-spacing:3px;font-family:'Microsoft YaHei','PingFang SC',sans-serif;box-shadow:0 6px 18px rgba(0,0,0,.5);transition:transform .12s,box-shadow .12s}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(0,0,0,.6)}
+.btn-primary:active{transform:translateY(0)}
+.btn-secondary{width:100%;padding:16px;border-radius:8px;border:1px solid var(--line);background:#1E1226;cursor:pointer;font-size:16px;font-weight:700;color:var(--acc);font-family:serif;transition:background .15s;margin-bottom:10px}
+.btn-secondary:hover{background:var(--acc);color:var(--paper)}
+.footer{text-align:center;padding:16px 0 8px;width:100%}
+.footer a{font-size:13px;color:var(--acc2);text-decoration:none;border-bottom:1px solid var(--acc2);padding-bottom:2px}
+.q-header{border-radius:10px;padding:16px 20px;margin-bottom:20px;width:100%;max-width:600px}
+.q-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.q-cat{font-size:13px;font-weight:700;color:var(--acc);letter-spacing:1px}
+.q-count{font-size:13px;color:var(--acc2)}
+.q-pct{font-size:13px;font-weight:700;color:var(--ink)}
+.progress-track{height:10px;background:var(--paper);border:1px solid var(--line);border-radius:99px;overflow:hidden}
+.progress-bar{height:100%;background:linear-gradient(90deg,var(--acc),var(--acc2));border-radius:99px;transition:width .4s ease}
+.q-body{border-radius:12px;padding:28px 24px;margin-bottom:20px;width:100%;max-width:600px}
+.q-text{font-size:20px;font-weight:700;color:var(--ink);margin-bottom:24px;line-height:1.5;font-family:'Microsoft YaHei','PingFang SC',sans-serif}
+.opts{display:flex;flex-direction:column;gap:12px}
+.opt{padding:16px 20px;border-radius:10px;border:1px solid var(--line);background:#1E1226;cursor:pointer;text-align:left;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:12px;transition:all .15s;font-family:serif;width:100%}
+.opt:hover{border-color:var(--acc);background:#fff;transform:translateX(3px)}
+.opt.selected{border-color:var(--acc);background:var(--acc);color:var(--paper);font-weight:600}
+.opt-radio{font-size:18px;color:var(--acc);flex-shrink:0;width:20px;font-weight:700}
+.opt.selected .opt-radio{color:var(--paper)}
+.q-nav{display:flex;justify-content:space-between;align-items:center;gap:12px;width:100%;max-width:600px}
+.nav-btn{padding:13px 24px;border-radius:8px;border:1px solid var(--line);background:#1E1226;cursor:pointer;font-size:15px;color:var(--acc2);font-family:serif;transition:background .15s}
+.nav-btn:hover{background:var(--acc);color:var(--paper)}
+.auto-hint{font-size:13px;color:var(--acc2);flex:1;text-align:center;transition:opacity .3s}
+.top-card{border-radius:14px;padding:26px 24px 28px;text-align:center;margin-bottom:20px;width:100%;border:1px solid var(--acc2);box-shadow:0 8px 30px rgba(43,38,32,.10);background:linear-gradient(180deg,#1E1226,#F3EAD6);position:relative;overflow:hidden}
+.top-card::before{content:"";position:absolute;top:10px;left:50%;transform:translateX(-50%);width:60px;height:2px;background:var(--acc2);opacity:.6}
+.top-sub{font-size:13px;color:var(--acc2);font-weight:600;margin-bottom:12px;letter-spacing:3px;font-family:'STKaiti','KaiTi',serif}
+.top-portrait{width:170px;height:204px;margin:4px auto 8px}
+.top-portrait .pt-svg{width:100%;height:100%;display:block;filter:drop-shadow(0 4px 12px rgba(43,38,32,.14))}
+.match-pct{font-size:60px;font-weight:900;color:var(--acc);line-height:1;font-family:'Microsoft YaHei','PingFang SC',sans-serif}
+.top-city{font-size:28px;font-weight:900;color:var(--ink);margin:10px 0 4px;font-family:'Microsoft YaHei','PingFang SC',sans-serif;letter-spacing:2px}
+.top-prov{font-size:13px;color:var(--acc2);margin-bottom:14px}
+.tag-row{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:10px}
+.tag-chip{background:var(--acc);color:var(--paper);border-radius:20px;padding:4px 14px;font-size:13px;font-weight:600}
+.kw-chip{background:var(--paper);color:var(--acc2);border-radius:20px;padding:4px 14px;font-size:12px;border:1px solid var(--line)}
+.match-reason{background:var(--paper);border-radius:8px;padding:16px 20px;text-align:left;margin-top:16px;border:1px solid var(--line)}
+.reason-title{font-size:14px;font-weight:700;color:var(--acc);display:block;margin-bottom:8px;letter-spacing:1px}
+.reason-text{font-size:14px;color:#BCA9C6;line-height:1.9;margin:0}
+.dim-card{border-radius:12px;padding:24px;margin-bottom:20px;width:100%;border:1px solid var(--line)}
+.dim-card-title{font-size:16px;font-weight:700;color:var(--ink);margin-bottom:20px;letter-spacing:1px}
+.dim-grid{display:flex;flex-direction:column;gap:12px}
+.dim-row{display:flex;align-items:center;gap:12px}
+.dim-label{font-size:12px;color:var(--acc2);width:70px;flex-shrink:0}
+.dim-track{flex:1;height:10px;background:var(--paper);border:1px solid var(--line);border-radius:99px;overflow:hidden}
+.dim-bar{height:100%;background:linear-gradient(90deg,var(--acc),var(--acc2));border-radius:99px;transition:width .6s ease}
+.dim-val{font-size:12px;font-weight:700;color:var(--acc);width:28px;text-align:right;flex-shrink:0}
+.others-card{border-radius:12px;padding:24px;margin-bottom:24px;width:100%;border:1px solid var(--line)}
+.others-title{font-size:16px;font-weight:700;color:var(--ink);margin-bottom:20px;letter-spacing:1px}
+.others-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:480px){.others-grid{grid-template-columns:1fr}}
+.other-card{border-radius:10px;padding:16px 14px;background:#1E1226;border:1px solid var(--line);text-align:center}
+.other-portrait{width:60px;height:72px;margin:0 auto 8px;opacity:.96}
+.other-portrait .pt-svg{width:100%;height:100%;display:block}
+.other-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.other-name{font-size:16px;font-weight:700;color:var(--ink);font-family:'STKaiti','KaiTi',serif}
+.other-prov{font-size:11px;color:var(--acc2)}
+.other-score{font-size:18px;font-weight:900;color:var(--acc)}
+.other-desc{font-size:12px;color:var(--acc2);line-height:1.7;margin-top:8px;text-align:left}
+.tag-chip-sm{background:var(--acc);color:var(--paper);border-radius:20px;padding:3px 10px;font-size:11px;font-weight:600}
+.kw-chip-sm{background:var(--paper);color:var(--acc2);border-radius:20px;padding:3px 10px;font-size:11px;border:1px solid var(--line)}
+.decl-text{font-size:13px;color:#BCA9C6;line-height:1.9;margin-bottom:16px}
+.decl-text strong{color:var(--acc)}</style>
+</head>
+<body>
+
+<!-- ══════════ PAGE: PASSWORD ══════════ -->
+<div class="page active" id="page-password">
+  <div class="wrap">
+    <div class="icon-box">🧬</div>
+    <h1 class="hero-title">测测你的 ABO 信息素人格</h1>
+    <p class="hero-sub">ABO PHEROMONE</p>
+    <div class="pw-card">
+      <p class="pw-label">🔑 请输入通关密语</p>
+      <input type="password" id="pw-input" class="pw-input" maxlength="4" placeholder="••••" />
+      <p class="pw-err" id="pw-err">校验码错误，请重试</p>
+    </div>
+    <div class="info-box">
+      <p class="info-box-title">ℹ️ 说明</p>
+      <p class="info-box-text">本测验基于 ABO 世界观，30 道题匹配你最贴近的信息素人格。仅供娱乐，虚构设定请勿较真。</p>
+    </div>
+    <button class="btn-primary" onclick="checkPwd()">→ 开启测试</button>
+  </div>
+</div>
+
+<!-- ══════════ PAGE: INTRO ══════════ -->
+<div class="page" id="page-intro">
+  <div class="wrap">
+    <div class="icon-box">🧬</div>
+    <h1 class="hero-title">你的信息素，早就出卖了你的天性</h1>
+    <p class="hero-sub">ABO PHEROMONE TYPE</p>
+
+    <div class="stats-grid"><div class="stat-card"><span class="stat-icon">🧬</span><span class="stat-num">30道</span><span class="stat-desc">信息素试炼</span></div><div class="stat-card"><span class="stat-icon">⏱️</span><span class="stat-num">约1分钟</span><span class="stat-desc">测出真身</span></div><div class="stat-card"><span class="stat-icon">🐺</span><span class="stat-num">10位</span><span class="stat-desc">信息素人格</span></div><div class="stat-card"><span class="stat-icon">🩸</span><span class="stat-num">10维度</span><span class="stat-desc">天性画像</span></div></div>
+
+    <div class="card">
+      <p class="card-title">📜 测试说明</p>
+      <p class="decl-text">本测试共 <strong>30道题</strong>，穿越以下 <strong>10个天性维度</strong>，每道题选择后<strong>自动跳转</strong>下一题。完成后系统将从 <strong>10种信息素人格</strong> 中，为你点出最贴近的那一个——你是 Alpha、Beta、Omega，还是稀有的羁绊型。</p>
+      <div class="dim-list">
+<div class="dim-item"><span class="dim-item-icon">👑</span><div><span class="dim-item-name">支配气场</span><span class="dim-item-desc"> — 你压不压得住全场的场？</span></div></div>
+<div class="dim-item"><span class="dim-item-icon">🩸</span><div><span class="dim-item-name">欲望浓度</span><span class="dim-item-desc"> — 你是够用就好，还是要得更多？</span></div></div>
+<div class="dim-item"><span class="dim-item-icon">🌫️</span><div><span class="dim-item-name">独处抽离</span><span class="dim-item-desc"> — 独处对你是刚需还是煎熬？</span></div></div>
+<div class="dim-item"><span class="dim-item-icon">💗</span><div><span class="dim-item-name">依恋浓度</span><span class="dim-item-desc"> — 一沾就上瘾，还是随时能抽身？</span></div></div>
+<div class="dim-item"><span class="dim-item-icon">🎭</span><div><span class="dim-item-name">城府心机</span><span class="dim-item-desc"> — 你看得穿几分人心？</span></div></div>
+<div class="dim-item"><span class="dim-item-icon">🛡️</span><div><span class="dim-item-name">守护本能</span><span class="dim-item-desc"> — 护食划界，你有多狠？</span></div></div>
+<div class="dim-item"><span class="dim-item-icon">✨</span><div><span class="dim-item-name">张力魅力</span><span class="dim-item-desc"> — 你往那一站，有没有戏？</span></div></div>
+<div class="dim-item"><span class="dim-item-icon">🕯️</span><div><span class="dim-item-name">内敛隐忍</span><span class="dim-item-desc"> — 情绪憋得住还是藏不住？</span></div></div>
+<div class="dim-item"><span class="dim-item-icon">⚡</span><div><span class="dim-item-name">野性主动</span><span class="dim-item-desc"> — 说干就干，还是先想后果？</span></div></div>
+<div class="dim-item"><span class="dim-item-icon">🔗</span><div><span class="dim-item-name">忠诚专一</span><span class="dim-item-desc"> — 认定一生，还是随缘就好？</span></div></div>
+</div>
+    </div>
+
+    <div class="category-section"><div class="category-card"><div class="category-header"><div class="category-left"><div class="category-icon a">🐺</div><div class="category-name">Alpha · 支配系</div></div><div class="category-desc">冷冽 · 护短 · 野心</div></div><div class="city-tags"><span class="city-tag">雪松冷杉</span><span class="city-tag">硝烟皮革</span><span class="city-tag">深海龙涎</span></div></div><div class="category-card"><div class="category-header"><div class="category-left"><div class="category-icon b">🍵</div><div class="category-name">Beta · 中性系</div></div><div class="category-desc">佛系 · 敏感 · 享乐</div></div><div class="city-tags"><span class="city-tag">白茶青竹</span><span class="city-tag">旧书墨香</span><span class="city-tag">雨夜苔藓</span></div></div><div class="category-card"><div class="category-header"><div class="category-left"><div class="category-icon c">🌹</div><div class="category-name">Omega · 引诱系</div></div><div class="category-desc">甜软 · 优雅 · 心机</div></div><div class="city-tags"><span class="city-tag">白桃奶糖</span><span class="city-tag">茉莉晚香</span><span class="city-tag">血橙莓果</span></div></div><div class="category-card"><div class="category-header"><div class="category-left"><div class="category-icon d">🕊️</div><div class="category-name">稀有 · 羁绊系</div></div><div class="category-desc">慢热 · 深情 · 独一份</div></div><div class="city-tags"><span class="city-tag">雪松玫瑰</span></div></div></div>
+
+    <button class="btn-primary" onclick="startQuiz()">▶ 激活我的信息素 →</button>
+  </div>
+</div>
+<!-- ══════════ PAGE: QUIZ ══════════ -->
+<div class="page" id="page-quiz">
+  <div class="q-header">
+    <div class="q-meta">
+      <span class="q-cat" id="q-cat">维度</span>
+      <span class="q-count" id="q-count">问题 1 / 30</span>
+      <span class="q-pct" id="q-pct">2%</span>
+    </div>
+    <div class="progress-track"><div class="progress-bar" id="progress-bar" style="width:2%"></div></div>
+  </div>
+  <div class="q-body" id="q-body">
+    <h2 class="q-text" id="q-text"></h2>
+    <div class="opts" id="opts"></div>
+  </div>
+  <div class="q-nav">
+    <button class="nav-btn" id="prev-btn" onclick="prevQ()">‹ 上一题</button>
+    <div class="auto-hint" id="auto-hint">← 点击选项自动跳转</div>
+  </div>
+</div>
+
+<!-- ══════════ PAGE: RESULT ══════════ -->
+<div class="page" id="page-result">
+  <div class="wide-wrap">
+    <div class="top-card">
+      <p class="top-sub">你灵魂深处，是——</p>
+      <div class="top-portrait" id="r-portrait"></div>
+      <div class="match-pct" id="r-pct">94%</div>
+      <h2 class="top-city" id="r-city">—</h2>
+      <p class="top-prov" id="r-prov">—</p>
+      <div class="tag-row" id="r-tags"></div>
+      <div class="tag-row" id="r-kws"></div>
+      <div class="match-reason">
+        <span class="reason-title">🧬 你的信息素画像</span>
+        <p class="reason-text" id="r-desc"></p>
+      </div>
+    </div>
+
+    <div class="dim-card">
+      <p class="dim-card-title">你的天性画像</p>
+      <div class="dim-grid" id="dim-grid"></div>
+    </div>
+
+    <div class="others-card">
+      <p class="others-title">你还可能是……</p>
+      <div class="others-grid" id="others-grid"></div>
+    </div>
+
+    <button class="btn-secondary" onclick="resetQuiz()">↺ 再测一次</button>
+  </div>
+</div>
+
+<script>
+const PORTRAITS = {
+"雪松冷杉":'<svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="ab0" cx="50%" cy="38%" r="72%"><stop offset="0%" stop-color="#2A1030"/><stop offset="100%" stop-color="#C9A227"/></radialGradient></defs><circle cx="120" cy="120" r="108" fill="url(#ab0)" stroke="#C9A227" stroke-width="3"/><circle cx="120" cy="120" r="92" fill="none" stroke="#C9A227" stroke-width="1" opacity="0.5"/><text x="120" y="122" font-size="86" text-anchor="middle" dominant-baseline="central">🐺</text><circle cx="188" cy="188" r="17" fill="#C9A227"/><text x="188" y="189" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="central">信</text></svg>',
+"硝烟皮革":'<svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="ab1" cx="50%" cy="38%" r="72%"><stop offset="0%" stop-color="#3A0F14"/><stop offset="100%" stop-color="#E0453A"/></radialGradient></defs><circle cx="120" cy="120" r="108" fill="url(#ab1)" stroke="#E0453A" stroke-width="3"/><circle cx="120" cy="120" r="92" fill="none" stroke="#E0453A" stroke-width="1" opacity="0.5"/><text x="120" y="122" font-size="86" text-anchor="middle" dominant-baseline="central">🔥</text><circle cx="188" cy="188" r="17" fill="#E0453A"/><text x="188" y="189" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="central">信</text></svg>',
+"深海龙涎":'<svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="ab2" cx="50%" cy="38%" r="72%"><stop offset="0%" stop-color="#0F2233"/><stop offset="100%" stop-color="#4FA8D9"/></radialGradient></defs><circle cx="120" cy="120" r="108" fill="url(#ab2)" stroke="#4FA8D9" stroke-width="3"/><circle cx="120" cy="120" r="92" fill="none" stroke="#4FA8D9" stroke-width="1" opacity="0.5"/><text x="120" y="122" font-size="86" text-anchor="middle" dominant-baseline="central">🌊</text><circle cx="188" cy="188" r="17" fill="#4FA8D9"/><text x="188" y="189" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="central">信</text></svg>',
+"白茶青竹":'<svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="ab3" cx="50%" cy="38%" r="72%"><stop offset="0%" stop-color="#12291F"/><stop offset="100%" stop-color="#7FD9A8"/></radialGradient></defs><circle cx="120" cy="120" r="108" fill="url(#ab3)" stroke="#7FD9A8" stroke-width="3"/><circle cx="120" cy="120" r="92" fill="none" stroke="#7FD9A8" stroke-width="1" opacity="0.5"/><text x="120" y="122" font-size="86" text-anchor="middle" dominant-baseline="central">🍵</text><circle cx="188" cy="188" r="17" fill="#7FD9A8"/><text x="188" y="189" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="central">信</text></svg>',
+"旧书墨香":'<svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="ab4" cx="50%" cy="38%" r="72%"><stop offset="0%" stop-color="#2A2418"/><stop offset="100%" stop-color="#D9C27F"/></radialGradient></defs><circle cx="120" cy="120" r="108" fill="url(#ab4)" stroke="#D9C27F" stroke-width="3"/><circle cx="120" cy="120" r="92" fill="none" stroke="#D9C27F" stroke-width="1" opacity="0.5"/><text x="120" y="122" font-size="86" text-anchor="middle" dominant-baseline="central">📖</text><circle cx="188" cy="188" r="17" fill="#D9C27F"/><text x="188" y="189" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="central">信</text></svg>',
+"雨夜苔藓":'<svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="ab5" cx="50%" cy="38%" r="72%"><stop offset="0%" stop-color="#1A2430"/><stop offset="100%" stop-color="#8FB0C9"/></radialGradient></defs><circle cx="120" cy="120" r="108" fill="url(#ab5)" stroke="#8FB0C9" stroke-width="3"/><circle cx="120" cy="120" r="92" fill="none" stroke="#8FB0C9" stroke-width="1" opacity="0.5"/><text x="120" y="122" font-size="86" text-anchor="middle" dominant-baseline="central">🌧</text><circle cx="188" cy="188" r="17" fill="#8FB0C9"/><text x="188" y="189" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="central">信</text></svg>',
+"白桃奶糖":'<svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="ab6" cx="50%" cy="38%" r="72%"><stop offset="0%" stop-color="#3A1A28"/><stop offset="100%" stop-color="#F0A0C0"/></radialGradient></defs><circle cx="120" cy="120" r="108" fill="url(#ab6)" stroke="#F0A0C0" stroke-width="3"/><circle cx="120" cy="120" r="92" fill="none" stroke="#F0A0C0" stroke-width="1" opacity="0.5"/><text x="120" y="122" font-size="86" text-anchor="middle" dominant-baseline="central">🍑</text><circle cx="188" cy="188" r="17" fill="#F0A0C0"/><text x="188" y="189" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="central">信</text></svg>',
+"茉莉晚香":'<svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="ab7" cx="50%" cy="38%" r="72%"><stop offset="0%" stop-color="#2A1A33"/><stop offset="100%" stop-color="#C99FE0"/></radialGradient></defs><circle cx="120" cy="120" r="108" fill="url(#ab7)" stroke="#C99FE0" stroke-width="3"/><circle cx="120" cy="120" r="92" fill="none" stroke="#C99FE0" stroke-width="1" opacity="0.5"/><text x="120" y="122" font-size="86" text-anchor="middle" dominant-baseline="central">🌼</text><circle cx="188" cy="188" r="17" fill="#C99FE0"/><text x="188" y="189" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="central">信</text></svg>',
+"血橙莓果":'<svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="ab8" cx="50%" cy="38%" r="72%"><stop offset="0%" stop-color="#330F1A"/><stop offset="100%" stop-color="#E04F6A"/></radialGradient></defs><circle cx="120" cy="120" r="108" fill="url(#ab8)" stroke="#E04F6A" stroke-width="3"/><circle cx="120" cy="120" r="92" fill="none" stroke="#E04F6A" stroke-width="1" opacity="0.5"/><text x="120" y="122" font-size="86" text-anchor="middle" dominant-baseline="central">🧡</text><circle cx="188" cy="188" r="17" fill="#E04F6A"/><text x="188" y="189" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="central">信</text></svg>',
+"雪松玫瑰":'<svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="ab9" cx="50%" cy="38%" r="72%"><stop offset="0%" stop-color="#2A0F22"/><stop offset="100%" stop-color="#E0A0C0"/></radialGradient></defs><circle cx="120" cy="120" r="108" fill="url(#ab9)" stroke="#E0A0C0" stroke-width="3"/><circle cx="120" cy="120" r="92" fill="none" stroke="#E0A0C0" stroke-width="1" opacity="0.5"/><text x="120" y="122" font-size="86" text-anchor="middle" dominant-baseline="central">🌹</text><circle cx="188" cy="188" r="17" fill="#E0A0C0"/><text x="188" y="189" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="central">信</text></svg>'
+};
+// ══════════ DATA ══════════
+const CITIES=[{"name": "雪松冷杉", "emoji": "🐺", "province": "Alpha · 雪夜的松林", "tags": ["Alpha", "支配系", "压场"], "kw": ["冷冽松木香", "天生领位"], "p": {"power": 95, "wealth": 70, "freedom": 60, "love": 45, "wisdom": 75, "chivalry": 70, "art": 60, "reclusion": 65, "adventure": 50, "faith": 55}, "desc": "你的信息素是雪松冷杉，清冽、低沉、拒人于千里之外，却又让人忍不住想靠近。你是标准的 Alpha，站在人群里不必开口，气场已经替你把话说完了。你习惯掌控，也扛得住掌控带来的重量。"}, {"name": "硝烟皮革", "emoji": "🔥", "province": "Alpha · 雨后的硝烟场", "tags": ["Alpha", "护短系", "烈性"], "kw": ["硝烟混皮革", "一点就着"], "p": {"power": 88, "wealth": 55, "freedom": 70, "love": 60, "wisdom": 40, "chivalry": 90, "art": 45, "reclusion": 30, "adventure": 85, "faith": 70}, "desc": "你的信息素像硝烟混着皮革，危险、滚烫、一触即发。你是 Alpha 里最护短的那一种，不讲道理地护着自己人，谁动了你的人在先，你翻脸在后。你的烈，只对在乎的人收敛。"}, {"name": "深海龙涎", "emoji": "🌊", "province": "Alpha · 深海的暗流", "tags": ["Alpha", "野心系", "沉静"], "kw": ["龙涎沉香", "要的从不是够"], "p": {"power": 90, "wealth": 92, "freedom": 55, "love": 50, "wisdom": 85, "chivalry": 55, "art": 70, "reclusion": 50, "adventure": 65, "faith": 35}, "desc": "你的信息素是深海龙涎，沉、贵，表面风平浪静，底下暗流汹涌。你是最有耐心的那种 Alpha，擅长用时间织网，等猎物自己走进领地，还以为是自己选的路。"}, {"name": "白茶青竹", "emoji": "🍵", "province": "Beta · 清晨的竹院", "tags": ["Beta", "佛系", "好相处"], "kw": ["淡到闻不见", "不争不抢"], "p": {"power": 35, "wealth": 45, "freedom": 75, "love": 55, "wisdom": 55, "chivalry": 40, "art": 55, "reclusion": 80, "adventure": 25, "faith": 60}, "desc": "你的信息素淡得几乎闻不到，像白茶混着青竹，干净、安稳、不记仇。你是最标准的 Beta，中性、松弛、谁都能处得来。别人眼中你最好说话，其实你只是懒得起争执。"}, {"name": "旧书墨香", "emoji": "📖", "province": "Beta · 泛黄的旧书房", "tags": ["Beta", "敏感系", "内秀"], "kw": ["陈年纸墨", "闷头比较"], "p": {"power": 45, "wealth": 50, "freedom": 40, "love": 75, "wisdom": 70, "chivalry": 55, "art": 65, "reclusion": 75, "adventure": 30, "faith": 50}, "desc": "你的信息素是旧书墨香，温吞、克制、藏着一肚子心事。你嘴上说着不在意，心里早把每个人的位置悄悄排了名次。作为 Beta，你不争，但你的敏感比谁都细。"}, {"name": "雨夜苔藓", "emoji": "🌧", "province": "Beta · 潮湿的苔原", "tags": ["Beta", "享乐系", "松弛"], "kw": ["雨后泥腥", "贪图舒服"], "p": {"power": 40, "wealth": 80, "freedom": 60, "love": 65, "wisdom": 45, "chivalry": 45, "art": 70, "reclusion": 55, "adventure": 40, "faith": 45}, "desc": "你的信息素是雨夜苔藓，潮湿、绵密、贴着地面自在生长。你信奉活在当下，好吃的、好睡的、舒服的，一样都不肯亏待自己。Beta 的从容在你身上，是彻底的随遇而安。"}, {"name": "白桃奶糖", "emoji": "🍑", "province": "Omega · 午后的甜品台", "tags": ["Omega", "撩人系", "甜"], "kw": ["甜到发腻", "一碰就化"], "p": {"power": 45, "wealth": 60, "freedom": 55, "love": 85, "wisdom": 65, "chivalry": 50, "art": 88, "reclusion": 40, "adventure": 60, "faith": 45}, "desc": "你的信息素是白桃混着奶糖，甜、软、带一点奶气的黏。你是天生自带弧度的 Omega，不必刻意，回头和低眉都是勾人的。你享受被目光围住的感觉，也懂得怎么让人多看两眼。"}, {"name": "茉莉晚香", "emoji": "🌼", "province": "Omega · 微醺的茉莉园", "tags": ["Omega", "精致系", "优雅"], "kw": ["清雅茉莉", "活在目光里"], "p": {"power": 55, "wealth": 75, "freedom": 50, "love": 60, "wisdom": 70, "chivalry": 40, "art": 85, "reclusion": 45, "adventure": 55, "faith": 40}, "desc": "你的信息素是夜里的茉莉，雅、白、若有似无。你是最精致的 Omega，天生懂得把自己活成一张封面。你太知道怎么被喜欢，也太在意有没有被看见。"}, {"name": "血橙莓果", "emoji": "🧡", "province": "Omega · 绷紧的深夜酒吧", "tags": ["Omega", "心机系", "难缠"], "kw": ["酸甜带血", "笑里藏刀"], "p": {"power": 70, "wealth": 65, "freedom": 75, "love": 45, "wisdom": 92, "chivalry": 45, "art": 75, "reclusion": 60, "adventure": 65, "faith": 30}, "desc": "你的信息素是血橙混着莓果，酸甜之下藏着一丝铁锈味。你是最难缠的 Omega，看起来人畜无害，其实每一步都算过。你不说谎，只是擅长让真相按你想要的样子展开。"}, {"name": "雪松玫瑰", "emoji": "🌹", "province": "稀有 · 只属于你的领地", "tags": ["稀有", "羁绊系", "深情"], "kw": ["冷暖交织", "认定就是一生"], "p": {"power": 55, "wealth": 45, "freedom": 35, "love": 92, "wisdom": 60, "chivalry": 80, "art": 70, "reclusion": 55, "adventure": 35, "faith": 95}, "desc": "你的信息素是雪松打底、玫瑰点睛，冷得有分寸，暖得不动声色。你是稀有的羁绊型，慢热、挑剔、不轻易交付。可一旦认定了谁，你便把整颗心连同退路一起奉上，从此再没有第二条路。"}];
+
+
+const QUESTIONS=[{"cat": "🧬 信息素本能", "q": "如果能看见自己的信息素，你希望它是？", "opts": [{"t": "冷冽的松木，拒人千里", "w": {"power": 25, "reclusion": 15}}, {"t": "灼热的硝烟与皮革", "w": {"adventure": 25, "chivalry": 15}}, {"t": "淡得几乎闻不到的白茶", "w": {"reclusion": 25, "freedom": 10}}, {"t": "甜腻的奶糖与果香", "w": {"art": 25, "love": 10}}]}, {"cat": "🧬 信息素本能", "q": "你的信息素浓度，最接近？", "opts": [{"t": "浓烈到有压迫感", "w": {"power": 30, "chivalry": 10}}, {"t": "刚好舒服，不冒犯", "w": {"wisdom": 20, "freedom": 10}}, {"t": "忽浓忽淡，最难猜", "w": {"wisdom": 25, "art": 10}}, {"t": "淡到别人以为你没有", "w": {"reclusion": 30, "freedom": 10}}]}, {"cat": "🧬 信息素本能", "q": "别人对你的第一印象通常是？", "opts": [{"t": "强大，有距离感", "w": {"power": 25, "reclusion": 15}}, {"t": "温和好相处", "w": {"wisdom": 20, "faith": 10}}, {"t": "危险，但迷人", "w": {"art": 25, "adventure": 15}}, {"t": "神秘，看不透", "w": {"wisdom": 25, "reclusion": 10}}]}, {"cat": "🧬 信息素本能", "q": "走进一个全是陌生人的房间，你会？", "opts": [{"t": "扫一圈，心里快速分好类", "w": {"wisdom": 25, "power": 10}}, {"t": "找个角落，安静待着", "w": {"reclusion": 25, "freedom": 10}}, {"t": "径直走向最有意思的那个", "w": {"adventure": 25, "art": 10}}, {"t": "先看看谁在看我", "w": {"art": 25, "wisdom": 10}}]}, {"cat": "🧬 信息素本能", "q": "你的气场更像？", "opts": [{"t": "一座压顶的山", "w": {"power": 30, "chivalry": 10}}, {"t": "一泓安静的湖", "w": {"reclusion": 25, "faith": 10}}, {"t": "一团跳动的火", "w": {"adventure": 25, "love": 10}}, {"t": "一片看不透的雾", "w": {"wisdom": 25, "art": 10}}]}, {"cat": "🧬 信息素本能", "q": "有人形容你「危险」，你的反应？", "opts": [{"t": "默认了，我确实是", "w": {"power": 25, "adventure": 10}}, {"t": "笑笑，不承认也不否认", "w": {"wisdom": 25, "art": 10}}, {"t": "看我心情", "w": {"freedom": 25, "art": 10}}, {"t": "有点得意", "w": {"art": 20, "wealth": 10}}]}, {"cat": "🐺 天性倾向", "q": "Alpha 的掌控、Beta 的从容、Omega 的撩人，你最想拥有？", "opts": [{"t": "Alpha，我要主导权", "w": {"power": 30, "chivalry": 10}}, {"t": "Beta，不争不抢最省心", "w": {"freedom": 25, "reclusion": 15}}, {"t": "Omega，我享受被追逐", "w": {"art": 25, "love": 10}}, {"t": "都不选，我做我自己", "w": {"freedom": 25, "wisdom": 10}}]}, {"cat": "🐺 天性倾向", "q": "遇到冲突，你的第一反应是？", "opts": [{"t": "直接刚，不惯着", "w": {"power": 25, "adventure": 15}}, {"t": "绕开，懒得费口舌", "w": {"freedom": 25, "reclusion": 10}}, {"t": "先摸清对方底牌", "w": {"wisdom": 30, "reclusion": 10}}, {"t": "找个大家都能下的台阶", "w": {"wisdom": 20, "faith": 10}}]}, {"cat": "🐺 天性倾向", "q": "在关系里你更习惯？", "opts": [{"t": "主导，节奏我说了算", "w": {"power": 30, "chivalry": 10}}, {"t": "平等，互相迁就", "w": {"wisdom": 20, "faith": 10}}, {"t": "被照顾，偶尔撒个娇", "w": {"love": 25, "art": 10}}, {"t": "看对方是谁，我能切换", "w": {"wisdom": 25, "freedom": 10}}]}, {"cat": "🐺 天性倾向", "q": "别人越了你的界，你会？", "opts": [{"t": "当场制止，划清界限", "w": {"power": 25, "chivalry": 15}}, {"t": "冷处理，慢慢疏远", "w": {"reclusion": 25, "freedom": 10}}, {"t": "记在心里，秋后算账", "w": {"wisdom": 25, "chivalry": 10}}, {"t": "看关系深浅再决定", "w": {"wisdom": 20, "love": 10}}]}, {"cat": "🐺 天性倾向", "q": "你介意别人碰你的东西吗？", "opts": [{"t": "极度介意，这是我的", "w": {"power": 20, "chivalry": 20}}, {"t": "不太介意，随意", "w": {"freedom": 25, "wealth": 10}}, {"t": "看是什么东西", "w": {"wisdom": 20, "wealth": 10}}, {"t": "介意，但不会说", "w": {"reclusion": 25, "chivalry": 10}}]}, {"cat": "🐺 天性倾向", "q": "你更喜欢哪种存在感？", "opts": [{"t": "人群的中心", "w": {"power": 25, "art": 15}}, {"t": "可靠的后盾", "w": {"chivalry": 25, "faith": 15}}, {"t": "若隐若现的谜", "w": {"art": 25, "wisdom": 10}}, {"t": "独来独往的影", "w": {"reclusion": 30, "freedom": 10}}]}, {"cat": "⚔️ 领地意识", "q": "有人闯进你的私人空间，你？", "opts": [{"t": "立刻竖刺，警告", "w": {"power": 25, "chivalry": 15}}, {"t": "不动声色地退开", "w": {"reclusion": 25, "wisdom": 10}}, {"t": "好奇他到底想干嘛", "w": {"wisdom": 20, "adventure": 10}}, {"t": "看心情，不一定", "w": {"freedom": 20, "art": 10}}]}, {"cat": "⚔️ 领地意识", "q": "关于「占有欲」，你的态度是？", "opts": [{"t": "强烈且有，藏不住", "w": {"chivalry": 30, "love": 10}}, {"t": "有，但会克制", "w": {"wisdom": 20, "chivalry": 10}}, {"t": "基本没有，随缘", "w": {"freedom": 30, "reclusion": 10}}, {"t": "看对象，值得就强", "w": {"love": 20, "faith": 15}}]}, {"cat": "⚔️ 领地意识", "q": "你会在意身边人的「归属」吗？", "opts": [{"t": "非常在意，谁也别想抢", "w": {"chivalry": 30, "power": 10}}, {"t": "适度在意，尊重彼此", "w": {"wisdom": 20, "faith": 10}}, {"t": "不太在意，各有各的", "w": {"freedom": 25, "reclusion": 10}}, {"t": "嘴上不在意，心里翻江倒海", "w": {"love": 20, "reclusion": 15}}]}, {"cat": "⚔️ 领地意识", "q": "你更愿意怎么「宣告主权」？", "opts": [{"t": "直接挑明关系", "w": {"power": 25, "adventure": 10}}, {"t": "用行动一点点圈定", "w": {"chivalry": 20, "wisdom": 15}}, {"t": "让对方自己选", "w": {"freedom": 25, "faith": 10}}, {"t": "不说，但让对方感觉得到", "w": {"art": 20, "reclusion": 15}}]}, {"cat": "⚔️ 领地意识", "q": "别人夸你在意的人，你？", "opts": [{"t": "自豪，那当然", "w": {"faith": 20, "love": 10}}, {"t": "有点警惕，别靠太近", "w": {"chivalry": 25, "power": 10}}, {"t": "无所谓，夸就夸", "w": {"freedom": 25, "wealth": 10}}, {"t": "暗暗比较，我是不是更好", "w": {"wisdom": 20, "art": 15}}]}, {"cat": "⚔️ 领地意识", "q": "独处的时候，你其实？", "opts": [{"t": "终于能松一口气", "w": {"reclusion": 30, "freedom": 10}}, {"t": "享受，但也需要偶尔热闹", "w": {"freedom": 20, "love": 10}}, {"t": "会有点空，想找人说说话", "w": {"love": 25, "faith": 10}}, {"t": "正好用来充电回血", "w": {"reclusion": 20, "wisdom": 10}}]}, {"cat": "🩸 本能底色", "q": "说实话，你最藏不住的是？", "opts": [{"t": "脾气，一点就着", "w": {"adventure": 20, "power": 15}}, {"t": "在意，看见就难受", "w": {"love": 15, "reclusion": 15}}, {"t": "野心，什么都想要", "w": {"wealth": 30, "power": 10}}, {"t": "懒散，什么都不想做", "w": {"freedom": 25, "reclusion": 15}}]}, {"cat": "🩸 本能底色", "q": "有人抢了你也想要的东西，你会？", "opts": [{"t": "正面争回来", "w": {"power": 25, "adventure": 15}}, {"t": "用别的方式拿回来", "w": {"wisdom": 30, "art": 10}}, {"t": "算了，不值得", "w": {"freedom": 20, "reclusion": 15}}, {"t": "记着这笔账", "w": {"reclusion": 20, "wisdom": 15}}]}, {"cat": "🩸 本能底色", "q": "你最不愿承认的一面是？", "opts": [{"t": "其实我很骄傲", "w": {"power": 25, "reclusion": 10}}, {"t": "其实我很怕被比下去", "w": {"love": 15, "wisdom": 15}}, {"t": "其实我还想要更多", "w": {"wealth": 30, "power": 10}}, {"t": "其实我很懒得动", "w": {"freedom": 25, "reclusion": 15}}]}, {"cat": "🩸 本能底色", "q": "你最讨厌自己哪一点？", "opts": [{"t": "太要强，不肯示弱", "w": {"power": 25, "chivalry": 10}}, {"t": "太敏感，一句话能想一天", "w": {"wisdom": 15, "reclusion": 20}}, {"t": "太贪心，永远不满足", "w": {"wealth": 30, "adventure": 10}}, {"t": "太无所谓，什么都提不起劲", "w": {"freedom": 25, "reclusion": 15}}]}, {"cat": "🩸 本能底色", "q": "你的信息素最像哪种天气？", "opts": [{"t": "压城的暴风雪", "w": {"power": 25, "reclusion": 10}}, {"t": "化不开的浓雾", "w": {"wisdom": 20, "reclusion": 10}}, {"t": "闷热的雷雨天", "w": {"art": 25, "love": 10}}, {"t": "慵懒的午后", "w": {"freedom": 25, "reclusion": 15}}]}, {"cat": "🩸 本能底色", "q": "你的坏心情一般怎么消化？", "opts": [{"t": "憋着，谁都不说", "w": {"reclusion": 25, "power": 10}}, {"t": "找人说，说到对方烦", "w": {"love": 25, "chivalry": 10}}, {"t": "做点刺激的事", "w": {"adventure": 25, "art": 15}}, {"t": "睡一觉，醒来就忘", "w": {"freedom": 25, "reclusion": 10}}]}, {"cat": "🔗 羁绊姿态", "q": "对「标记」这件事，你的态度？", "opts": [{"t": "认定的人才可能", "w": {"faith": 30, "love": 10}}, {"t": "渴望被认定，但要等对的人", "w": {"love": 25, "faith": 10}}, {"t": "顺其自然，不刻意", "w": {"freedom": 20, "wisdom": 10}}, {"t": "我想掌控，先标了再说", "w": {"power": 25, "chivalry": 15}}]}, {"cat": "🔗 羁绊姿态", "q": "喜欢的人对你忽冷忽热，你？", "opts": [{"t": "直接问清楚", "w": {"adventure": 25, "power": 10}}, {"t": "也冷回去，看谁先扛不住", "w": {"wisdom": 25, "freedom": 10}}, {"t": "加倍撩，把人追回来", "w": {"art": 25, "love": 10}}, {"t": "算了，撤", "w": {"freedom": 25, "reclusion": 15}}]}, {"cat": "🔗 羁绊姿态", "q": "你更想要怎样的关系？", "opts": [{"t": "势均力敌，互相成就", "w": {"power": 25, "wisdom": 10}}, {"t": "被牢牢护着，不用操心", "w": {"love": 25, "chivalry": 10}}, {"t": "彼此唯一的羁绊", "w": {"faith": 30, "love": 10}}, {"t": "自由又亲密，各留空间", "w": {"freedom": 25, "love": 10}}]}, {"cat": "🔗 羁绊姿态", "q": "分别的时候，你会？", "opts": [{"t": "干脆转身，不回头", "w": {"power": 20, "freedom": 15}}, {"t": "回头多看一眼", "w": {"love": 20, "art": 10}}, {"t": "忍不住多发几条消息", "w": {"love": 25, "faith": 10}}, {"t": "记很久，很久", "w": {"reclusion": 25, "love": 15}}]}, {"cat": "🔗 羁绊姿态", "q": "你会为心动的人改变吗？", "opts": [{"t": "会，为了对的人", "w": {"love": 25, "faith": 15}}, {"t": "小改，本性难移", "w": {"reclusion": 20, "wisdom": 10}}, {"t": "不改，爱我就接受我", "w": {"freedom": 25, "power": 10}}, {"t": "看值不值", "w": {"wisdom": 20, "chivalry": 10}}]}, {"cat": "🔗 羁绊姿态", "q": "你自认在感情里最像？", "opts": [{"t": "发号施令的猎人", "w": {"power": 25, "adventure": 10}}, {"t": "默默守护的骑士", "w": {"chivalry": 25, "faith": 10}}, {"t": "步步为营的棋手", "w": {"wisdom": 30, "reclusion": 10}}, {"t": "欲擒故纵的猫", "w": {"art": 25, "freedom": 10}}]}];
+
+
+// ══════════ STATE ══════════
+let current=0, answers={}, autoTimer=null;
+
+// ══════════ UTILS ══════════
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0,0);
+}
+
+function calcMatch(prefs,city){
+  const dims=["power","wealth","freedom","love","wisdom","chivalry","art","reclusion","adventure","faith"];
+  const s=dims.map(d=>100-Math.abs((prefs[d]||50)-(city.p[d]||50)));
+  return Math.round(s.reduce((a,b)=>a+b,0)/dims.length);
+}
+
+function buildPrefs(ans){
+  const base={power:50,wealth:50,freedom:50,love:50,wisdom:50,chivalry:50,art:50,reclusion:50,adventure:50,faith:50};
+  Object.values(ans).forEach(w=>{Object.entries(w).forEach(([k,v])=>{base[k]=Math.max(0,Math.min(100,base[k]+v));})});
+  return base;
+}
+
+// ══════════ PASSWORD ══════════
+function checkPwd(){
+  const v=document.getElementById('pw-input').value;
+  const err=document.getElementById('pw-err');
+  const inp=document.getElementById('pw-input');
+  if(v==='6042'){showPage('page-intro');}
+  else{
+    err.style.display='block';
+    inp.style.border='2px solid #FF8A8A';
+    inp.style.animation='pwShake 0.4s ease';
+    setTimeout(()=>{inp.style.animation='';},400);
+  }
+}
+document.getElementById('pw-input').addEventListener('keydown',e=>{if(e.key==='Enter')checkPwd();});
+
+// ══════════ QUIZ ══════════
+function startQuiz(){current=0;answers={};renderQ();showPage('page-quiz');}
+
+function renderQ(){
+  const q=QUESTIONS[current];
+  const total=QUESTIONS.length;
+  const pct=Math.round(((current+1)/total)*100);
+  document.getElementById('q-cat').textContent=q.cat;
+  document.getElementById('q-count').textContent=`问题 ${current+1} / ${total}`;
+  document.getElementById('q-pct').textContent=pct+'%';
+  document.getElementById('progress-bar').style.width=pct+'%';
+  document.getElementById('q-text').textContent=q.q;
+  document.getElementById('prev-btn').style.opacity=current===0?'0.3':'1';
+  document.getElementById('auto-hint').style.opacity='1';
+  const body=document.getElementById('q-body');
+  body.style.opacity='1';
+  const opts=document.getElementById('opts');
+  opts.innerHTML='';
+  q.opts.forEach((opt,i)=>{
+    const btn=document.createElement('button');
+    btn.className='opt';
+    const prevW=answers[current];
+    const isSelected=prevW&&JSON.stringify(prevW)===JSON.stringify(opt.w)&&Object.keys(opt.w).every(k=>prevW[k]===opt.w[k]);
+    if(isSelected)btn.classList.add('selected');
+    btn.innerHTML=`<span class="opt-radio">${isSelected?'●':'○'}</span>${opt.t}`;
+    btn.onclick=()=>selectOpt(opt,btn,q);
+    opts.appendChild(btn);
+  });
+}
+
+function selectOpt(opt,btn,q){
+  if(autoTimer)clearTimeout(autoTimer);
+  document.querySelectorAll('.opt').forEach(b=>{b.classList.remove('selected');b.querySelector('.opt-radio').textContent='○';});
+  btn.classList.add('selected');
+  btn.querySelector('.opt-radio').textContent='●';
+  document.getElementById('auto-hint').style.opacity='0';
+  answers[current]=opt.w;
+  autoTimer=setTimeout(()=>{
+    if(current===QUESTIONS.length-1){showResults();}
+    else{current++;renderQ();}
+  },80);
+}
+
+function prevQ(){
+  if(current===0)return;
+  if(autoTimer)clearTimeout(autoTimer);
+  const body=document.getElementById('q-body');
+  body.style.opacity='0';
+  setTimeout(()=>{current--;renderQ();},200);
+}
+
+// ══════════ GENERATE REASON ══════════
+function generateReason(prefs, city){
+  const dimInfo = {
+power:{name:"支配气场",high:"压得住全场的支配感",low:"甘居人后的松弛",cityHigh:c=>`你和${c.name}一样，骨子里带着压场的支配欲，天生要做发号施令的那一个`,cityLow:c=>`你与${c.name}不同，你更享受把主导权让出去的自在`},
+wealth:{name:"欲望浓度",high:"什么都想要更多",low:"够用就好的清简",cityHigh:c=>`你像${c.name}一样欲望浓烈，想要的从来不是够，而是更多`,cityLow:c=>`你不似${c.name}贪多，一份清简的日子对你来说刚刚好`},
+freedom:{name:"独处抽离",high:"谁都别来烦我的疏离",low:"离不开人的黏",cityHigh:c=>`你承袭${c.name}的疏离，独处对你不是孤独，是刚需`,cityLow:c=>`比起${c.name}的独立，你更怕一个人待着，需要有人在场`},
+love:{name:"依恋浓度",high:"一沾就上瘾的依恋",low:"随时能抽身的清醒",cityHigh:c=>`你拥有${c.name}般浓烈的依恋，一旦动心就整个人陷进去`,cityLow:c=>`你如${c.name}般清醒，爱得起，也随时收得回`},
+wisdom:{name:"城府心机",high:"把人心算得明明白白",low:"藏不住事的坦荡",cityHigh:c=>`你继承了${c.name}的城府，谁在演戏、谁在真心，你一眼看穿`,cityLow:c=>`你与${c.name}不同，心里藏不住事，坦荡得近乎透明`},
+chivalry:{name:"守护本能",high:"划界护食的本能",low:"事不关己的淡",cityHigh:c=>`你骨血里流淌${c.name}的护食本能，认下的人，旁人碰不得`,cityLow:c=>`比起${c.name}的强保护欲，你更信奉各人有各人的路`},
+art:{name:"张力魅力",high:"往那儿一站就有戏",low:"平淡如水的实在",cityHigh:c=>`你带着${c.name}般的张力，一个眼神就能把气氛拉满`,cityLow:c=>`你不像${c.name}那样惹眼，更偏爱不动声色的实在`},
+reclusion:{name:"内敛隐忍",high:"憋得住也忍得下的沉",low:"藏不住事的直",cityHigh:c=>`你与${c.name}一般内敛，天大的情绪也先咽下去再说`,cityLow:c=>`你不似${c.name}压抑，喜怒都挂在脸上，藏不住`},
+adventure:{name:"野性主动",high:"说干就干的野",low:"静观其变的稳",cityHigh:c=>`你承袭${c.name}的野性，想做什么从不问可不可以`,cityLow:c=>`你不如${c.name}冲动，总要想想后果才动`},
+faith:{name:"忠诚专一",high:"认定了就是一生的执",low:"谁都可以的无所谓",cityHigh:c=>`你心怀${c.name}般的忠犬底色，认定了便把整颗心给你`,cityLow:c=>`你少有${c.name}式执念，缘分来了就接，走了也不强留`}
+};
+const dims=Object.keys(dimInfo);
+  const userTop=dims.map(d=>({dim:d,val:prefs[d]||50,diff:Math.abs((prefs[d]||50)-50)})).sort((a,b)=>b.diff-a.diff).slice(0,3);
+  const matchTop=dims.map(d=>({dim:d,match:100-Math.abs((prefs[d]||50)-(city.p[d]||50))})).sort((a,b)=>b.match-a.match).slice(0,3);
+  const seen=new Set();
+  const usedDims=[];
+  userTop.forEach(u=>{if(!seen.has(u.dim)){seen.add(u.dim);usedDims.push(u.dim);}});
+  matchTop.forEach(m=>{if(!seen.has(m.dim)&&usedDims.length<4){seen.add(m.dim);usedDims.push(m.dim);}});
+
+  let reason=`根据你的灵魂偏好，${city.name}是你最契合的那一个。`;
+  usedDims.slice(0,3).forEach(d=>{
+    const info=dimInfo[d];
+    const userVal=prefs[d]||50;
+    const cityVal=city.p[d]||50;
+    if(userVal>=55&&cityVal>=55){
+      reason+=info.cityHigh(city)+'。';
+    }else if(userVal<45&&cityVal<45){
+      reason+=info.cityLow(city)+'。';
+    }else if(Math.abs(userVal-cityVal)<=20){
+      reason+=`在${info.name}上，${city.name}与你的灵魂频率十分接近，能默契呼应你心底的声音。`;
+    }
+  });
+  reason+=`综合来看，你此生的许多执念，都藏着那一世的回响。`;
+  return reason;
+}
+
+function generateOtherReason(prefs, city){
+  const dimLabelsShort = {power:"支配气场",wealth:"欲望浓度",freedom:"独处抽离",love:"依恋浓度",wisdom:"城府心机",chivalry:"守护本能",art:"张力魅力",reclusion:"内敛隐忍",adventure:"野性主动",faith:"忠诚专一"};
+const dims=Object.keys(dimLabelsShort);
+  const matchDims=dims.map(d=>({dim:d,label:dimLabelsShort[d],match:100-Math.abs((prefs[d]||50)-(city.p[d]||50))})).sort((a,b)=>b.match-a.match);
+  const topDims=matchDims.slice(0,3).map(m=>m.label);
+  return `你在${topDims.join('、')}等方面与${city.name}高度吻合，匹配度${city.score}%。${city.desc}`;
+}
+
+// ══════════ RESULTS ══════════
+function showResults(){
+  const prefs=buildPrefs(answers);
+  const ranked=CITIES.map(c=>({...c,score:calcMatch(prefs,c)})).sort((a,b)=>b.score-a.score);
+  const top=ranked[0];
+  const others=ranked.slice(1,7);
+
+  document.getElementById('r-pct').textContent=top.score+'%';
+  document.getElementById('r-city').textContent=top.name;
+  document.getElementById('r-prov').textContent=top.province;
+  document.getElementById('r-portrait').innerHTML=(PORTRAITS[top.name]||'');
+  document.getElementById('r-tags').innerHTML=top.tags.map(t=>`<span class="tag-chip">${t}</span>`).join('');
+  document.getElementById('r-kws').innerHTML=top.kw.map(k=>`<span class="kw-chip">${k}</span>`).join('');
+  document.getElementById('r-desc').textContent=generateReason(prefs,top);
+
+  const dimLabels = {power:"支配气场",wealth:"欲望浓度",freedom:"独处抽离",love:"依恋浓度",wisdom:"城府心机",chivalry:"守护本能",art:"张力魅力",reclusion:"内敛隐忍",adventure:"野性主动",faith:"忠诚专一"};
+const dg=document.getElementById('dim-grid');
+  dg.innerHTML='';
+  Object.entries(dimLabels).forEach(([k,label])=>{
+    const val=prefs[k];
+    dg.innerHTML+=`<div class="dim-row"><span class="dim-label">${label}</span><div class="dim-track"><div class="dim-bar" style="width:${val}%"></div></div><span class="dim-val">${val}</span></div>`;
+  });
+
+  const og=document.getElementById('others-grid');
+  og.innerHTML='';
+  others.forEach(c=>{
+    og.innerHTML+=`<div class="other-card"><div class="other-portrait">${PORTRAITS[c.name]||''}</div><div class="other-top"><div><span>🏯</span><span class="other-name">${c.name}</span><span class="other-prov"> · ${c.province}</span></div><span class="other-score">${c.score}%</span></div><div class="tag-row">${c.tags.map(t=>`<span class="tag-chip-sm">${t}</span>`).join('')}</div><div class="tag-row">${c.kw.map(k=>`<span class="kw-chip-sm">${k}</span>`).join('')}</div><p class="other-desc">${generateOtherReason(prefs,c)}</p></div>`;
+  });
+
+  showPage('page-result');
+}
+
+function resetQuiz(){showPage('page-intro');}
+</script>
+</body>
+</html>
