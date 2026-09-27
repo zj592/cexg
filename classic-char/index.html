@@ -121,8 +121,61 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9999;o
 .kw-chip-sm{background:var(--paper);color:var(--acc2);border-radius:20px;padding:3px 10px;font-size:11px;border:1px solid rgba(46,42,38,.2)}
 .decl-text{font-size:13px;color:#5b554c;line-height:1.9;margin-bottom:16px}
 .decl-text strong{color:var(--acc)}</style>
+
+<!-- LAYOUT-PATCH-START -->
+<style id="layout-patch">
+body[data-layout="mirror"] .page.active{align-items:flex-end}
+body[data-layout="mirror"] .wrap{max-width:520px}
+body[data-layout="mirror"] .icon-box{margin:26px 0 14px;transform:rotate(3deg)}
+body[data-layout="mirror"] .hero-title{text-align:right;padding-right:16px;border-right:4px solid var(--acc2)}
+body[data-layout="mirror"] .hero-sub{text-align:right;padding-right:18px}
+body[data-layout="mirror"] .card,
+body[data-layout="mirror"] .info-box,
+body[data-layout="mirror"] .pw-card,
+body[data-layout="mirror"] .category-card,
+body[data-layout="mirror"] .dim-card,
+body[data-layout="mirror"] .others-card,
+body[data-layout="mirror"] .q-header,
+body[data-layout="mirror"] .q-body,
+body[data-layout="mirror"] .top-card,
+body[data-layout="mirror"] .match-reason{border-left:none;border-right:4px solid var(--acc2)}
+body[data-layout="mirror"] .card-title{text-align:right;padding-left:0;padding-right:14px}
+body[data-layout="mirror"] .card-title::before{left:auto;right:0}
+body[data-layout="mirror"] .decl-text,
+body[data-layout="mirror"] .info-box-text,
+body[data-layout="mirror"] .info-box-title,
+body[data-layout="mirror"] .reason-title,
+body[data-layout="mirror"] .reason-text,
+body[data-layout="mirror"] .dim-card-title,
+body[data-layout="mirror"] .others-title,
+body[data-layout="mirror"] .other-desc,
+body[data-layout="mirror"] .q-text{text-align:right}
+body[data-layout="mirror"] .dim-item{flex-direction:row-reverse;text-align:right}
+body[data-layout="mirror"] .category-header{flex-direction:row-reverse}
+body[data-layout="mirror"] .category-left{flex-direction:row-reverse}
+body[data-layout="mirror"] .city-tags{justify-content:flex-end}
+body[data-layout="mirror"] .stats-grid{direction:rtl}
+body[data-layout="mirror"] .stat-card{align-items:flex-end;text-align:right}
+body[data-layout="mirror"] .q-meta{flex-direction:row-reverse}
+body[data-layout="mirror"] .q-nav{flex-direction:row-reverse}
+body[data-layout="mirror"] .opt{text-align:right;flex-direction:row-reverse}
+body[data-layout="mirror"] .opt:hover{transform:translateX(-3px)}
+body[data-layout="mirror"] .btn-primary{direction:rtl}
+body[data-layout="mirror"] .tag-row{justify-content:flex-end}
+body[data-layout="mirror"] .top-card{text-align:right}
+body[data-layout="mirror"] .dim-row{direction:rtl}
+body[data-layout="mirror"] .dim-label{text-align:right}
+body[data-layout="mirror"] .dim-val{text-align:left}
+body[data-layout="mirror"] .other-top{flex-direction:row-reverse}
+body[data-layout="mirror"] .nav-btn{direction:rtl}
+body[data-layout="mirror"] .top-portrait{margin:4px 0 10px auto}
+body[data-layout="mirror"] .other-portrait{margin:0 0 8px auto}
+body[data-layout="mirror"] .others-grid{justify-items:stretch}
+body[data-layout="mirror"] .other-card{text-align:right}
+</style>
+<!-- LAYOUT-PATCH-END -->
 </head>
-<body>
+<body data-layout="mirror">
 
 <!-- ══════════ PAGE: PASSWORD ══════════ -->
 <div class="page active" id="page-password">
